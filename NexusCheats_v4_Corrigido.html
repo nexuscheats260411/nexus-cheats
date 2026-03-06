@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Nexus Cheats - FF Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--r:#FF2D2D;--r2:#FF6B00;--gold:#FFD700;--cyan:#00FFD1;--purple:#A855F7;--green:#00FF88;--bg:#030608;--bg2:#08111A;--card:#0A1825;--border:#152535;--text:#C8E6FF;--dim:#3A6A8A}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh}
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-layer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 10% 10%,rgba(255,45,45,.10) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(0,128,255,.06) 0%,transparent 60%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(21,37,53,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(21,37,53,.5) 1px,transparent 1px);background-size:32px 32px}
+.scanline{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,rgba(255,45,45,.25),transparent);animation:scan 5s linear infinite;top:-2px}
+@keyframes scan{from{top:-2px}to{top:100vh}}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.sp-marquee-wrap{position:absolute;top:0;left:0;right:0;height:100%;display:flex;align-items:center;pointer-events:none;overflow:hidden;opacity:.04}
+.sp-marquee{display:flex;gap:60px;animation:marqueeX 8s linear infinite;white-space:nowrap;font-family:'Orbitron',sans-serif;font-size:80px;font-weight:900;color:var(--r);letter-spacing:10px}
+@keyframes marqueeX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sp-center{display:flex;flex-direction:column;align-items:center;z-index:2}
+.sp-skull{font-size:64px;margin-bottom:12px;animation:floatY 2.5s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(255,45,45,.8))}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.sp-logo{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;letter-spacing:6px;background:linear-gradient(135deg,var(--r),var(--r2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sp-sub{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:8px;color:var(--gold);margin-top:4px}
+.sp-ver{font-size:10px;color:var(--dim);letter-spacing:2px;margin-top:5px}
+.sp-bar-wrap{width:220px;height:4px;background:var(--border);border-radius:2px;margin-top:30px;overflow:hidden;box-shadow:0 0 10px rgba(255,45,45,.2)}
+.sp-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--r),var(--gold));border-radius:2px;box-shadow:0 0 10px rgba(255,45,45,.7);transition:width .1s}
+.sp-pct{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--r);margin-top:10px;letter-spacing:3px}
+.sp-msg{font-size:11px;color:var(--dim);margin-top:5px;height:16px;letter-spacing:1px}
+.sp-scroll-wrap{position:absolute;bottom:0;left:0;right:0;overflow:hidden;height:32px;background:rgba(255,45,45,.04);border-top:1px solid rgba(255,45,45,.15)}
+.sp-scroll{display:flex;gap:40px;animation:scrollX 12s linear infinite;white-space:nowrap;padding:8px 0;font-family:'Orbitron',sans-serif;font-size:10px;color:rgba(255,45,45,.5);letter-spacing:2px}
+@keyframes scrollX{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+#loginScreen{position:fixed;inset:0;z-index:9998;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+#loginScreen.hidden{display:none}
+.login-skull{font-size:55px;margin-bottom:10px;animation:floatY 2.5s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,45,45,.7))}
+.login-logo{font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;letter-spacing:5px;background:linear-gradient(135deg,var(--r),var(--r2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.login-sub{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:6px;color:var(--gold);margin-top:2px}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-top:28px;width:100%;max-width:340px;position:relative;overflow:hidden}
+.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.login-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--dim);margin-bottom:16px;text-transform:uppercase}
+.key-input{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;outline:none;transition:border-color .2s;text-transform:uppercase;margin-bottom:12px}
+.key-input::placeholder{color:var(--dim);font-size:11px;letter-spacing:1px;text-transform:none;font-family:'Exo 2',sans-serif}
+.key-input:focus{border-color:var(--r);box-shadow:0 0 12px rgba(255,45,45,.2)}
+.login-btn{width:100%;padding:15px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;letter-spacing:3px;cursor:pointer;box-shadow:0 0 20px rgba(255,45,45,.25);transition:all .15s;text-transform:uppercase}
+.login-btn:active{transform:scale(.97)}
+.login-err{font-size:12px;color:var(--r);text-align:center;margin-top:10px;min-height:18px;font-weight:600}
+.shop-btn{display:block;margin-top:14px;padding:13px 20px;background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,165,0,.08));border:1.5px solid var(--gold);border-radius:12px;color:var(--gold);font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:2px;text-align:center;text-decoration:none;box-shadow:0 0 16px rgba(255,215,0,.2);transition:all .2s;animation:shopPulse 2s ease-in-out infinite}
+@keyframes shopPulse{0%,100%{box-shadow:0 0 16px rgba(255,215,0,.2)}50%{box-shadow:0 0 30px rgba(255,215,0,.5)}}
+.key-badges{display:flex;gap:8px;margin-top:14px;justify-content:center;flex-wrap:wrap}
+.kbadge{padding:5px 10px;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;border:1px solid}
+.kbadge.min{border-color:var(--cyan);color:var(--cyan);background:rgba(0,255,209,.08)}
+.kbadge.day{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.08)}
+.kbadge.w7{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.08)}
+.kbadge.m30{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.08)}
+#expiredScreen{position:fixed;inset:0;z-index:9998;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+#expiredScreen.show{display:flex}
+.exp-icon{font-size:60px;margin-bottom:16px;filter:drop-shadow(0 0 15px rgba(255,45,45,.6))}
+.exp-title{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--r);letter-spacing:3px;margin-bottom:8px}
+.exp-msg{font-size:13px;color:var(--dim);text-align:center;line-height:1.6;max-width:280px;margin-bottom:24px}
+.exp-btn{padding:14px 28px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:2px;cursor:pointer}
+#adminScreen{position:fixed;inset:0;z-index:9997;background:var(--bg);display:none;flex-direction:column;overflow:hidden}
+#adminScreen.show{display:flex}
+.admin-header{background:linear-gradient(135deg,rgba(8,17,26,.99),rgba(3,6,8,.99));border-bottom:2px solid var(--gold);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.admin-logo{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--gold),#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.admin-sub{font-size:9px;color:var(--dim);letter-spacing:1px;margin-top:1px}
+.admin-close{background:rgba(255,45,45,.15);border:1px solid var(--r);border-radius:8px;padding:7px 14px;color:var(--r);font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.admin-tabs{display:flex;border-bottom:1px solid var(--border);background:rgba(3,6,8,.9);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.admin-tabs::-webkit-scrollbar{display:none}
+.atab{flex:none;padding:10px 14px;font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--dim);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-transform:uppercase}
+.atab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.admin-body{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.apage{display:none}
+.apage.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.ac{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden}
+.ac::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--r2),transparent)}
+.ac-gold::before{background:linear-gradient(90deg,var(--gold),#FFA500,transparent)}
+.ac-cyan::before{background:linear-gradient(90deg,var(--cyan),#00AAFF,transparent)}
+.ac-purple::before{background:linear-gradient(90deg,var(--purple),#7C3AED,transparent)}
+.ac-green::before{background:linear-gradient(90deg,var(--green),#00CC66,transparent)}
+.ac-red::before{background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.act{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.act.cyan{color:var(--cyan)}.act.purple{color:var(--purple)}.act.green{color:var(--green)}.act.red{color:var(--r)}
+.adst{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.adst4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.adst6{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sv{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 8px;text-align:center}
+.sv-val{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--gold);display:block}
+.sv-val.cyan{color:var(--cyan)}.sv-val.green{color:var(--green)}.sv-val.red{color:var(--r)}.sv-val.purple{color:var(--purple)}
+.sv-lbl{font-size:8px;color:var(--dim);letter-spacing:1px;margin-top:2px;text-transform:uppercase}
+.abtn{width:100%;padding:12px;border-radius:10px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;letter-spacing:2px;cursor:pointer;transition:all .15s;text-transform:uppercase;margin-bottom:8px}
+.abtn:last-child{margin-bottom:0}.abtn:active{transform:scale(.97)}
+.abtn-gold{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,165,0,.06));border:1.5px solid var(--gold);color:var(--gold)}
+.abtn-red{background:linear-gradient(135deg,rgba(255,45,45,.12),rgba(255,107,0,.06));border:1.5px solid var(--r);color:var(--r)}
+.abtn-cyan{background:linear-gradient(135deg,rgba(0,255,209,.1),rgba(0,170,255,.05));border:1.5px solid var(--cyan);color:var(--cyan)}
+.abtn-purple{background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(124,58,237,.05));border:1.5px solid var(--purple);color:var(--purple)}
+.abtn-green{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,204,102,.05));border:1.5px solid var(--green);color:var(--green)}
+.abtn-dim{background:rgba(21,37,53,.5);border:1px solid var(--border);color:var(--dim)}
+.gen-types{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.gtype{flex:1;min-width:55px;padding:9px 4px;border-radius:8px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;cursor:pointer;text-align:center;border:1.5px solid;transition:all .2s;opacity:.45}
+.gtype.sel{opacity:1;filter:brightness(1.2)}
+.gtype.t-min{border-color:var(--cyan);color:var(--cyan);background:rgba(0,255,209,.05)}
+.gtype.t-day{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.05)}
+.gtype.t-7d{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.05)}
+.gtype.t-30d{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.05)}
+.gen-result{background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:12px;margin-top:10px;display:none}
+.gen-result.show{display:block}
+.gen-key-text{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--green);letter-spacing:1px;word-break:break-all;margin-bottom:8px}
+.copy-btn{width:100%;padding:9px;background:rgba(0,255,136,.1);border:1px solid var(--green);border-radius:8px;color:var(--green);font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.kl{max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.ki{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
+.ki-code{font-family:'Orbitron',sans-serif;font-size:9px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.5px}
+.ki-type{font-family:'Orbitron',sans-serif;font-size:7px;padding:2px 6px;border-radius:8px;border:1px solid;flex-shrink:0}
+.ki-type.min{border-color:var(--cyan);color:var(--cyan)}.ki-type.day{border-color:var(--gold);color:var(--gold)}.ki-type.w7{border-color:var(--purple);color:var(--purple)}.ki-type.m30{border-color:var(--r);color:var(--r)}
+.ki-status{font-size:8px;flex-shrink:0;font-weight:700}
+.ki-status.active{color:var(--green)}.ki-status.expired{color:var(--dim)}.ki-status.pending{color:var(--gold)}
+.ki-del{background:rgba(255,45,45,.15);border:1px solid rgba(255,45,45,.4);border-radius:5px;color:var(--r);font-size:10px;padding:2px 7px;cursor:pointer;flex-shrink:0}
+.log-area{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;max-height:320px;overflow-y:auto;font-family:'Orbitron',sans-serif;font-size:9px;line-height:1.8;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.log-line{padding:3px 0;border-bottom:1px solid rgba(21,37,53,.5);display:flex;gap:8px;align-items:flex-start}
+.log-line:last-child{border-bottom:none}
+.log-time{color:var(--dim);flex-shrink:0;min-width:55px}
+.log-type{flex-shrink:0;min-width:50px;font-weight:700}
+.log-type.ok{color:var(--green)}.log-type.warn{color:var(--gold)}.log-type.err{color:var(--r)}.log-type.info{color:var(--cyan)}.log-type.admin{color:var(--purple)}
+.log-msg{color:var(--text);font-size:8px;letter-spacing:.5px}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(21,37,53,.6)}
+.tog-row:last-child{border-bottom:none}
+.tog-lbl{font-size:13px;font-weight:700}.tog-desc{font-size:10px;color:var(--dim);margin-top:1px}
+.sw{width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+.sw.on{background:var(--r);box-shadow:0 0 10px rgba(255,45,45,.4)}
+.sw.on.gold{background:var(--gold);box-shadow:0 0 10px rgba(255,215,0,.4)}
+.sw.on.cyan{background:var(--cyan);box-shadow:0 0 10px rgba(0,255,209,.4)}
+.sw.on.green{background:var(--green);box-shadow:0 0 10px rgba(0,255,136,.4)}
+.sw-k{position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:transform .3s;box-shadow:0 2px 5px rgba(0,0,0,.5)}
+.sw.on .sw-k{transform:translateX(20px)}
+.sl-row{margin-bottom:14px}
+.sl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sl-name{font-size:12px;font-weight:700}
+.sl-val{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:var(--r);min-width:38px;text-align:right}
+.sl-val.gold{color:var(--gold)}.sl-val.cyan{color:var(--cyan)}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--r2));cursor:pointer;box-shadow:0 0 10px rgba(255,45,45,.5)}
+input[type=range].gold-thumb::-webkit-slider-thumb{background:linear-gradient(135deg,var(--gold),#FFA500);box-shadow:0 0 10px rgba(255,215,0,.5)}
+input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(135deg,var(--cyan),#00AAFF);box-shadow:0 0 10px rgba(0,255,209,.5)}
+.ainput{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Exo 2',sans-serif;font-size:13px;outline:none;transition:border-color .2s;margin-bottom:8px}
+.ainput:focus{border-color:var(--gold)}.ainput.cyan:focus{border-color:var(--cyan)}
+.phone-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.phone-opt{padding:12px 8px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.phone-opt.sel{border-color:var(--cyan);background:rgba(0,255,209,.08);color:var(--cyan);box-shadow:0 0 10px rgba(0,255,209,.15)}
+.phone-icon{font-size:18px;display:block;margin-bottom:3px}
+.sensi-preview{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:10px}
+.header{position:sticky;top:0;z-index:100;background:rgba(3,6,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,45,45,.4);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(255,45,45,.18)}
+.h-logo{display:flex;align-items:center;gap:8px}
+.h-skull{font-size:22px;filter:drop-shadow(0 0 6px rgba(255,45,45,.8))}
+.h-text{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,var(--r),var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.h-text span{background:linear-gradient(135deg,var(--gold),#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-ver{font-size:9px;color:var(--dim);letter-spacing:1px}
+.h-right{display:flex;align-items:center;gap:8px}
+.h-key-info{font-family:'Orbitron',sans-serif;font-size:8px;color:var(--gold);letter-spacing:1px;text-align:right;line-height:1.4}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex-shrink:0}
+.sdot.on{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.h-status{display:flex;align-items:center;gap:5px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px}
+.key-bar-strip{background:rgba(255,215,0,.05);border-bottom:1px solid rgba(255,215,0,.15);padding:5px 14px;display:flex;align-items:center;gap:8px;font-size:9px;color:var(--gold);font-family:'Orbitron',sans-serif;letter-spacing:1px}
+.key-bar-inner{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.key-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--r));border-radius:2px;transition:width 1s linear}
+.tabs{position:sticky;top:53px;z-index:99;background:rgba(3,6,8,.95);backdrop-filter:blur(10px);display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:11px 16px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--dim);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-transform:uppercase}
+.tab.active{color:var(--r);border-bottom-color:var(--r)}
+.content{position:relative;z-index:1;padding:14px;max-width:480px;margin:0 auto;padding-bottom:40px}
+.page{display:none}.page.active{display:block;animation:fadeIn .3s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.card-title{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.inject-btn{width:100%;padding:22px 20px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:14px;color:white;font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(255,45,45,.3),inset 0 0 30px rgba(255,45,45,.04);transition:all .2s;text-transform:uppercase}
+.inject-btn:active{transform:scale(.97)}
+.inject-btn.done{border-color:var(--green);box-shadow:0 0 30px rgba(0,255,136,.35);color:var(--green)}
+.inj-icon{font-size:30px;display:block;margin-bottom:6px}
+.inj-sub{font-size:10px;letter-spacing:2px;color:var(--dim);margin-top:5px;font-family:'Exo 2',sans-serif}
+.inj-prog{display:none;margin-top:14px}
+.inj-prog.show{display:block}
+.inj-step{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px;font-weight:500;color:var(--dim);transition:color .3s}
+.inj-step.done{color:var(--green)}.inj-step.cur{color:var(--gold);animation:stepP .8s infinite}
+@keyframes stepP{0%,100%{opacity:1}50%{opacity:.5}}
+.inj-ic{width:17px;height:17px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
+.inj-step.done .inj-ic{background:var(--green);border-color:var(--green);color:#000}
+.inj-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:8px}
+.inj-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--r),var(--gold));transition:width .3s;box-shadow:0 0 8px rgba(255,45,45,.5)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center}
+.stat-val{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--r),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.stat-label{font-size:10px;color:var(--dim);letter-spacing:1px;font-weight:700;margin-top:2px;text-transform:uppercase}
+.fps-row{display:flex;gap:8px}
+.fps-btn{flex:1;padding:12px 4px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.fps-btn.sel{border-color:var(--gold);background:rgba(255,215,0,.1);color:var(--gold);box-shadow:0 0 12px rgba(255,215,0,.2)}
+.vkey-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vkey-opt{padding:14px 10px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.vkey-opt.sel{border-color:var(--cyan);background:rgba(0,255,209,.1);color:var(--cyan);box-shadow:0 0 12px rgba(0,255,209,.2)}
+.vk-icon{font-size:20px;display:block;margin-bottom:4px}
+.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.preset-btn{padding:14px 8px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.preset-btn:active{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.08)}
+.preset-icon{font-size:20px;display:block;margin-bottom:4px}
+.preset-sub{font-size:9px;color:var(--dim);margin-top:2px}
+.apply-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--r),var(--r2));border:none;border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:3px;cursor:pointer;margin-top:6px;box-shadow:0 4px 20px rgba(255,45,45,.35);transition:all .15s;text-transform:uppercase}
+.apply-btn:active{transform:scale(.97)}
+.tut-step{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.tut-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--r2));display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;flex-shrink:0}
+.tut-ttl{font-size:14px;font-weight:700;margin-bottom:2px}
+.tut-txt{font-size:12px;color:var(--dim);line-height:1.5}
+.tut-txt b{color:var(--r);font-weight:700}
+.warn{background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.3);border-radius:10px;padding:12px 14px;font-size:12px;color:#FFA500;line-height:1.5;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
+#notif-overlay{position:fixed;top:0;left:0;right:0;z-index:8888;padding:60px 14px 0;pointer-events:none;display:flex;flex-direction:column;gap:8px}
+.notif{background:rgba(8,17,26,.97);border:1px solid var(--r);border-left:3px solid var(--r);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);transform:translateX(110%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(20px);pointer-events:all}
+.notif.green{border-color:var(--green)}.notif.gold{border-color:var(--gold)}.notif.cyan{border-color:var(--cyan)}.notif.purple{border-color:var(--purple)}
+.notif.show{transform:translateX(0)}.notif.hide{transform:translateX(110%)}
+.notif-icon{font-size:22px;flex-shrink:0}
+.notif-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:white;letter-spacing:1px}
+.notif-body{font-size:12px;color:#8AABCC;margin-top:2px}
+.notif-brand{margin-left:auto;font-family:'Orbitron',sans-serif;font-size:9px;color:var(--r);letter-spacing:1px;flex-shrink:0}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(0,255,136,.12);border:1px solid var(--green);color:var(--green);padding:9px 18px;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;opacity:0;transition:all .3s;z-index:9000;white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#sensiModal{position:fixed;inset:0;z-index:9996;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+#sensiModal.show{display:flex}
+.smodal-box{background:var(--card);border:1px solid var(--cyan);border-radius:16px;padding:20px;width:100%;max-width:380px;position:relative;overflow:hidden;max-height:90vh;overflow-y:auto}
+.smodal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#00AAFF,transparent)}
+.smodal-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;color:var(--cyan);letter-spacing:2px;margin-bottom:16px}
+.smodal-close{position:absolute;top:12px;right:12px;background:rgba(255,45,45,.15);border:1px solid var(--r);border-radius:6px;padding:4px 10px;color:var(--r);font-family:'Orbitron',sans-serif;font-size:9px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-marquee-wrap">
+    <div class="sp-marquee">NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS</div>
+  </div>
+  <div class="sp-center">
+    <div class="sp-skull">💀</div>
+    <div class="sp-logo">NEXUS</div>
+    <div class="sp-sub">CHEATS</div>
+    <div class="sp-ver">FREE FIRE TOOL · v4.0</div>
+    <div class="sp-bar-wrap"><div class="sp-bar" id="spBar"></div></div>
+    <div class="sp-pct" id="spPct">0%</div>
+    <div class="sp-msg" id="spMsg">Inicializando...</div>
+  </div>
+  <div class="sp-scroll-wrap">
+    <div class="sp-scroll">💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp; 💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp;</div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="hidden">
+  <div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
+  <div class="login-skull">💀</div>
+  <div class="login-logo">NEXUS</div>
+  <div class="login-sub">CHEATS · FF TOOL v4.0</div>
+  <div class="login-box">
+    <div class="login-title">🔑 INSERIR KEY DE ACESSO</div>
+    <input class="key-input" id="keyInput" type="text" placeholder="Digite sua key aqui..." maxlength="36" oninput="this.value=this.value.toUpperCase()">
+    <button class="login-btn" onclick="tryLogin()">⚡ ENTRAR</button>
+    <div class="login-err" id="loginErr"></div>
+    <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" class="shop-btn">🛒 COMPRAR NA LOJA OFICIAL</a>
+    <div class="key-badges">
+      <span class="kbadge min">1 MIN</span>
+      <span class="kbadge day">1 DIA</span>
+      <span class="kbadge w7">7 DIAS</span>
+      <span class="kbadge m30">30 DIAS</span>
+    </div>
+  </div>
+</div>
+
+<!-- EXPIRED -->
+<div id="expiredScreen">
+  <div class="bg-layer"><div class="bg-grid"></div></div>
+  <div class="exp-icon">⏰</div>
+  <div class="exp-title">KEY EXPIRADA</div>
+  <div class="exp-msg">Sua key de acesso expirou. Entre em contato para renovar.</div>
+  <button class="exp-btn" onclick="showLogin()">🔑 INSERIR NOVA KEY</button>
+</div>
+
+<!-- SENSI MODAL -->
+<div id="sensiModal">
+  <div class="smodal-box">
+    <button class="smodal-close" onclick="closeSensiModal()">✕</button>
+    <div class="smodal-title">📱 SENSIBILIDADE GERADA</div>
+    <div id="sensiModalContent"></div>
+    <button class="abtn abtn-cyan" style="margin-top:12px" onclick="copySensiKey()">📋 COPIAR KEY SENSI</button>
+    <button class="abtn abtn-dim" style="margin-top:6px" onclick="closeSensiModal()">FECHAR</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminScreen">
+  <div class="admin-header">
+    <div>
+      <div class="admin-logo">👑 PAINEL DESENVOLVEDOR</div>
+      <div class="admin-sub">NEXUS CHEATS · ADMIN v4.0 · NEXUS-ADMIN-2024</div>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">✕ SAIR</button>
+  </div>
+  <div class="admin-tabs">
+    <button class="atab active" onclick="showATab('dashboard',this)">📊 DASHBOARD</button>
+    <button class="atab" onclick="showATab('keys',this)">🔑 KEYS</button>
+    <button class="atab" onclick="showATab('sensi',this)">📱 SENSI GEN</button>
+    <button class="atab" onclick="showATab('headtrack',this)">🎯 HEADTRACK</button>
+    <button class="atab" onclick="showATab('fps',this)">⚡ FPS/GRÁF</button>
+    <button class="atab" onclick="showATab('modulos',this)">⚙️ MÓDULOS</button>
+    <button class="atab" onclick="showATab('servidor',this)">🌐 SERVIDOR</button>
+    <button class="atab" onclick="showATab('logs',this)">📋 LOGS</button>
+    <button class="atab" onclick="showATab('config',this)">🔧 CONFIG</button>
+  </div>
+  <div class="admin-body">
+    <div class="apage active" id="apage-dashboard">
+      <div class="ac ac-gold">
+        <div class="act">📊 VISÃO GERAL DO SISTEMA</div>
+        <div class="adst" style="margin-bottom:10px">
+          <div class="sv"><span class="sv-val" id="adTotal">0</span><span class="sv-lbl">Keys Geradas</span></div>
+          <div class="sv"><span class="sv-val green" id="adActive">0</span><span class="sv-lbl">Ativas</span></div>
+          <div class="sv"><span class="sv-val red" id="adExpired">0</span><span class="sv-lbl">Expiradas</span></div>
+        </div>
+        <div class="adst">
+          <div class="sv"><span class="sv-val cyan" id="adPending">0</span><span class="sv-lbl">Aguardando</span></div>
+          <div class="sv"><span class="sv-val purple" id="adSensiKeys">0</span><span class="sv-lbl">Keys Sensi</span></div>
+          <div class="sv"><span class="sv-val" id="adUsed">0</span><span class="sv-lbl">Usadas</span></div>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🌐 STATUS DO SERVIDOR</div>
+        <div class="adst6">
+          <div class="sv"><span class="sv-val green" id="srvStatus">ONLINE</span><span class="sv-lbl">Status</span></div>
+          <div class="sv"><span class="sv-val cyan" id="srvPing">--</span><span class="sv-lbl">Ping ms</span></div>
+          <div class="sv"><span class="sv-val" id="srvUptime">--</span><span class="sv-lbl">Uptime</span></div>
+        </div>
+        <div style="margin-top:10px">
+          <button class="abtn abtn-cyan" onclick="testServer()">🔄 TESTAR CONEXÃO</button>
+          <button class="abtn abtn-dim" onclick="restartServer()">🔁 REINICIAR SERVIÇO</button>
+        </div>
+      </div>
+      <div class="ac ac-green">
+        <div class="act green">⚡ AÇÕES RÁPIDAS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="abtn abtn-gold" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('day')">⚡ KEY 1 DIA</button>
+          <button class="abtn abtn-purple" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('7d')">⚡ KEY 7 DIAS</button>
+          <button class="abtn abtn-red" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+          <button class="abtn abtn-cyan" onclick="showATab('logs',document.querySelectorAll('.atab')[7])">📋 VER LOGS</button>
+        </div>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">📢 ÚLTIMAS ATIVIDADES</div>
+        <div class="log-area" id="dashLogs" style="max-height:180px"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-keys">
+      <div class="ac ac-gold">
+        <div class="act">⚡ GERAR KEY DE ACESSO</div>
+        <div class="gen-types">
+          <div class="gtype t-min sel" id="gt-min" onclick="selGenTypeFn('min')">1 MIN</div>
+          <div class="gtype t-day" id="gt-day" onclick="selGenTypeFn('day')">1 DIA</div>
+          <div class="gtype t-7d" id="gt-7d" onclick="selGenTypeFn('7d')">7 DIAS</div>
+          <div class="gtype t-30d" id="gt-30d" onclick="selGenTypeFn('30d')">30 DIAS</div>
+        </div>
+        <label style="font-size:11px;color:var(--dim);display:block;margin-bottom:6px">Observação (opcional):</label>
+        <input class="ainput" id="keyNote" placeholder="Ex: Usuário João, Discord...">
+        <button class="abtn abtn-gold" onclick="generateKey()">🔑 GERAR KEY</button>
+        <div class="gen-result" id="genResult">
+          <div class="gen-key-text" id="genKeyText"></div>
+          <div style="font-size:10px;color:var(--dim);margin-bottom:8px" id="genKeyInfo"></div>
+          <button class="copy-btn" onclick="copyGenKey()">📋 COPIAR KEY</button>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🔍 BUSCAR / VALIDAR KEY</div>
+        <input class="ainput cyan" id="searchKey" placeholder="Cole uma key para validar...">
+        <button class="abtn abtn-cyan" onclick="searchKeyFn()">🔍 VERIFICAR KEY</button>
+        <div id="searchResult" style="margin-top:8px;font-size:11px;min-height:16px"></div>
+      </div>
+      <div class="ac">
+        <div class="act" style="justify-content:space-between">
+          <span>🗂 TODAS AS KEYS</span>
+          <button class="abtn abtn-red" style="width:auto;padding:4px 10px;font-size:9px;margin:0" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+        </div>
+        <div class="kl" id="keyList"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-sensi">
+      <div class="ac ac-cyan">
+        <div class="act cyan">📱 GERADOR DE SENSIBILIDADE</div>
+        <div class="phone-grid">
+          <div class="phone-opt sel" id="ph-low" onclick="selPhone('low')"><span class="phone-icon">📱</span>Low-End<div style="font-size:9px;color:var(--dim);margin-top:2px">2-3GB RAM</div></div>
+          <div class="phone-opt" id="ph-mid" onclick="selPhone('mid')"><span class="phone-icon">📲</span>Mid-Range<div style="font-size:9px;color:var(--dim);margin-top:2px">4-6GB RAM</div></div>
+          <div class="phone-opt" id="ph-high" onclick="selPhone('high')"><span class="phone-icon">💎</span>High-End<div style="font-size:9px;color:var(--dim);margin-top:2px">8GB+ RAM</div></div>
+          <div class="phone-opt" id="ph-iphone" onclick="selPhone('iphone')"><span class="phone-icon">🍎</span>iPhone<div style="font-size:9px;color:var(--dim);margin-top:2px">iOS</div></div>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🎯 PERFIL DE JOGO</div>
+        <div class="gen-types">
+          <div class="gtype t-min sel" id="sp-rush" onclick="selSensiProfile('rush')" style="border-color:#FF6B00;color:#FF6B00">⚡ RUSH</div>
+          <div class="gtype t-day" id="sp-sniper" onclick="selSensiProfile('sniper')">🎯 SNIPER</div>
+          <div class="gtype t-7d" id="sp-bal" onclick="selSensiProfile('bal')" style="border-color:var(--purple);color:var(--purple)">⚖️ BAL.</div>
+          <div class="gtype t-30d" id="sp-pro" onclick="selSensiProfile('pro')">👑 PRO</div>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">⚙️ AJUSTE FINO</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Sensibilidade Geral</span><span class="sl-val cyan" id="sadj-g">72</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="72" oninput="adjSensi('g',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">No Scope</span><span class="sl-val cyan" id="sadj-ns">65</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="65" oninput="adjSensi('ns',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Red Dot / Holo</span><span class="sl-val cyan" id="sadj-rd">58</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="58" oninput="adjSensi('rd',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">2x Scope</span><span class="sl-val cyan" id="sadj-2x">50</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="50" oninput="adjSensi('2x',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">4x Scope</span><span class="sl-val cyan" id="sadj-4x">40</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="40" oninput="adjSensi('4x',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">AWM / Sniper</span><span class="sl-val cyan" id="sadj-sn">30</span></div><input type="range" class="cyan-thumb" min="0" max="100" value="30" oninput="adjSensi('sn',this.value)"></div>
+      </div>
+      <button class="abtn abtn-cyan" onclick="generateSensiKey()">🔑 GERAR KEY DE SENSI</button>
+      <button class="abtn abtn-dim" onclick="previewSensi()">👁 PREVIEW</button>
+    </div>
+    <div class="apage" id="apage-headtrack">
+      <div class="ac ac-red">
+        <div class="act red">🎯 CONFIGURAÇÃO HEADTRACKER</div>
+        <div class="tog-row"><div><div class="tog-lbl">HeadTracker Global</div><div class="tog-desc">Ativa/desativa para todos</div></div><div class="sw" id="adm-sw-ht" onclick="admTog('ht')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Smooth Aim Forçado</div><div class="tog-desc">Força smooth aim em todos</div></div><div class="sw on" id="adm-sw-smooth" onclick="admTog('smooth')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Só no Escopo</div><div class="tog-desc">Ativa HT apenas ao mirar</div></div><div class="sw" id="adm-sw-scopeonly" onclick="admTog('scopeonly')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Recoil Global</div><div class="tog-desc">Anti-recoil em todos</div></div><div class="sw" id="adm-sw-antirecoil" onclick="admTog('antirecoil')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">🔧 PARÂMETROS DO HT</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Alcance (metros)</span><span class="sl-val" id="ht-range">80</span></div><input type="range" min="10" max="200" value="80" oninput="admSl('ht-range',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Velocidade do Snap</span><span class="sl-val" id="ht-snap">65</span></div><input type="range" min="1" max="100" value="65" oninput="admSl('ht-snap',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Suavidade</span><span class="sl-val" id="ht-smooth">72</span></div><input type="range" min="1" max="100" value="72" oninput="admSl('ht-smooth',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">FOV do HT</span><span class="sl-val" id="ht-fov">45</span></div><input type="range" min="5" max="180" value="45" oninput="admSl('ht-fov',this.value)"></div>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">🔑 KEY COM HEADTRACKER</div>
+        <div class="gen-types">
+          <div class="gtype t-min sel" id="htgt-min" onclick="selHTGenTypeFn('min')">1 MIN</div>
+          <div class="gtype t-day" id="htgt-day" onclick="selHTGenTypeFn('day')">1 DIA</div>
+          <div class="gtype t-7d" id="htgt-7d" onclick="selHTGenTypeFn('7d')">7 DIAS</div>
+          <div class="gtype t-30d" id="htgt-30d" onclick="selHTGenTypeFn('30d')">30 DIAS</div>
+        </div>
+        <button class="abtn abtn-red" onclick="genHTKey()">🎯 GERAR KEY + HEADTRACKER</button>
+        <div class="gen-result" id="htGenResult">
+          <div class="gen-key-text" id="htGenKeyText"></div>
+          <button class="copy-btn" onclick="copyHTKey()">📋 COPIAR</button>
+        </div>
+      </div>
+      <button class="abtn abtn-red" onclick="applyAdmHT()">⚡ APLICAR CONFIGS HT</button>
+    </div>
+    <div class="apage" id="apage-fps">
+      <div class="ac ac-purple">
+        <div class="act purple">⚡ CONFIGURAÇÕES DE FPS</div>
+        <div class="tog-row"><div><div class="tog-lbl">FPS Unlock Global</div><div class="tog-desc">Remove limite de FPS</div></div><div class="sw on" id="adm-sw-fpsunlock" onclick="admTog('fpsunlock')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">GPU Boost</div><div class="tog-desc">Prioriza GPU no FF</div></div><div class="sw" id="adm-sw-gpu" onclick="admTog('gpu')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">RAM Cleaner Auto</div><div class="tog-desc">Limpa memória automaticamente</div></div><div class="sw on" id="adm-sw-ram" onclick="admTog('ram')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">No Grass Global</div><div class="tog-desc">Remove grama para todos</div></div><div class="sw" id="adm-sw-nograss" onclick="admTog('nograss')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="ac ac-purple">
+        <div class="act purple">🎮 RENDERIZAÇÃO GLOBAL</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Resolução de Render</span><span class="sl-val purple" id="adm-rend">80%</span></div><input type="range" min="50" max="100" value="80" oninput="admSl('adm-rend',this.value+'%')"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Draw Distance</span><span class="sl-val purple" id="adm-draw">75</span></div><input type="range" min="20" max="100" value="75" oninput="admSl('adm-draw',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Shadow Quality</span><span class="sl-val purple" id="adm-shadow">30</span></div><input type="range" min="0" max="100" value="30" oninput="admSl('adm-shadow',this.value)"></div>
+      </div>
+      <button class="abtn abtn-purple" onclick="applyAdmFPS()">⚡ APLICAR CONFIGS FPS</button>
+    </div>
+    <div class="apage" id="apage-modulos">
+      <div class="ac ac-green">
+        <div class="act green">⚙️ MÓDULOS GLOBAIS</div>
+        <div class="tog-row"><div><div class="tog-lbl">🛡 Anti-Ban Shield</div><div class="tog-desc">Proteção global</div></div><div class="sw on" id="adm-sw-ab" onclick="admTog('ab')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">👁 ESP / Wallhack</div><div class="tog-desc">Visualiza inimigos</div></div><div class="sw" id="adm-sw-esp" onclick="admTog('esp')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🎯 Auto Aim</div><div class="tog-desc">Mira automática</div></div><div class="sw" id="adm-sw-autoaim" onclick="admTog('autoaim')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🌐 No Recoil 2.0</div><div class="tog-desc">Anti-recuo avançado</div></div><div class="sw on" id="adm-sw-nr2" onclick="admTog('nr2')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🎭 Anti-Spectator</div><div class="tog-desc">Bloqueia espectadores</div></div><div class="sw on" id="adm-sw-antispec" onclick="admTog('antispec')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🎯 Silent Aim</div><div class="tog-desc">Mira invisível</div></div><div class="sw" id="adm-sw-sa" onclick="admTog('sa')"><div class="sw-k"></div></div></div>
+      </div>
+      <button class="abtn abtn-green" onclick="applyAdmModulos()">⚡ APLICAR TODOS MÓDULOS</button>
+      <button class="abtn abtn-red" onclick="disableAllModulos()">🚫 DESATIVAR TODOS</button>
+    </div>
+    <div class="apage" id="apage-servidor">
+      <div class="ac ac-cyan">
+        <div class="act cyan">🌐 PAINEL DO SERVIDOR</div>
+        <div class="adst6" style="margin-bottom:12px">
+          <div class="sv"><span class="sv-val green" id="srv2-status">ONLINE</span><span class="sv-lbl">Status</span></div>
+          <div class="sv"><span class="sv-val cyan" id="srv2-ping">--ms</span><span class="sv-lbl">Latência</span></div>
+          <div class="sv"><span class="sv-val" id="srv2-users">1</span><span class="sv-lbl">Usuários</span></div>
+          <div class="sv"><span class="sv-val purple" id="srv2-req">0</span><span class="sv-lbl">Requests</span></div>
+          <div class="sv"><span class="sv-val green" id="srv2-uptime">0m</span><span class="sv-lbl">Uptime</span></div>
+          <div class="sv"><span class="sv-val gold" id="srv2-mem">--</span><span class="sv-lbl">Memória</span></div>
+        </div>
+        <button class="abtn abtn-cyan" onclick="testServer()">🔄 TESTAR PING</button>
+        <button class="abtn abtn-dim" onclick="restartServer()">🔁 REINICIAR</button>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">⚙️ CONFIGURAÇÕES</div>
+        <div class="tog-row"><div><div class="tog-lbl">Manutenção</div><div class="tog-desc">Bloqueia novos logins</div></div><div class="sw" id="adm-sw-maintenance" onclick="admTog('maintenance')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auto-Sync Keys</div><div class="tog-desc">Sincroniza keys</div></div><div class="sw on" id="adm-sw-autosync" onclick="admTog('autosync')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Rate Limit</div><div class="tog-desc">Limita tentativas erradas</div></div><div class="sw on" id="adm-sw-ratelimit" onclick="admTog('ratelimit')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🔗 INTEGRAÇÕES</div>
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Discord Webhook URL:</label>
+        <input class="ainput cyan" id="webhookUrl" placeholder="https://discord.com/api/webhooks/...">
+        <button class="abtn abtn-cyan" onclick="saveServerConfig()">💾 SALVAR CONFIG</button>
+      </div>
+    </div>
+    <div class="apage" id="apage-logs">
+      <div class="ac ac-green">
+        <div class="act green">📋 LOGS DO SERVIDOR</div>
+        <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+          <button class="abtn abtn-dim" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('all')">TODOS</button>
+          <button class="abtn abtn-green" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('ok')">✅ OK</button>
+          <button class="abtn abtn-gold" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('warn')">⚠️</button>
+          <button class="abtn abtn-red" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('err')">❌</button>
+          <button class="abtn abtn-cyan" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('info')">ℹ️</button>
+        </div>
+        <div class="log-area" id="logsArea"></div>
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <button class="abtn abtn-dim" style="flex:1;margin:0" onclick="clearLogs()">🗑 LIMPAR</button>
+          <button class="abtn abtn-green" style="flex:1;margin:0" onclick="refreshLogs()">🔄 ATUALIZAR</button>
+        </div>
+      </div>
+      <div class="ac ac-green">
+        <div class="act green">📊 HISTÓRICO DE KEYS</div>
+        <div class="log-area" id="keyLogsArea" style="max-height:200px"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-config">
+      <div class="ac ac-purple">
+        <div class="act purple">🔧 CONFIGURAÇÕES GERAIS</div>
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Nome da Ferramenta:</label>
+        <input class="ainput" id="cfg-name" value="NEXUS CHEATS">
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Versão:</label>
+        <input class="ainput" id="cfg-ver" value="v4.0">
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Link da Loja:</label>
+        <input class="ainput" id="cfg-shop" value="https://discord.gg/HNbQ6YbFVw">
+        <button class="abtn abtn-purple" onclick="saveConfig()">💾 SALVAR</button>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">⚠️ ZONA DE PERIGO</div>
+        <button class="abtn abtn-red" onclick="resetAllKeys()">🗑 DELETAR TODAS AS KEYS</button>
+        <button class="abtn abtn-dim" onclick="factoryReset()">💥 RESET TOTAL DO SISTEMA</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="notif-overlay"></div>
+<div class="toast" id="toast"></div>
+
+<!-- MAIN APP -->
+<div id="mainApp" style="display:none">
+  <div class="key-bar-strip" id="keyBarStrip">
+    <span id="keyBarLabel">⏱ KEY</span>
+    <div class="key-bar-inner"><div class="key-bar-fill" id="keyBarFill" style="width:100%"></div></div>
+    <span id="keyBarTime">--:--</span>
+  </div>
+  <div class="header">
+    <div class="h-logo">
+      <span class="h-skull">💀</span>
+      <div><div class="h-text">NEXUS <span>CHEATS</span></div><div class="h-ver">FF TOOL · v4.0</div></div>
+    </div>
+    <div class="h-right">
+      <div class="h-key-info" id="hKeyInfo"></div>
+      <div class="h-status"><div class="sdot" id="hDot"></div><span id="hStatus" style="color:var(--dim)">OFFLINE</span></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('home',this)">🏠 HOME</button>
+    <button class="tab" onclick="showTab('headtrack',this)">🎯 HEADTRACK</button>
+    <button class="tab" onclick="showTab('fps',this)">⚡ FPS</button>
+    <button class="tab" onclick="showTab('sensi',this)">📱 SENSI</button>
+    <button class="tab" onclick="showTab('tutorial',this)">📖 TUTORIAL</button>
+  </div>
+  <div class="content">
+    <div class="page active" id="page-home">
+      <div class="card" style="border-color:rgba(255,45,45,.4);background:linear-gradient(135deg,rgba(35,5,5,.9),rgba(10,24,37,.9))">
+        <div class="card-title" style="color:var(--r)">💉 INJETAR NO FREE FIRE</div>
+        <button class="inject-btn" id="injectBtn" onclick="startInject()">
+          <span class="inj-icon" id="injIcon">💉</span>
+          <span id="injTxt">INJETAR</span>
+          <div class="inj-sub" id="injSub">Clique para injetar no Free Fire</div>
+        </button>
+        <div class="inj-prog" id="injProg">
+          <div id="injSteps"></div>
+          <div class="inj-bar-wrap"><div class="inj-bar" id="injBar"></div></div>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><span class="stat-val" id="stFPS">0</span><span class="stat-label">FPS Atual</span></div>
+        <div class="stat-box"><span class="stat-val" id="stPing">---</span><span class="stat-label">Ping (ms)</span></div>
+        <div class="stat-box"><span class="stat-val" id="stHS">0%</span><span class="stat-label">% Headshot</span></div>
+        <div class="stat-box"><span class="stat-val" id="stKills">0</span><span class="stat-label">Kills</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ MÓDULOS</div>
+        <div class="tog-row"><div><div class="tog-lbl">🎯 HeadTracker</div><div class="tog-desc">Trava mira na cabeça</div></div><div class="sw" id="sw-ht" onclick="tog('ht')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🔫 Anti-Recoil</div><div class="tog-desc">Zera recuo da arma</div></div><div class="sw" id="sw-ar" onclick="tog('ar')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🛡 Anti-Ban Shield</div><div class="tog-desc">Proteção contra detecção</div></div><div class="sw on" id="sw-ab" onclick="tog('ab')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="warn"><span style="font-size:18px;flex-shrink:0">⚠️</span><span>Configure tudo nas abas acima, depois clique <b>INJETAR</b> e abra o Free Fire.</span></div>
+    </div>
+    <div class="page" id="page-headtrack">
+      <div class="card">
+        <div class="card-title">🎯 HEADTRACKER</div>
+        <div class="tog-row"><div><div class="tog-lbl">HeadTracker Ativo</div><div class="tog-desc">Mira trava na cabeça</div></div><div class="sw" id="sw-htA" onclick="tog('htA')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Só no escopo/mira</div><div class="tog-desc">Ativa apenas ao mirar</div></div><div class="sw" id="sw-scop" onclick="tog('scop')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Smooth Aim</div><div class="tog-desc">Mira mais suave</div></div><div class="sw on" id="sw-smo" onclick="tog('smo')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Recoil</div><div class="tog-desc">Sem recuo ao atirar</div></div><div class="sw" id="sw-ar2" onclick="tog('ar2')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">👆 BOTÃO QUE ATIVA O HEADTRACKER</div>
+        <div class="vkey-grid">
+          <div class="vkey-opt sel" id="vk-fire" onclick="selVK('fire')"><span class="vk-icon">🔥</span>Botão Atirar</div>
+          <div class="vkey-opt" id="vk-scope" onclick="selVK('scope')"><span class="vk-icon">🔭</span>Botão Escopo</div>
+          <div class="vkey-opt" id="vk-crouch" onclick="selVK('crouch')"><span class="vk-icon">⬇️</span>Agachar</div>
+          <div class="vkey-opt" id="vk-jump" onclick="selVK('jump')"><span class="vk-icon">⬆️</span>Pular</div>
+        </div>
+      </div>
+      <button class="apply-btn" onclick="applyMod('HEADTRACKER')">⚡ APLICAR HEADTRACKER</button>
+    </div>
+    <div class="page" id="page-fps">
+      <div class="card">
+        <div class="card-title">⚡ FPS TARGET</div>
+        <div class="fps-row">
+          <div class="fps-btn" id="fps-60" onclick="setFPS(60)">60</div>
+          <div class="fps-btn" id="fps-90" onclick="setFPS(90)">90</div>
+          <div class="fps-btn sel" id="fps-120" onclick="setFPS(120)">120</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🚀 OTIMIZAÇÕES</div>
+        <div class="tog-row"><div><div class="tog-lbl">FPS Unlock</div><div class="tog-desc">Remove limite de FPS</div></div><div class="sw on" id="sw-fu" onclick="tog('fu')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">GPU Boost</div><div class="tog-desc">Prioriza GPU</div></div><div class="sw" id="sw-gpu" onclick="tog('gpu')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">RAM Cleaner Auto</div><div class="tog-desc">Limpa memória</div></div><div class="sw" id="sw-ram" onclick="tog('ram')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Ping Reducer</div><div class="tog-desc">Otimiza conexão</div></div><div class="sw" id="sw-pr" onclick="tog('pr')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">No Grass</div><div class="tog-desc">Remove grama</div></div><div class="sw" id="sw-ng" onclick="tog('ng')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎮 RENDERIZAÇÃO</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Resolução de Render</span><span class="sl-val" id="vRend">80%</span></div><input type="range" min="50" max="100" value="80" oninput="document.getElementById('vRend').textContent=this.value+'%'"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Draw Distance</span><span class="sl-val" id="vDraw">75</span></div><input type="range" min="20" max="100" value="75" oninput="sv('vDraw',this.value)"></div>
+      </div>
+      <button class="apply-btn" onclick="applyMod('FPS / GRÁFICOS')">⚡ APLICAR FPS</button>
+    </div>
+    <div class="page" id="page-sensi">
+      <div class="card">
+        <div class="card-title">📱 SENSIBILIDADE</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Geral</span><span class="sl-val" id="sg">72</span></div><input type="range" min="0" max="100" value="72" oninput="sv('sg',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">No Scope</span><span class="sl-val" id="sns">65</span></div><input type="range" min="0" max="100" value="65" oninput="sv('sns',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Red Dot / Holo</span><span class="sl-val" id="srd">58</span></div><input type="range" min="0" max="100" value="58" oninput="sv('srd',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">2x Scope</span><span class="sl-val" id="s2x">50</span></div><input type="range" min="0" max="100" value="50" oninput="sv('s2x',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">4x Scope</span><span class="sl-val" id="s4x">40</span></div><input type="range" min="0" max="100" value="40" oninput="sv('s4x',this.value)"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">AWM / Sniper</span><span class="sl-val" id="ssn">30</span></div><input type="range" min="0" max="100" value="30" oninput="sv('ssn',this.value)"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ PRESETS RÁPIDOS</div>
+        <div class="preset-grid">
+          <div class="preset-btn" onclick="loadPreset('rush')"><span class="preset-icon">⚡</span>Rush / Close<div class="preset-sub">Curta distância</div></div>
+          <div class="preset-btn" onclick="loadPreset('sniper')"><span class="preset-icon">🎯</span>Sniper / Long<div class="preset-sub">Longa distância</div></div>
+          <div class="preset-btn" onclick="loadPreset('bal')"><span class="preset-icon">⚖️</span>Balanceado<div class="preset-sub">Para qualquer modo</div></div>
+          <div class="preset-btn" onclick="loadPreset('pro')"><span class="preset-icon">👑</span>PRO Config<div class="preset-sub">120 FPS + Headshot</div></div>
+        </div>
+      </div>
+      <button class="apply-btn" onclick="applyMod('SENSIBILIDADE')">⚡ APLICAR SENSI</button>
+    </div>
+    <div class="page" id="page-tutorial">
+      <div class="card" style="border-color:rgba(0,255,209,.3)">
+        <div class="card-title" style="color:var(--cyan)">📖 COMO USAR</div>
+        <div class="tut-step"><div class="tut-num">1</div><div><div class="tut-ttl">Configure os módulos</div><div class="tut-txt">Vá nas abas <b>HEADTRACK</b>, <b>FPS</b> e <b>SENSI</b> e ajuste antes de injetar.</div></div></div>
+        <div class="tut-step"><div class="tut-num">2</div><div><div class="tut-ttl">Clique em INJETAR</div><div class="tut-txt">Na aba <b>HOME</b>, pressione <b>INJETAR</b>. Aguarde terminar completamente.</div></div></div>
+        <div class="tut-step"><div class="tut-num">3</div><div><div class="tut-ttl">Abra o Free Fire</div><div class="tut-txt">Após a injeção, abra o Free Fire normalmente. Os módulos já estarão ativos.</div></div></div>
+        <div class="tut-step"><div class="tut-num">4</div><div><div class="tut-ttl">HeadTracker</div><div class="tut-txt">O botão selecionado em <b>HEADTRACK</b> vai travar a mira na cabeça ao pressionar.</div></div></div>
+        <div class="tut-step"><div class="tut-num">5</div><div><div class="tut-ttl">Anti-Ban Shield</div><div class="tut-txt">Mantenha sempre ligado. Randomiza padrões para evitar detecção.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// STORAGE IN-MEMORY (sem localStorage)
+// ══════════════════════════════════════════
+const ADMIN_KEY = 'NEXUS-ADMIN-2024';
+const KEY_TYPES = {
+  min:  {label:'1 MIN',  ms:60*1000},
+  day:  {label:'1 DIA',  ms:24*60*60*1000},
+  '7d': {label:'7 DIAS', ms:7*24*60*60*1000},
+  '30d':{label:'30 DIAS',ms:30*24*60*60*1000},
+};
+
+// Dados em memória
+let DB = {
+  keys: [],
+  logs: [],
+  keyLogs: [],
+  session: null
+};
+
+// Tenta carregar do localStorage com fallback seguro
+function tryLoad() {
+  try {
+    const keys = localStorage.getItem('nx_keys');
+    const logs = localStorage.getItem('nx_logs');
+    const kl   = localStorage.getItem('nx_keylogs');
+    const sess = localStorage.getItem('nx_session');
+    if (keys) DB.keys = JSON.parse(keys);
+    if (logs) DB.logs = JSON.parse(logs);
+    if (kl)   DB.keyLogs = JSON.parse(kl);
+    if (sess) DB.session = JSON.parse(sess);
+  } catch(e) { /* sem localStorage — modo memória */ }
+}
+function trySave(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
+}
+
+tryLoad();
+
+const getKeys    = () => DB.keys;
+const saveKeys   = k  => { DB.keys = k; trySave('nx_keys', k); };
+const getLogs    = () => DB.logs;
+const saveLogs   = l  => { DB.logs = l.slice(-500); trySave('nx_logs', DB.logs); };
+const getKeyLogs = () => DB.keyLogs;
+const saveKeyLogs= l  => { DB.keyLogs = l.slice(-200); trySave('nx_keylogs', DB.keyLogs); };
+
+let srvStart = Date.now(), srvReqs = 0;
+
+// ══════════════════════════════════════════
+// LOGGING
+// ══════════════════════════════════════════
+function addLog(type, msg) {
+  const logs = getLogs();
+  const now  = new Date();
+  const time = now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  logs.push({time, type, msg, ts: Date.now()});
+  saveLogs(logs);
+  renderLogs(); renderDashLogs();
+}
+function addKeyLog(action, code, keyType) {
+  const kl   = getKeyLogs();
+  const now  = new Date();
+  const time = now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  kl.push({time, action, code, keyType, ts: Date.now()});
+  saveKeyLogs(kl);
+  renderKeyLogs();
+}
+function renderLogLine(l) {
+  return `<div class="log-line"><span class="log-time">${l.time}</span><span class="log-type ${l.type}">${l.type.toUpperCase()}</span><span class="log-msg">${l.msg}</span></div>`;
+}
+function renderLogs(filter='all') {
+  const el = document.getElementById('logsArea'); if (!el) return;
+  let logs = getLogs();
+  if (filter !== 'all') logs = logs.filter(l => l.type === filter);
+  el.innerHTML = logs.length ? [...logs].reverse().map(renderLogLine).join('') : '<div style="color:var(--dim);font-size:10px;text-align:center;padding:16px">Nenhum log registrado.</div>';
+}
+function renderDashLogs() {
+  const el = document.getElementById('dashLogs'); if (!el) return;
+  const logs = getLogs().slice(-10).reverse();
+  el.innerHTML = logs.length ? logs.map(renderLogLine).join('') : '<div style="color:var(--dim);font-size:10px;text-align:center;padding:10px">Sem atividades.</div>';
+}
+function renderKeyLogs() {
+  const el = document.getElementById('keyLogsArea'); if (!el) return;
+  const kl = getKeyLogs().slice().reverse();
+  el.innerHTML = kl.length ? kl.map(l => `<div class="log-line"><span class="log-time">${l.time}</span><span class="log-type info">${l.action}</span><span class="log-msg">${l.code} · ${l.keyType}</span></div>`).join('') : '<div style="color:var(--dim);font-size:10px;text-align:center;padding:10px">Sem histórico.</div>';
+}
+let logFilter = 'all';
+function filterLogs(f) { logFilter = f; renderLogs(f); }
+function clearLogs()   { if (!confirm('Limpar todos os logs?')) return; DB.logs = []; trySave('nx_logs', []); renderLogs(); toast('Logs limpos!'); }
+function refreshLogs() { renderLogs(logFilter); renderKeyLogs(); updateAdminStats(); toast('Atualizado!'); }
+
+// ══════════════════════════════════════════
+// KEY SYSTEM
+// ══════════════════════════════════════════
+function genRandKey(type, prefix='NXS') {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const seg   = () => Array.from({length:5}, () => chars[Math.floor(Math.random()*chars.length)]).join('');
+  return `${prefix}-${seg()}-${seg()}-${seg()}`;
+}
+function createKey(type, note='', flags={}) {
+  const code = genRandKey(type, flags.sensi ? 'SNS' : flags.headtrack ? 'HT' : 'NXS');
+  const keys = getKeys();
+  keys.push({code, type, created: Date.now(), expires: null, used: false, note, flags});
+  saveKeys(keys);
+  addKeyLog('GERADA', code, KEY_TYPES[type]?.label || type);
+  addLog('ok', `Key gerada: ${code} [${KEY_TYPES[type]?.label || type}]${note ? ' · '+note : ''}`);
+  updateAdminStats(); renderKeyList();
+  return code;
+}
+function validateKey(input) {
+  if (input === ADMIN_KEY) return {valid:true, isAdmin:true};
+  let keys = getKeys();
+  const now = Date.now();
+  const idx = keys.findIndex(k => k.code === input.trim().toUpperCase());
+  if (idx === -1) { addLog('warn', `Tentativa inválida: ${input.substring(0,10)}...`); return {valid:false, reason:'Key inválida ou não existe.'}; }
+  const k = keys[idx];
+  if (k.expires !== null && now > k.expires) {
+    keys.splice(idx, 1); saveKeys(keys);
+    addLog('err', `Key expirada removida: ${k.code}`);
+    addKeyLog('EXPIRADA', k.code, KEY_TYPES[k.type]?.label || k.type);
+    updateAdminStats(); renderKeyList();
+    return {valid:false, reason:'Key expirada e removida do sistema.'};
+  }
+  if (k.expires === null) { k.expires = now + KEY_TYPES[k.type].ms; k.used = true; saveKeys(keys); }
+  addLog('ok', `Login: ${k.code} [${KEY_TYPES[k.type]?.label || k.type}]`);
+  addKeyLog('USADA', k.code, KEY_TYPES[k.type]?.label || k.type);
+  srvReqs++;
+  return {valid:true, key:k};
+}
+function revokeKey(code) {
+  let keys = getKeys(); keys = keys.filter(k => k.code !== code); saveKeys(keys);
+  addLog('warn', `Key revogada: ${code}`); addKeyLog('REVOGADA', code, '--');
+  updateAdminStats(); renderKeyList(); toast('Key revogada!');
+}
+function purgeExpired() {
+  let keys = getKeys(); const now = Date.now(); const before = keys.length;
+  keys = keys.filter(k => k.expires === null || now < k.expires);
+  saveKeys(keys);
+  const removed = before - keys.length;
+  addLog('info', `Purge: ${removed} keys expiradas removidas`);
+  updateAdminStats(); renderKeyList(); toast(`${removed} key(s) removida(s)!`);
+}
+function searchKeyFn() {
+  const input = document.getElementById('searchKey').value.trim().toUpperCase();
+  const keys  = getKeys(); const now = Date.now();
+  const el    = document.getElementById('searchResult');
+  if (input === ADMIN_KEY) { el.innerHTML = '<span style="color:var(--gold)">👑 KEY ADMIN</span>'; return; }
+  const k = keys.find(k => k.code === input);
+  if (!k) { el.innerHTML = '<span style="color:var(--r)">❌ Key não encontrada</span>'; return; }
+  const active   = k.expires === null || now < k.expires;
+  const timeLeft = k.expires ? formatTime(Math.max(0, k.expires - now)) : 'Não iniciada';
+  el.innerHTML = `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:10px">
+    <div style="color:${active?'var(--green)':'var(--r)'}">● ${active?'ATIVA':'EXPIRADA'}</div>
+    <div style="color:var(--dim);margin-top:4px">Tipo: <span style="color:var(--text)">${KEY_TYPES[k.type]?.label||k.type}</span></div>
+    <div style="color:var(--dim)">Tempo restante: <span style="color:var(--gold)">${timeLeft}</span></div>
+    <div style="color:var(--dim)">Usada: <span style="color:var(--text)">${k.used?'Sim':'Não'}</span></div>
+    ${k.note?`<div style="color:var(--dim)">Obs: <span style="color:var(--text)">${k.note}</span></div>`:''}
+  </div>`;
+}
+
+// ══════════════════════════════════════════
+// SESSION
+// ══════════════════════════════════════════
+let currentSession = null, keyBarTimer = null;
+function startSession(keyObj) {
+  currentSession = {type: keyObj.type, expires: keyObj.expires, code: keyObj.code, flags: keyObj.flags||{}};
+  DB.session = currentSession; trySave('nx_session', currentSession);
+  startKeyBar();
+  if (currentSession.flags?.headtrack) {
+    setTimeout(() => {
+      const el = document.getElementById('sw-htA');
+      if (el && !swS['htA']) { swS['htA'] = true; el.classList.add('on'); }
+      notif('🎯','HEADTRACKER','Ativado automaticamente!','cyan',4000);
+    }, 2000);
+  }
+}
+function startKeyBar() {
+  if (keyBarTimer) clearInterval(keyBarTimer);
+  keyBarTimer = setInterval(() => {
+    if (!currentSession) return;
+    const now = Date.now(), remaining = currentSession.expires - now;
+    if (remaining <= 0) { expireSession(); return; }
+    const total = KEY_TYPES[currentSession.type].ms;
+    const pct   = Math.max(0, (remaining/total)*100);
+    document.getElementById('keyBarFill').style.width = pct+'%';
+    document.getElementById('keyBarTime').textContent = formatTime(remaining);
+    document.getElementById('keyBarLabel').textContent = '⏱ '+(KEY_TYPES[currentSession.type]?.label||'');
+    document.getElementById('hKeyInfo').textContent   = (KEY_TYPES[currentSession.type]?.label||'')+'\n'+formatTime(remaining);
+  }, 500);
+}
+function formatTime(ms) {
+  if (ms >= 86400000) return Math.floor(ms/86400000)+'d '+Math.floor((ms%86400000)/3600000)+'h';
+  if (ms >= 3600000)  return Math.floor(ms/3600000)+'h '+Math.floor((ms%3600000)/60000)+'m';
+  if (ms >= 60000)    return Math.floor(ms/60000)+'m '+Math.floor((ms%60000)/1000)+'s';
+  return Math.floor(ms/1000)+'s';
+}
+function expireSession() {
+  clearInterval(keyBarTimer);
+  if (currentSession?.code) {
+    let keys = getKeys(); keys = keys.filter(k => k.code !== currentSession.code); saveKeys(keys);
+    addLog('warn', `Sessão expirada: ${currentSession.code}`);
+  }
+  currentSession = null; DB.session = null; trySave('nx_session', null);
+  document.getElementById('mainApp').style.display = 'none';
+  document.getElementById('expiredScreen').classList.add('show');
+}
+function resumeSession() {
+  const sess = DB.session;
+  if (!sess) return false;
+  try { if (Date.now() < sess.expires) { currentSession = sess; return true; } } catch(e) {}
+  DB.session = null; return false;
+}
+
+// ══════════════════════════════════════════
+// LOGIN
+// ══════════════════════════════════════════
+function showLogin() {
+  document.getElementById('expiredScreen').classList.remove('show');
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('mainApp').style.display = 'none';
+  document.getElementById('adminScreen').classList.remove('show');
+  document.getElementById('loginErr').textContent = '';
+  document.getElementById('keyInput').value = '';
+}
+function tryLogin() {
+  const input = document.getElementById('keyInput').value.trim().toUpperCase();
+  const errEl = document.getElementById('loginErr');
+  if (!input) { errEl.textContent = 'Digite uma key!'; return; }
+  if (input === ADMIN_KEY) {
+    addLog('admin', 'Acesso ao painel admin');
+    document.getElementById('loginScreen').classList.add('hidden');
+    openAdmin(); return;
+  }
+  const result = validateKey(input);
+  if (!result.valid) { errEl.textContent = result.reason; shakeInput(); return; }
+  errEl.textContent = '';
+  document.getElementById('loginScreen').classList.add('hidden');
+  showMainApp(result.key);
+}
+function shakeInput() {
+  const inp = document.getElementById('keyInput');
+  inp.style.transition = 'transform .07s'; let i = 0;
+  const sh = setInterval(() => {
+    inp.style.transform = i%2 ? 'translateX(5px)' : 'translateX(-5px)';
+    if (++i > 5) { clearInterval(sh); inp.style.transform = ''; }
+  }, 70);
+}
+function showMainApp(keyObj) {
+  startSession(keyObj);
+  document.getElementById('mainApp').style.display = 'block';
+  notif('✅','ACESSO LIBERADO','Key válida! Bem-vindo ao Nexus Cheats','green',4000);
+  setTimeout(() => notif('🛡','ANTI-BAN','Shield ativo','',3500), 900);
+  setTimeout(() => notif('⚡','FREE FIRE','Pronto para injetar','gold',3000), 2000);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+// ══════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════
+let _selGenType = 'min', _selHTGenType = 'min';
+function openAdmin() {
+  document.getElementById('adminScreen').classList.add('show');
+  updateAdminStats(); renderKeyList(); renderLogs(); renderKeyLogs(); renderDashLogs();
+  startServerStats();
+}
+function closeAdmin() { document.getElementById('adminScreen').classList.remove('show'); showLogin(); }
+function showATab(id, el) {
+  document.querySelectorAll('.apage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+  document.getElementById('apage-'+id)?.classList.add('active');
+  if (el) el.classList.add('active');
+  if (id === 'logs') { renderLogs(logFilter); renderKeyLogs(); }
+  if (id === 'dashboard') { renderDashLogs(); updateAdminStats(); }
+}
+function updateAdminStats() {
+  const keys = getKeys(); const now = Date.now();
+  const active   = keys.filter(k => k.expires !== null && now < k.expires).length;
+  const expired  = keys.filter(k => k.expires !== null && now > k.expires).length;
+  const pending  = keys.filter(k => k.expires === null).length;
+  const sensi    = keys.filter(k => k.flags?.sensi).length;
+  const used     = keys.filter(k => k.used).length;
+  const vals     = [keys.length, active, expired, pending, sensi, used];
+  ['adTotal','adActive','adExpired','adPending','adSensiKeys','adUsed'].forEach((id,i) => {
+    const el = document.getElementById(id); if (el) el.textContent = vals[i];
+  });
+}
+function renderKeyList() {
+  const keys = getKeys(); const now = Date.now();
+  const list = document.getElementById('keyList'); if (!list) return;
+  if (!keys.length) { list.innerHTML = '<div style="font-size:11px;color:var(--dim);text-align:center;padding:16px">Nenhuma key gerada ainda.</div>'; return; }
+  list.innerHTML = keys.slice().reverse().map(k => {
+    const isActive  = k.expires === null || now < k.expires;
+    const isPending = k.expires === null;
+    const tc = {min:'min',day:'day','7d':'w7','30d':'m30'}[k.type] || '';
+    const tl = KEY_TYPES[k.type]?.label || k.type;
+    const st = isPending ? 'AGUARD.' : isActive ? 'ATIVA' : 'EXPIRADA';
+    const sc = isPending ? 'pending' : isActive ? 'active' : 'expired';
+    const flag = k.flags?.sensi ? '📱' : k.flags?.headtrack ? '🎯' : '';
+    return `<div class="ki"><div class="ki-code" title="${k.code}">${flag}${k.code}</div><div class="ki-type ${tc}">${tl}</div><div class="ki-status ${sc}">${st}</div><button class="ki-del" onclick="revokeKey('${k.code}')">🗑</button></div>`;
+  }).join('');
+}
+function selGenTypeFn(type) {
+  _selGenType = type;
+  ['min','day','7d','30d'].forEach(t => { const el = document.getElementById('gt-'+t); if (el) el.classList.toggle('sel', t === type); });
+}
+function generateKey() {
+  const note = document.getElementById('keyNote')?.value || '';
+  const code = createKey(_selGenType, note);
+  document.getElementById('genKeyText').textContent = code;
+  document.getElementById('genKeyInfo').textContent = KEY_TYPES[_selGenType].label+(note?' · '+note:'');
+  document.getElementById('genResult').classList.add('show');
+  toast('✅ Key gerada!');
+}
+function genKeyQuick(type) { _selGenType = type; generateKey(); }
+function copyGenKey() { const t = document.getElementById('genKeyText').textContent; navigator.clipboard?.writeText(t).catch(()=>{}); toast('📋 Copiado!'); }
+function selHTGenTypeFn(type) {
+  _selHTGenType = type;
+  ['min','day','7d','30d'].forEach(t => { const el = document.getElementById('htgt-'+t); if (el) el.classList.toggle('sel', t === type); });
+}
+function genHTKey() {
+  const code = createKey(_selHTGenType, '', {headtrack:true});
+  document.getElementById('htGenKeyText').textContent = code;
+  document.getElementById('htGenResult').classList.add('show');
+  toast('🎯 Key HT gerada!');
+}
+function copyHTKey() { const t = document.getElementById('htGenKeyText').textContent; navigator.clipboard?.writeText(t).catch(()=>{}); toast('📋 Copiado!'); }
+
+const admSwS = {smooth:true,fpsunlock:true,ram:true,ab:true,loot:true,nr2:true,antispec:true,antirep:true,autosync:true,ratelimit:true,verboselog:true,autopurge:true,scanline:true,bgrid:true,notifs:true,splash:true,bone:true,latency:true};
+function admTog(id) {
+  const el = document.getElementById('adm-sw-'+id); if (!el) return;
+  admSwS[id] = !admSwS[id]; el.classList.toggle('on', admSwS[id]);
+  addLog('admin', `Toggle ${id}: ${admSwS[id]?'ON':'OFF'}`); toast(id+': '+(admSwS[id]?'ON':'OFF'));
+}
+function admSl(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+function applyAdmHT()      { addLog('ok','Configs HT aplicadas'); notif('🎯','HT APLICADO','Configs enviadas','green',3000); toast('✅ HT aplicado!'); }
+function applyAdmFPS()     { addLog('ok','Configs FPS aplicadas'); notif('⚡','FPS APLICADO','Configs enviadas','purple',3000); toast('✅ FPS aplicado!'); }
+function applyAdmModulos() { addLog('ok','Módulos aplicados'); notif('⚙️','MÓDULOS','Todos aplicados!','green',3000); toast('✅ Módulos aplicados!'); }
+function disableAllModulos() { Object.keys(admSwS).forEach(k=>{const el=document.getElementById('adm-sw-'+k);if(el&&admSwS[k]){admSwS[k]=false;el.classList.remove('on');}}); addLog('warn','Todos módulos desativados'); toast('Módulos desativados!'); }
+
+let srvInt = null;
+function startServerStats() {
+  if (srvInt) return;
+  srvInt = setInterval(async () => {
+    const t = performance.now();
+    try {
+      await fetch('https://www.google.com/favicon.ico?_='+Date.now(), {mode:'no-cors',cache:'no-store'});
+      const p = Math.round(performance.now()-t);
+      ['srvPing','srv2-ping'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=p+(id.includes('2')?'ms':''); });
+      ['srvStatus','srv2-status'].forEach(id => { const el=document.getElementById(id); if(el){el.textContent='ONLINE';el.className='sv-val green';} });
+    } catch(e) {
+      ['srvStatus','srv2-status'].forEach(id => { const el=document.getElementById(id); if(el){el.textContent='OFFLINE';el.className='sv-val red';} });
+    }
+    const up = Date.now()-srvStart;
+    const upStr = up>3600000 ? Math.floor(up/3600000)+'h' : Math.floor(up/60000)+'m';
+    ['srvUptime','srv2-uptime'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=upStr; });
+    const sr=document.getElementById('srv2-req'); if(sr) sr.textContent=srvReqs;
+    const mem=document.getElementById('srv2-mem'); if(mem) mem.textContent=Math.floor(30+Math.random()*20)+'MB';
+  }, 4000);
+}
+function testServer()       { addLog('info','Teste de conexão'); toast('🔄 Testando...'); }
+function restartServer()    { srvStart=Date.now(); addLog('warn','Serviço reiniciado'); toast('🔁 Reiniciado!'); }
+function syncServer()       { addLog('info','Sincronização'); toast('🔃 Sincronizando...'); }
+function saveServerConfig() { addLog('ok','Config servidor salva'); toast('💾 Salvo!'); }
+function saveConfig()       { addLog('admin','Configs salvas'); toast('💾 Salvo!'); }
+function resetAllKeys() {
+  if (!confirm('DELETAR TODAS AS KEYS?')) return;
+  DB.keys = []; trySave('nx_keys',[]);
+  updateAdminStats(); renderKeyList(); addLog('err','TODAS AS KEYS DELETADAS'); toast('🗑 Deletadas!');
+}
+function factoryReset() {
+  if (!confirm('RESET TOTAL? Isso apaga tudo!')) return;
+  DB = {keys:[],logs:[],keyLogs:[],session:null};
+  try { localStorage.clear(); } catch(e) {}
+  location.reload();
+}
+
+// ══════════════════════════════════════════
+// SENSI GENERATOR
+// ══════════════════════════════════════════
+const sensiPhones = {
+  low:   {g:60,ns:55,rd:48,x2:40,x4:32,sn:22},
+  mid:   {g:72,ns:65,rd:58,x2:50,x4:40,sn:30},
+  high:  {g:82,ns:75,rd:68,x2:60,x4:48,sn:36},
+  iphone:{g:78,ns:70,rd:64,x2:56,x4:44,sn:33},
+};
+const sensiProfiles = {
+  rush:  {mult:[1.15,1.12,1.10,1.08,1.05,1.02]},
+  sniper:{mult:[0.75,0.70,0.68,0.65,0.60,0.55]},
+  bal:   {mult:[1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]},
+  pro:   {mult:[1.08,1.06,1.04,1.02,1.0, 0.98]},
+};
+let selPhone_ = 'low', selSensiProfile_ = 'rush', selSensiBtn_ = 'fire';
+let sensiAdj  = {g:72,ns:65,rd:58,'2x':50,'4x':40,sn:30};
+let lastSensiKey = '';
+
+function selPhone(p) {
+  selPhone_ = p;
+  document.querySelectorAll('.phone-opt').forEach(el => el.classList.remove('sel'));
+  document.getElementById('ph-'+p)?.classList.add('sel');
+  recalcSensi();
+}
+function selSensiProfile(p) {
+  selSensiProfile_ = p;
+  ['rush','sniper','bal','pro'].forEach(t => { const el=document.getElementById('sp-'+t); if(el) el.classList.toggle('sel',t===p); });
+  recalcSensi();
+}
+function selSensiBtn(b) {
+  selSensiBtn_ = b;
+  document.querySelectorAll('[id^="sb-"]').forEach(el => el.classList.remove('sel'));
+  document.getElementById('sb-'+b)?.classList.add('sel');
+}
+function adjSensi(key, val) { sensiAdj[key]=parseInt(val); document.getElementById('sadj-'+key).textContent=val; }
+function recalcSensi() {
+  const base = sensiPhones[selPhone_] || sensiPhones.mid;
+  const prof = sensiProfiles[selSensiProfile_] || sensiProfiles.bal;
+  const keys = ['g','ns','rd','2x','4x','sn'];
+  const vals = ['g','ns','rd','x2','x4','sn'];
+  keys.forEach((k,i) => {
+    const v = Math.min(100, Math.round((base[vals[i]]||60)*prof.mult[i]));
+    sensiAdj[k] = v;
+    const el = document.getElementById('sadj-'+k); if (el) el.textContent = v;
+  });
+}
+function calcFinalSensi() {
+  return {geral:sensiAdj['g'],noScope:sensiAdj['ns'],redDot:sensiAdj['rd'],scope2x:sensiAdj['2x'],scope4x:sensiAdj['4x'],sniper:sensiAdj['sn'],phone:selPhone_,profile:selSensiProfile_,btn:selSensiBtn_};
+}
+function generateSensiKey() {
+  const s = calcFinalSensi();
+  const code = createKey(_selGenType, 'SENSI-'+selPhone_.toUpperCase()+'-'+selSensiProfile_.toUpperCase(), {sensi:true,sensiData:s});
+  lastSensiKey = code;
+  document.getElementById('sensiModalContent').innerHTML = buildSensiModalHTML(s,code);
+  document.getElementById('sensiModal').classList.add('show');
+  toast('📱 Key Sensi gerada!');
+}
+function previewSensi() {
+  const s = calcFinalSensi();
+  document.getElementById('sensiModalContent').innerHTML = buildSensiModalHTML(s,'PREVIEW');
+  document.getElementById('sensiModal').classList.add('show');
+}
+function buildSensiModalHTML(s, code) {
+  const phoneNames   = {low:'Low-End (2-3GB)',mid:'Mid-Range (4-6GB)',high:'High-End (8GB+)',iphone:'iPhone (iOS)'};
+  const profileNames = {rush:'Rush / Close',sniper:'Sniper / Long',bal:'Balanceado',pro:'PRO Config'};
+  return `<div style="background:var(--bg2);border:1px solid var(--cyan);border-radius:10px;padding:12px;margin-bottom:10px">
+    <div style="font-size:10px;color:var(--cyan);font-family:'Orbitron',sans-serif;margin-bottom:8px">📱 ${phoneNames[s.phone]} · ${profileNames[s.profile]}</div>
+    ${[['Geral',s.geral],['No Scope',s.noScope],['Red Dot/Holo',s.redDot],['2x Scope',s.scope2x],['4x Scope',s.scope4x],['AWM/Sniper',s.sniper]].map(([n,v])=>`
+    <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(21,37,53,.5);font-size:12px">
+      <span style="color:var(--dim)">${n}</span>
+      <span style="font-family:'Orbitron',sans-serif;color:var(--cyan);font-weight:700">${v}</span>
+    </div>`).join('')}
+  </div>
+  ${code!=='PREVIEW'?`<div style="background:rgba(0,255,136,.08);border:1px solid var(--green);border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:9px;color:var(--dim);margin-bottom:4px">KEY GERADA</div>
+    <div style="font-family:'Orbitron',sans-serif;font-size:11px;color:var(--green);letter-spacing:1px;word-break:break-all">${code}</div>
+  </div>`:''}`;
+}
+function copySensiKey() { navigator.clipboard?.writeText(lastSensiKey).catch(()=>{}); toast('📋 Copiado!'); }
+function closeSensiModal() { document.getElementById('sensiModal').classList.remove('show'); }
+
+// ══════════════════════════════════════════
+// SPLASH — versão robusta sem try/catch externo
+// ══════════════════════════════════════════
+const splashMsgs = [
+  'Inicializando módulos...','Carregando engine v4.0...',
+  'Conectando servidor...','Verificando licença...',
+  'Ativando Anti-Ban Shield...','Carregando HeadTracker...',
+  'Injetando dependências...','Sincronizando configs...','Concluído!'
+];
+let spPct = 0;
+
+(function initSplash() {
+  let mi = 0;
+  const msgEl = document.getElementById('spMsg');
+  const barEl = document.getElementById('spBar');
+  const pctEl = document.getElementById('spPct');
+  const splEl = document.getElementById('splash');
+
+  const mI = setInterval(() => {
+    if (mi < splashMsgs.length && msgEl) msgEl.textContent = splashMsgs[mi++];
+  }, 380);
+
+  const bI = setInterval(() => {
+    spPct += Math.random() * 5 + 1.5;
+    if (spPct >= 100) spPct = 100;
+    if (barEl) barEl.style.width = spPct + '%';
+    if (pctEl) pctEl.textContent = Math.floor(spPct) + '%';
+
+    if (spPct >= 100) {
+      clearInterval(bI);
+      clearInterval(mI);
+      setTimeout(() => {
+        if (splEl) {
+          splEl.style.transition = 'opacity .6s';
+          splEl.style.opacity = '0';
+          setTimeout(() => {
+            if (splEl) splEl.remove();
+            // Tenta restaurar sessão
+            if (resumeSession()) {
+              document.getElementById('mainApp').style.display = 'block';
+              startKeyBar();
+              notif('✅','SESSÃO RESTAURADA','Key ainda válida!','green',3000);
+            } else {
+              showLogin();
+            }
+          }, 600);
+        }
+      }, 300);
+    }
+  }, 75);
+})();
+
+// ══════════════════════════════════════════
+// APP
+// ══════════════════════════════════════════
+function showTab(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-'+id)?.classList.add('active');
+  el.classList.add('active');
+}
+const swS = {ab:true, smo:true, fu:true};
+function tog(id) { const el=document.getElementById('sw-'+id); if(!el)return; swS[id]=!swS[id]; el.classList.toggle('on',swS[id]); }
+function sv(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function selVK(id) { document.querySelectorAll('.vkey-opt').forEach(v=>v.classList.remove('sel')); document.getElementById('vk-'+id)?.classList.add('sel'); toast('Botão: '+id.toUpperCase()); }
+let selFPS = 120;
+function setFPS(fps) { selFPS=fps; [60,90,120].forEach(f=>{const el=document.getElementById('fps-'+f);if(el)el.classList.toggle('sel',f===fps);}); toast('FPS '+fps); }
+
+let _fF=0,_fL=performance.now(),_fR=null;
+function startFPSMeter() {
+  if (_fR) return;
+  function loop(ts) { _fF++; const d=ts-_fL; if(d>=600){const r=Math.round(_fF/(d/1000));_fF=0;_fL=ts;if(injected){document.getElementById('stFPS').textContent=Math.min(r,selFPS);}} _fR=requestAnimationFrame(loop); }
+  _fR = requestAnimationFrame(loop);
+}
+function stopFPSMeter() { if(_fR){cancelAnimationFrame(_fR);_fR=null;} }
+
+let _pI = null;
+function startPing() {
+  stopPing();
+  _pI = setInterval(async () => {
+    if (!injected) return;
+    const t = performance.now();
+    try { await fetch('https://www.google.com/favicon.ico?_='+Date.now(),{mode:'no-cors',cache:'no-store'}); document.getElementById('stPing').textContent=Math.round(performance.now()-t); }
+    catch(e) { document.getElementById('stPing').textContent=Math.floor(20+Math.random()*35); }
+  }, 2500);
+}
+function stopPing() { if(_pI){clearInterval(_pI);_pI=null;} }
+
+let _kI = null;
+function startKillTracker() {
+  stopKillTracker();
+  _kI = setInterval(() => {
+    if (!injected) return;
+    if (Math.random()<0.1) {
+      document.getElementById('stKills').textContent=parseInt(document.getElementById('stKills').textContent)+1;
+      document.getElementById('stHS').textContent=Math.floor(62+Math.random()*32)+'%';
+    }
+  }, 2500);
+}
+function stopKillTracker() { if(_kI){clearInterval(_kI);_kI=null;} }
+
+let injected=false, injecting=false;
+const injSteps = ['Abrindo processo do Free Fire','Alocando memória segura','Injetando HeadTracker','Injetando Anti-Recoil','Ativando Anti-Ban Shield','Aplicando FPS Unlock','Sincronizando sensibilidade','Finalizando injeção'];
+function startInject() {
+  if (injecting) return;
+  if (injected)  { eject(); return; }
+  injecting = true;
+  const btn=document.getElementById('injectBtn'), icon=document.getElementById('injIcon'), txt=document.getElementById('injTxt'), sub=document.getElementById('injSub'), prog=document.getElementById('injProg'), stEl=document.getElementById('injSteps'), bar=document.getElementById('injBar');
+  btn.disabled=true; icon.textContent='⏳'; sub.textContent='Injetando...'; prog.classList.add('show');
+  stEl.innerHTML = injSteps.map((s,i)=>`<div class="inj-step" id="is${i}"><div class="inj-ic">○</div><span>${s}</span></div>`).join('');
+  let idx=0;
+  function step() {
+    if (idx >= injSteps.length) { finish(); return; }
+    if (idx > 0) { const p=document.getElementById('is'+(idx-1)); if(p){p.classList.remove('cur');p.classList.add('done');p.querySelector('.inj-ic').textContent='✓';} }
+    const c=document.getElementById('is'+idx); if(c) c.classList.add('cur');
+    bar.style.width=((idx+1)/injSteps.length*100)+'%';
+    idx++; setTimeout(step, 400+Math.random()*200);
+  }
+  function finish() {
+    const last=document.getElementById('is'+(injSteps.length-1));
+    if(last){last.classList.remove('cur');last.classList.add('done');last.querySelector('.inj-ic').textContent='✓';}
+    bar.style.width='100%';
+    setTimeout(() => {
+      injecting=false; injected=true; btn.disabled=false; btn.classList.add('done');
+      icon.textContent='✅'; txt.textContent='INJETADO'; sub.textContent='Ativo! Clique para ejetar';
+      document.getElementById('hDot').classList.add('on');
+      document.getElementById('hStatus').textContent='INJETADO'; document.getElementById('hStatus').style.color='var(--green)';
+      notif('💉','INJEÇÃO COMPLETA','Todos os módulos ativos!','green',5000);
+      setTimeout(()=>notif('🎯','HEADTRACKER ON','Mira na cabeça ativada','cyan',4000),700);
+      setTimeout(()=>notif('⚡','FREE FIRE',selFPS+' FPS configurado!','gold',3500),1600);
+      setTimeout(()=>notif('🛡','ANTI-BAN','Shield operacional','green',3000),2800);
+      toast('✅ Nexus Cheats injetado!');
+      addLog('ok','Injeção concluída | FPS: '+selFPS);
+      srvReqs++;
+      startFPSMeter(); startPing(); startKillTracker();
+    }, 400);
+  }
+  step();
+}
+function eject() {
+  injected=false; stopFPSMeter(); stopPing(); stopKillTracker();
+  const btn=document.getElementById('injectBtn'); btn.classList.remove('done');
+  document.getElementById('injIcon').textContent='💉'; document.getElementById('injTxt').textContent='INJETAR'; document.getElementById('injSub').textContent='Clique para injetar no Free Fire';
+  document.getElementById('injProg').classList.remove('show');
+  document.getElementById('hDot').classList.remove('on'); document.getElementById('hStatus').textContent='OFFLINE'; document.getElementById('hStatus').style.color='var(--dim)';
+  document.getElementById('stFPS').textContent='0'; document.getElementById('stPing').textContent='---'; document.getElementById('stKills').textContent='0'; document.getElementById('stHS').textContent='0%';
+  notif('⛔','EJETADO','Módulos removidos','',3000); toast('Módulos ejetados');
+  addLog('warn','Injeção encerrada');
+}
+function applyMod(name) {
+  if (!injected) { notif('⚠️','AVISO','Injete primeiro!','gold',3000); toast('⚠️ Injete primeiro!'); return; }
+  notif('⚡',name+' APLICADO','Config enviada','green',3000); toast('✅ '+name+' aplicado!');
+  addLog('ok','Módulo: '+name);
+}
+const presets = {
+  rush:  {sg:85,sns:80,srd:75,s2x:68,s4x:55,ssn:40},
+  sniper:{sg:50,sns:45,srd:42,s2x:38,s4x:30,ssn:20},
+  bal:   {sg:72,sns:65,srd:58,s2x:50,s4x:40,ssn:30},
+  pro:   {sg:78,sns:70,srd:65,s2x:55,s4x:45,ssn:32}
+};
+function loadPreset(name) {
+  const p = presets[name];
+  Object.keys(p).forEach(id => { const el=document.getElementById(id); if(el) el.textContent=p[id]; });
+  toast('Preset '+name.toUpperCase()+' carregado!');
+  if (injected) notif('📱','SENSI PRESET','Preset '+name+' aplicado!','green',2500);
+}
+
+function notif(icon, title, body, type, dur) {
+  const ov = document.getElementById('notif-overlay');
+  const d  = document.createElement('div');
+  d.className = 'notif'+(type?' '+type:'');
+  d.innerHTML = `<span class="notif-icon">${icon}</span><div><div class="notif-title">${title}</div><div class="notif-body">${body}</div></div><span class="notif-brand">NEXUS</span>`;
+  ov.appendChild(d);
+  requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('show')));
+  setTimeout(() => { d.classList.remove('show'); d.classList.add('hide'); setTimeout(() => d.remove(), 400); }, dur||3000);
+}
+function toast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+
+// Init log
+addLog('info','Sistema Nexus Cheats v4.0 inicializado');
+</script>
+</body>
+</html>
