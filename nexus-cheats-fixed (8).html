@@ -1,0 +1,2659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#9B30FF">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nexus Cheats">
+  <meta name="application-name" content="Nexus Cheats">
+  <meta name="description" content="Nexus Cheats - Free Fire Tool v5.0">
+  <link rel="manifest" href="manifest.json">
+<title>Nexus Cheats - FF Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--r:#FF2D2D;--r2:#FF6B00;--gold:#FFD700;--cyan:#00FFD1;--purple:#A855F7;--green:#00FF88;--bg:#030608;--bg2:#08111A;--card:#0A1825;--border:#152535;--text:#C8E6FF;--dim:#3A6A8A;--nexus-purple:#9B30FF;--nexus-purple2:#C060FF}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;max-width:480px;margin:0 auto;position:relative}
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-layer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 10% 10%,rgba(255,45,45,.10) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(0,128,255,.06) 0%,transparent 60%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(21,37,53,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(21,37,53,.5) 1px,transparent 1px);background-size:32px 32px}
+.scanline{position:absolute;width:100%;height:2px;background:linear-gradient(90deg,transparent,rgba(255,45,45,.25),transparent);animation:scan 5s linear infinite;top:-2px}
+@keyframes scan{from{top:-2px}to{top:100vh}}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.sp-marquee-wrap{position:absolute;top:0;left:0;right:0;height:100%;display:flex;align-items:center;pointer-events:none;overflow:hidden;opacity:.04}
+.sp-marquee{display:flex;gap:60px;animation:marqueeX 8s linear infinite;white-space:nowrap;font-family:'Orbitron',sans-serif;font-size:80px;font-weight:900;color:var(--r);letter-spacing:10px}
+@keyframes marqueeX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sp-center{display:flex;flex-direction:column;align-items:center;z-index:2}
+.sp-skull{font-size:64px;margin-bottom:12px;animation:floatY 2.5s ease-in-out infinite;filter:drop-shadow(0 0 24px rgba(255,45,45,.8))}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.sp-logo{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;letter-spacing:6px;background:linear-gradient(135deg,var(--r),var(--r2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sp-sub{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:8px;color:var(--gold);margin-top:4px}
+.sp-ver{font-size:10px;color:var(--dim);letter-spacing:2px;margin-top:5px}
+.sp-bar-wrap{width:220px;height:4px;background:var(--border);border-radius:2px;margin-top:30px;overflow:hidden;box-shadow:0 0 10px rgba(255,45,45,.2)}
+.sp-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--r),var(--gold));border-radius:2px;box-shadow:0 0 10px rgba(255,45,45,.7);transition:width .1s}
+.sp-pct{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--r);margin-top:10px;letter-spacing:3px}
+.sp-msg{font-size:11px;color:var(--dim);margin-top:5px;height:16px;letter-spacing:1px}
+.sp-scroll-wrap{position:absolute;bottom:0;left:0;right:0;overflow:hidden;height:32px;background:rgba(255,45,45,.04);border-top:1px solid rgba(255,45,45,.15)}
+.sp-scroll{display:flex;gap:40px;animation:scrollX 12s linear infinite;white-space:nowrap;padding:8px 0;font-family:'Orbitron',sans-serif;font-size:10px;color:rgba(255,45,45,.5);letter-spacing:2px}
+@keyframes scrollX{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+#loginScreen{position:fixed;inset:0;z-index:9998;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+#loginScreen.hidden{display:none}
+.login-skull{font-size:55px;margin-bottom:10px;animation:floatY 2.5s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,45,45,.7))}
+.login-logo{font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;letter-spacing:5px;background:linear-gradient(135deg,var(--r),var(--r2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.login-sub{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:6px;color:var(--gold);margin-top:2px}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-top:28px;width:100%;max-width:340px;position:relative;overflow:hidden}
+.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.login-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--dim);margin-bottom:16px;text-transform:uppercase}
+.key-input{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;outline:none;transition:border-color .2s;text-transform:uppercase;margin-bottom:12px}
+.key-input::placeholder{color:var(--dim);font-size:11px;letter-spacing:1px;text-transform:none;font-family:'Exo 2',sans-serif}
+.key-input:focus{border-color:var(--r);box-shadow:0 0 12px rgba(255,45,45,.2)}
+.login-btn{width:100%;padding:15px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;letter-spacing:3px;cursor:pointer;box-shadow:0 0 20px rgba(255,45,45,.25);transition:all .15s;text-transform:uppercase}
+.login-btn:active{transform:scale(.97)}
+.login-err{font-size:12px;color:var(--r);text-align:center;margin-top:10px;min-height:18px;font-weight:600}
+.shop-btn{display:block;margin-top:14px;padding:13px 20px;background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,165,0,.08));border:1.5px solid var(--gold);border-radius:12px;color:var(--gold);font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:2px;text-align:center;text-decoration:none;box-shadow:0 0 16px rgba(255,215,0,.2);transition:all .2s;animation:shopPulse 2s ease-in-out infinite}
+@keyframes shopPulse{0%,100%{box-shadow:0 0 16px rgba(255,215,0,.2)}50%{box-shadow:0 0 30px rgba(255,215,0,.5)}}
+.key-badges{display:flex;gap:8px;margin-top:14px;justify-content:center;flex-wrap:wrap}
+.kbadge{padding:5px 10px;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;border:1px solid}
+.kbadge.min{border-color:var(--cyan);color:var(--cyan);background:rgba(0,255,209,.08)}
+.kbadge.day{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.08)}
+.kbadge.w7{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.08)}
+.kbadge.m30{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.08)}
+#expiredScreen{position:fixed;inset:0;z-index:9998;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+#expiredScreen.show{display:flex}
+.exp-icon{font-size:60px;margin-bottom:16px;filter:drop-shadow(0 0 15px rgba(255,45,45,.6))}
+.exp-title{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--r);letter-spacing:3px;margin-bottom:8px}
+.exp-msg{font-size:13px;color:var(--dim);text-align:center;line-height:1.6;max-width:280px;margin-bottom:24px}
+.exp-btn{padding:14px 28px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:2px;cursor:pointer}
+#adminScreen{position:fixed;inset:0;z-index:9997;background:var(--bg);display:none;flex-direction:column;overflow:hidden}
+#adminScreen.show{display:flex}
+.admin-header{background:linear-gradient(135deg,rgba(8,17,26,.99),rgba(3,6,8,.99));border-bottom:2px solid var(--gold);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.admin-logo{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--gold),#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.admin-sub{font-size:9px;color:var(--dim);letter-spacing:1px;margin-top:1px}
+.admin-close{background:rgba(255,45,45,.15);border:1px solid var(--r);border-radius:8px;padding:7px 14px;color:var(--r);font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.admin-tabs{display:flex;border-bottom:1px solid var(--border);background:rgba(3,6,8,.9);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.admin-tabs::-webkit-scrollbar{display:none}
+.atab{flex:none;padding:10px 14px;font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--dim);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-transform:uppercase}
+.atab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.admin-body{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.apage{display:none}
+.apage.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.ac{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;position:relative;overflow:hidden}
+.ac::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--r2),transparent)}
+.ac-gold::before{background:linear-gradient(90deg,var(--gold),#FFA500,transparent)}
+.ac-cyan::before{background:linear-gradient(90deg,var(--cyan),#00AAFF,transparent)}
+.ac-purple::before{background:linear-gradient(90deg,var(--purple),#7C3AED,transparent)}
+.ac-green::before{background:linear-gradient(90deg,var(--green),#00CC66,transparent)}
+.ac-red::before{background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.act{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.act.cyan{color:var(--cyan)}.act.purple{color:var(--purple)}.act.green{color:var(--green)}.act.red{color:var(--r)}
+.adst{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.adst4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.adst6{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sv{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 8px;text-align:center}
+.sv-val{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--gold);display:block}
+.sv-val.cyan{color:var(--cyan)}.sv-val.green{color:var(--green)}.sv-val.red{color:var(--r)}.sv-val.purple{color:var(--purple)}
+.abtn{width:100%;padding:12px;border-radius:10px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;letter-spacing:2px;cursor:pointer;transition:all .15s;text-transform:uppercase;margin-bottom:8px}
+.abtn:last-child{margin-bottom:0}.abtn:active{transform:scale(.97)}
+.abtn-gold{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,165,0,.06));border:1.5px solid var(--gold);color:var(--gold)}
+.abtn-red{background:linear-gradient(135deg,rgba(255,45,45,.12),rgba(255,107,0,.06));border:1.5px solid var(--r);color:var(--r)}
+.abtn-cyan{background:linear-gradient(135deg,rgba(0,255,209,.1),rgba(0,170,255,.05));border:1.5px solid var(--cyan);color:var(--cyan)}
+.abtn-purple{background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(124,58,237,.05));border:1.5px solid var(--purple);color:var(--purple)}
+.abtn-green{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,204,102,.05));border:1.5px solid var(--green);color:var(--green)}
+.abtn-dim{background:rgba(21,37,53,.5);border:1px solid var(--border);color:var(--dim)}
+.gen-types{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.gtype{flex:1;min-width:55px;padding:9px 4px;border-radius:8px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;cursor:pointer;text-align:center;border:1.5px solid;transition:all .2s;opacity:.45}
+.gtype.sel{opacity:1;filter:brightness(1.2)}
+.gtype.t-min{border-color:var(--cyan);color:var(--cyan);background:rgba(0,255,209,.05)}
+.gtype.t-day{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.05)}
+.gtype.t-7d{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.05)}
+.gtype.t-30d{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.05)}
+.gen-result{background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:12px;margin-top:10px;display:none}
+.gen-result.show{display:block}
+.gen-key-text{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--green);letter-spacing:1px;word-break:break-all;margin-bottom:8px}
+.copy-btn{width:100%;padding:9px;background:rgba(0,255,136,.1);border:1px solid var(--green);border-radius:8px;color:var(--green);font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.kl{max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.ki{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:5px}
+.ki-code{font-family:'Orbitron',sans-serif;font-size:9px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.5px}
+.ki-type{font-family:'Orbitron',sans-serif;font-size:7px;padding:2px 6px;border-radius:8px;border:1px solid;flex-shrink:0}
+.ki-type.min{border-color:var(--cyan);color:var(--cyan)}.ki-type.day{border-color:var(--gold);color:var(--gold)}.ki-type.w7{border-color:var(--purple);color:var(--purple)}.ki-type.m30{border-color:var(--r);color:var(--r)}
+.ki-status{font-size:8px;flex-shrink:0;font-weight:700}
+.ki-status.active{color:var(--green)}.ki-status.expired{color:var(--dim)}.ki-status.pending{color:var(--gold)}
+.ki-del{background:rgba(255,45,45,.15);border:1px solid rgba(255,45,45,.4);border-radius:5px;color:var(--r);font-size:10px;padding:2px 7px;cursor:pointer;flex-shrink:0}
+.log-area{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;max-height:320px;overflow-y:auto;font-family:'Orbitron',sans-serif;font-size:9px;line-height:1.8;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.log-line{padding:3px 0;border-bottom:1px solid rgba(21,37,53,.5);display:flex;gap:8px;align-items:flex-start}
+.log-line:last-child{border-bottom:none}
+.log-time{color:var(--dim);flex-shrink:0;min-width:55px}
+.log-type{flex-shrink:0;min-width:50px;font-weight:700}
+.log-type.ok{color:var(--green)}.log-type.warn{color:var(--gold)}.log-type.err{color:var(--r)}.log-type.info{color:var(--cyan)}.log-type.admin{color:var(--purple)}
+.log-msg{color:var(--text);font-size:8px;letter-spacing:.5px}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(21,37,53,.6)}
+.tog-row:last-child{border-bottom:none}
+.tog-lbl{font-size:13px;font-weight:700}.tog-desc{font-size:10px;color:var(--dim);margin-top:1px}
+.sw{width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+.sw.on{background:var(--r);box-shadow:0 0 10px rgba(255,45,45,.4)}
+.sw.on.gold{background:var(--gold);box-shadow:0 0 10px rgba(255,215,0,.4)}
+.sw.on.cyan{background:var(--cyan);box-shadow:0 0 10px rgba(0,255,209,.4)}
+.sw.on.green{background:var(--green);box-shadow:0 0 10px rgba(0,255,136,.4)}
+.sw-k{position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:transform .3s;box-shadow:0 2px 5px rgba(0,0,0,.5)}
+.sw.on .sw-k{transform:translateX(20px)}
+.sl-row{margin-bottom:14px}
+.sl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sl-name{font-size:12px;font-weight:700}
+.sl-val{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:var(--r);min-width:38px;text-align:right}
+.sl-val.gold{color:var(--gold)}.sl-val.cyan{color:var(--cyan)}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--r2));cursor:pointer;box-shadow:0 0 10px rgba(255,45,45,.5)}
+input[type=range].gold-thumb::-webkit-slider-thumb{background:linear-gradient(135deg,var(--gold),#FFA500);box-shadow:0 0 10px rgba(255,215,0,.5)}
+input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(135deg,var(--cyan),#00AAFF);box-shadow:0 0 10px rgba(0,255,209,.5)}
+.ainput{width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'Exo 2',sans-serif;font-size:13px;outline:none;transition:border-color .2s;margin-bottom:8px}
+.ainput:focus{border-color:var(--gold)}.ainput.cyan:focus{border-color:var(--cyan)}
+.phone-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.phone-opt{padding:12px 8px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.phone-opt.sel{border-color:var(--cyan);background:rgba(0,255,209,.08);color:var(--cyan);box-shadow:0 0 10px rgba(0,255,209,.15)}
+.phone-icon{font-size:18px;display:block;margin-bottom:3px}
+.sensi-preview{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:10px}
+.header{position:sticky;top:0;z-index:100;background:rgba(3,6,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,45,45,.4);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(255,45,45,.18)}
+.h-logo{display:flex;align-items:center;gap:8px}
+.h-skull{font-size:22px;filter:drop-shadow(0 0 6px rgba(255,45,45,.8))}
+.h-text{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,var(--r),var(--r2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.h-text span{background:linear-gradient(135deg,var(--gold),#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-ver{font-size:9px;color:var(--dim);letter-spacing:1px}
+.h-right{display:flex;align-items:center;gap:8px}
+.h-key-info{font-family:'Orbitron',sans-serif;font-size:8px;color:var(--gold);letter-spacing:1px;text-align:right;line-height:1.4}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex-shrink:0}
+.sdot.on{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.h-status{display:flex;align-items:center;gap:5px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px}
+.key-bar-strip{background:rgba(255,215,0,.05);border-bottom:1px solid rgba(255,215,0,.15);padding:5px 14px;display:flex;align-items:center;gap:8px;font-size:9px;color:var(--gold);font-family:'Orbitron',sans-serif;letter-spacing:1px}
+.key-bar-inner{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.key-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--r));border-radius:2px;transition:width 1s linear}
+.tabs{position:sticky;top:53px;z-index:99;background:rgba(3,6,8,.95);backdrop-filter:blur(10px);display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:thin;scrollbar-color:rgba(155,48,255,.4) transparent;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:11px 16px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--dim);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;text-transform:uppercase}
+.tab.active{color:var(--r);border-bottom-color:var(--r)}
+.content{position:relative;z-index:1;padding:14px;max-width:480px;margin:0 auto;padding-bottom:40px}
+.page{display:none}.page.active{display:block;animation:fadeIn .3s ease}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--r2),transparent)}
+.card-title{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.inject-btn{width:100%;padding:22px 20px;background:linear-gradient(135deg,#1A0000,#2A0500);border:2px solid var(--r);border-radius:14px;color:white;font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 0 24px rgba(255,45,45,.3),inset 0 0 30px rgba(255,45,45,.04);transition:all .2s;text-transform:uppercase}
+.inject-btn:active{transform:scale(.97)}
+.inject-btn.done{border-color:var(--green);box-shadow:0 0 30px rgba(0,255,136,.35);color:var(--green)}
+.inj-icon{font-size:30px;display:block;margin-bottom:6px}
+.inj-sub{font-size:10px;letter-spacing:2px;color:var(--dim);margin-top:5px;font-family:'Exo 2',sans-serif}
+.inj-prog{display:none;margin-top:14px}
+.inj-prog.show{display:block}
+.inj-step{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px;font-weight:500;color:var(--dim);transition:color .3s}
+.inj-step.done{color:var(--green)}.inj-step.cur{color:var(--gold);animation:stepP .8s infinite}
+@keyframes stepP{0%,100%{opacity:1}50%{opacity:.5}}
+.inj-ic{width:17px;height:17px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
+.inj-step.done .inj-ic{background:var(--green);border-color:var(--green);color:#000}
+.inj-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:8px}
+.inj-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--r),var(--gold));transition:width .3s;box-shadow:0 0 8px rgba(255,45,45,.5)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center}
+.stat-val{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--r),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.stat-label{font-size:10px;color:var(--dim);letter-spacing:1px;font-weight:700;margin-top:2px;text-transform:uppercase}
+.fps-row{display:flex;gap:8px}
+.fps-btn{flex:1;padding:12px 4px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.fps-btn.sel{border-color:var(--gold);background:rgba(255,215,0,.1);color:var(--gold);box-shadow:0 0 12px rgba(255,215,0,.2)}
+.vkey-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vkey-opt{padding:14px 10px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.vkey-opt.sel{border-color:var(--cyan);background:rgba(0,255,209,.1);color:var(--cyan);box-shadow:0 0 12px rgba(0,255,209,.2)}
+.vk-icon{font-size:20px;display:block;margin-bottom:4px}
+.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.preset-btn{padding:14px 8px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);color:var(--dim);font-size:12px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.preset-btn:active{border-color:var(--r);color:var(--r);background:rgba(255,45,45,.08)}
+.preset-icon{font-size:20px;display:block;margin-bottom:4px}
+.preset-sub{font-size:9px;color:var(--dim);margin-top:2px}
+.apply-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--r),var(--r2));border:none;border-radius:12px;color:white;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;letter-spacing:3px;cursor:pointer;margin-top:6px;box-shadow:0 4px 20px rgba(255,45,45,.35);transition:all .15s;text-transform:uppercase}
+.apply-btn:active{transform:scale(.97)}
+.tut-step{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.tut-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--r2));display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;flex-shrink:0}
+.tut-ttl{font-size:14px;font-weight:700;margin-bottom:2px}
+.tut-txt{font-size:12px;color:var(--dim);line-height:1.5}
+.tut-txt b{color:var(--r);font-weight:700}
+.warn{background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.3);border-radius:10px;padding:12px 14px;font-size:12px;color:#FFA500;line-height:1.5;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
+#notif-overlay{position:fixed;top:0;left:0;right:0;z-index:8888;padding:60px 14px 0;pointer-events:none;display:flex;flex-direction:column;gap:8px}
+.notif{background:rgba(8,17,26,.97);border:1px solid var(--r);border-left:3px solid var(--r);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,.6);transform:translateX(110%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(20px);pointer-events:all}
+.notif.green{border-color:var(--green)}.notif.gold{border-color:var(--gold)}.notif.cyan{border-color:var(--cyan)}.notif.purple{border-color:var(--purple)}
+.notif.show{transform:translateX(0)}.notif.hide{transform:translateX(110%)}
+.notif-icon{font-size:22px;flex-shrink:0}
+.notif-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:white;letter-spacing:1px}
+.notif-body{font-size:12px;color:#8AABCC;margin-top:2px}
+.notif-brand{margin-left:auto;font-family:'Orbitron',sans-serif;font-size:9px;color:var(--r);letter-spacing:1px;flex-shrink:0}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(0,255,136,.12);border:1px solid var(--green);color:var(--green);padding:9px 18px;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;opacity:0;transition:all .3s;z-index:9000;white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#sensiModal{position:fixed;inset:0;z-index:9996;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}
+#sensiModal.show{display:flex}
+.smodal-box{background:var(--card);border:1px solid var(--cyan);border-radius:16px;padding:20px;width:100%;max-width:380px;position:relative;overflow:hidden;max-height:90vh;overflow-y:auto}
+.smodal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),#00AAFF,transparent)}
+.smodal-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:900;color:var(--cyan);letter-spacing:2px;margin-bottom:16px}
+.smodal-close{position:absolute;top:12px;right:12px;background:rgba(255,45,45,.15);border:1px solid var(--r);border-radius:6px;padding:4px 10px;color:var(--r);font-family:'Orbitron',sans-serif;font-size:9px;cursor:pointer}
+
+.nexus-logo-img{width:200px;max-width:80vw;object-fit:contain;filter:drop-shadow(0 0 30px rgba(155,48,255,.7)) drop-shadow(0 0 60px rgba(155,48,255,.4));animation:logoPulse 3s ease-in-out infinite;display:block;margin:0 auto}
+@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 30px rgba(155,48,255,.7)) drop-shadow(0 0 60px rgba(155,48,255,.4));transform:scale(1)}50%{filter:drop-shadow(0 0 50px rgba(155,48,255,1)) drop-shadow(0 0 90px rgba(155,48,255,.6));transform:scale(1.03)}}
+.nexus-logo-img-sm{width:130px;max-width:60vw;object-fit:contain;filter:drop-shadow(0 0 20px rgba(155,48,255,.6));display:block;margin:0 auto 8px}
+.sensi-section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+.sensi-section-title{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;color:var(--nexus-purple);margin-bottom:10px;font-weight:700;display:flex;align-items:center;gap:6px}
+.sensi-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sensi-label{font-size:10px;color:var(--dim);flex:1;min-width:70px}
+.sensi-slider{flex:2;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--nexus-purple) var(--pct,50%),var(--border) var(--pct,50%))}
+.sensi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--nexus-purple);box-shadow:0 0 8px rgba(155,48,255,.8);cursor:pointer;border:2px solid var(--nexus-purple2)}
+.sensi-val{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--nexus-purple2);min-width:28px;text-align:right;font-weight:700}
+.sensi-preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.sensi-preset-btn{padding:8px 6px;background:rgba(155,48,255,.08);border:1px solid rgba(155,48,255,.3);border-radius:8px;color:var(--nexus-purple2);font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .15s;text-align:center}
+.sensi-preset-btn:active,.sensi-preset-btn.sel{background:rgba(155,48,255,.25);border-color:var(--nexus-purple);box-shadow:0 0 12px rgba(155,48,255,.4)}
+.dpi-btn{padding:6px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--dim);font-family:'Orbitron',sans-serif;font-size:9px;cursor:pointer;transition:all .15s}
+.dpi-btn.sel{border-color:var(--nexus-purple);color:var(--nexus-purple);background:rgba(155,48,255,.1)}
+.profile-card{background:linear-gradient(135deg,rgba(155,48,255,.12),rgba(192,96,255,.06));border:1px solid rgba(155,48,255,.3);border-radius:12px;padding:12px;margin-bottom:8px;position:relative;overflow:hidden}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--nexus-purple),var(--nexus-purple2),transparent)}
+
+/* ── NEXUS BRAND ── */
+.brand-tag{font-family:'Orbitron',sans-serif;font-size:7px;letter-spacing:3px;color:rgba(155,48,255,.4);text-align:center;padding:4px 0}
+.brand-divider{display:flex;align-items:center;gap:8px;margin:8px 0}
+.brand-divider::before,.brand-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.4),transparent)}
+.brand-divider span{font-family:'Orbitron',sans-serif;font-size:7px;color:rgba(192,96,255,.6);letter-spacing:3px;white-space:nowrap}
+.nexus-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(155,48,255,.12);border:1px solid rgba(155,48,255,.3);border-radius:20px;padding:3px 10px;font-family:'Orbitron',sans-serif;font-size:8px;color:var(--nexus-purple2);letter-spacing:2px}
+/* Splash roxo */
+.sp-logo{background:linear-gradient(135deg,#fff 20%,#C060FF,#9B30FF)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important}
+.sp-bar{background:linear-gradient(90deg,#9B30FF,#C060FF)!important;box-shadow:0 0 10px rgba(155,48,255,.7)!important}
+
+@media (min-width:500px){
+  body{box-shadow:0 0 60px rgba(155,48,255,.15),0 0 0 1px rgba(155,48,255,.1)}
+  #splash,#loginScreen,#adminScreen,#expiredScreen{max-width:480px;left:50%;transform:translateX(-50%);right:auto;width:480px}
+  .notif-overlay{max-width:480px;left:50%;transform:translateX(-50%)}
+  #toast{max-width:440px}
+  .key-bar-strip{max-width:480px;left:50%;transform:translateX(-50%)}
+  .header{max-width:480px}
+  #mainApp{max-width:480px;margin:0 auto}
+}
+
+/* scroll hint nas abas */
+.tabs::-webkit-scrollbar{height:2px}
+.tabs::-webkit-scrollbar-track{background:transparent}
+.tabs::-webkit-scrollbar-thumb{background:rgba(155,48,255,.4);border-radius:2px}
+/* tab de nível especial */
+#tab-performance{color:rgba(0,255,209,.7)!important}
+#tab-performance.active{color:var(--cyan)!important;border-color:var(--cyan)!important}
+#tab-protools{color:rgba(255,215,0,.7)!important}
+#tab-protools.active{color:var(--gold)!important;border-color:var(--gold)!important}
+
+/* ── FUNDO ANIMADO ── */
+.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
+.bg-orb1{width:300px;height:300px;background:radial-gradient(circle,rgba(155,48,255,.18),transparent 70%);top:-80px;left:-80px;animation-duration:9s}
+.bg-orb2{width:250px;height:250px;background:radial-gradient(circle,rgba(255,45,45,.12),transparent 70%);top:30%;right:-60px;animation-duration:11s;animation-delay:-3s}
+.bg-orb3{width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,209,.10),transparent 70%);bottom:20%;left:10%;animation-duration:13s;animation-delay:-6s}
+.bg-orb4{width:180px;height:180px;background:radial-gradient(circle,rgba(192,96,255,.14),transparent 70%);bottom:-40px;right:20%;animation-duration:10s;animation-delay:-2s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-30px) scale(1.05)}50%{transform:translate(-15px,20px) scale(.95)}75%{transform:translate(25px,10px) scale(1.02)}}
+
+/* Linhas de energia */
+.bg-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.4),transparent);pointer-events:none;animation:lineSweep 6s ease-in-out infinite}
+.bg-line1{width:60%;top:25%;left:0;animation-delay:0s}
+.bg-line2{width:40%;top:55%;right:0;animation-delay:-2s;background:linear-gradient(90deg,transparent,rgba(0,255,209,.3),transparent)}
+.bg-line3{width:50%;top:75%;left:10%;animation-delay:-4s;background:linear-gradient(90deg,transparent,rgba(255,45,45,.2),transparent)}
+@keyframes lineSweep{0%,100%{opacity:0;transform:scaleX(.3)}50%{opacity:1;transform:scaleX(1)}}
+
+/* Canvas partículas */
+#bgCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+
+/* Scanline melhorado */
+.scanline{background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);animation:scanMove 8s linear infinite}
+@keyframes scanMove{0%{background-position:0 0}100%{background-position:0 100%}}
+
+/* Grid com brilho suave */
+.bg-grid{background-image:linear-gradient(rgba(155,48,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(155,48,255,.08) 1px,transparent 1px);background-size:32px 32px;animation:gridPulse 4s ease-in-out infinite}
+@keyframes gridPulse{0%,100%{opacity:.6}50%{opacity:1}}
+</style>
+</head>
+<body>
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+  <!-- Orbs flutuantes -->
+  <div class="bg-orb bg-orb1"></div>
+  <div class="bg-orb bg-orb2"></div>
+  <div class="bg-orb bg-orb3"></div>
+  <div class="bg-orb bg-orb4"></div>
+  <!-- Partículas -->
+  <canvas id="bgCanvas"></canvas>
+  <!-- Linhas de energia -->
+  <div class="bg-line bg-line1"></div>
+  <div class="bg-line bg-line2"></div>
+  <div class="bg-line bg-line3"></div>
+</div>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-marquee-wrap">
+    <div class="sp-marquee" style="color:rgba(155,48,255,.8)">NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS</div>
+  </div>
+  <div class="sp-center">
+    <div class="sp-skull" style="filter:drop-shadow(0 0 28px rgba(155,48,255,1))">💜</div>
+    <div class="sp-logo" style="background:linear-gradient(135deg,#fff 20%,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:8px">NEXUS</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:18px;font-weight:900;background:linear-gradient(135deg,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:12px;margin-top:-6px">CHEATS</div>
+    <div class="sp-ver" style="color:var(--nexus-purple2);letter-spacing:3px;margin-top:6px">FREE FIRE TOOL · v5.0</div>
+    <div class="sp-bar-wrap"><div class="sp-bar" id="spBar"></div></div>
+    <div class="sp-pct" id="spPct">0%</div>
+    <div class="sp-msg" id="spMsg">Inicializando...</div>
+  </div>
+  <div style="position:absolute;bottom:40px;left:0;right:0;text-align:center;pointer-events:none">
+    <div style="font-family:Orbitron,sans-serif;font-size:7px;color:rgba(155,48,255,.25);letter-spacing:4px">NEXUS CHEATS · FREE FIRE TOOL v5.0</div>
+  </div>
+  <div class="sp-scroll-wrap">
+    <div class="sp-scroll" style="color:rgba(155,48,255,.6)">💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp; 💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp;</div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="hidden">
+  <div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
+  <div style="text-align:center;margin-bottom:4px">
+    <div style="font-family:Orbitron,sans-serif;font-size:38px;font-weight:900;background:linear-gradient(135deg,#fff 10%,#C060FF 50%,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:6px;filter:drop-shadow(0 0 20px rgba(155,48,255,.5));line-height:1">NEXUS</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:22px;font-weight:900;background:linear-gradient(135deg,#C060FF,#9B30FF,#7B20EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:10px;margin-top:-4px">CHEATS</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px">
+      <div style="height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.6))"></div>
+      <div style="font-family:Orbitron,sans-serif;font-size:8px;color:rgba(192,96,255,.8);letter-spacing:4px">FREE FIRE TOOL v5.0</div>
+      <div style="height:1px;width:40px;background:linear-gradient(90deg,rgba(155,48,255,.6),transparent)"></div>
+    </div>
+  </div>
+  <div class="login-box">
+    <div style="text-align:center;margin-bottom:12px">
+        <span class="nexus-badge">💜 NEXUS CHEATS OFICIAL</span>
+      </div>
+      <div class="login-title">🔑 INSERIR KEY DE ACESSO</div>
+    <input class="key-input" id="keyInput" type="text" placeholder="Digite sua key aqui..." maxlength="36" oninput="this.value=this.value.toUpperCase()">
+    <button class="login-btn" onclick="tryLogin()">⚡ ENTRAR</button>
+    <div class="login-err" id="loginErr"></div>
+    <div id="loginCloudInfo" style="font-size:9px;color:var(--dim);text-align:center;margin-top:4px;font-family:'Orbitron',sans-serif;letter-spacing:1px;min-height:14px"></div>
+
+    <div class="brand-divider"><span>NEXUS CHEATS OFICIAL</span></div>
+    <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" class="shop-btn" style="border-color:var(--nexus-purple);box-shadow:0 0 20px rgba(155,48,255,.3);background:linear-gradient(135deg,rgba(155,48,255,.15),rgba(192,96,255,.08))">💜 DISCORD OFICIAL — NEXUS CHEATS</a>
+    <div class="key-badges">
+      <span class="kbadge min">1 MIN</span>
+      <span class="kbadge day">1 DIA</span>
+      <span class="kbadge w7">7 DIAS</span>
+      <span class="kbadge m30">30 DIAS</span>
+    </div>
+  </div>
+</div>
+
+<!-- EXPIRED -->
+<!-- MODAL SAIR KEY -->
+<div id="exitKeyModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--card);border:1px solid rgba(255,45,45,.5);border-radius:16px;padding:24px;max-width:340px;width:100%;box-shadow:0 0 40px rgba(255,45,45,.2)">
+    <div style="font-size:32px;text-align:center;margin-bottom:12px">⚠️</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:14px;color:var(--r);text-align:center;letter-spacing:2px;margin-bottom:12px">SAIR DA KEY</div>
+    <div style="font-size:11px;color:var(--dim);text-align:center;line-height:1.7;margin-bottom:20px">Sua key será <b style="color:var(--r)">excluída permanentemente</b>.<br>Você precisará comprar uma nova no Discord para continuar usando.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button onclick="closeExitModal()" style="padding:12px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--dim);font-family:Orbitron,sans-serif;font-size:10px;cursor:pointer;letter-spacing:1px">CANCELAR</button>
+      <button onclick="exitAndDeleteKey()" style="padding:12px;background:rgba(255,45,45,.2);border:1px solid rgba(255,45,45,.6);border-radius:10px;color:var(--r);font-family:Orbitron,sans-serif;font-size:10px;cursor:pointer;letter-spacing:1px;font-weight:700">CONFIRMAR</button>
+    </div>
+  </div>
+</div>
+
+<div id="expiredScreen">
+  <div class="bg-layer"><div class="bg-grid"></div></div>
+  <div style="font-family:Orbitron,sans-serif;font-size:10px;color:rgba(155,48,255,.6);letter-spacing:3px;margin-bottom:10px">NEXUS CHEATS</div>
+  <div class="exp-icon">⏰</div>
+  <div class="exp-title">KEY EXPIRADA</div>
+  <div class="exp-msg">Sua key de acesso expirou. Entre em contato para renovar.</div>
+  <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" style="display:block;margin:10px auto;padding:12px 20px;background:rgba(155,48,255,.15);border:1px solid rgba(155,48,255,.4);border-radius:10px;color:var(--nexus-purple2);font-family:Orbitron,sans-serif;font-size:10px;text-align:center;text-decoration:none;letter-spacing:2px">💜 RENOVAR NO DISCORD</a>
+  <button class="exp-btn" onclick="showLogin()">🔑 INSERIR NOVA KEY</button>
+</div>
+
+<!-- SENSI MODAL -->
+<div id="sensiModal">
+  <div class="smodal-box">
+    <button class="smodal-close" onclick="closeSensiModal()">✕</button>
+    <div class="smodal-title">📱 SENSIBILIDADE GERADA</div>
+    <div id="sensiModalContent"></div>
+    <button class="abtn abtn-cyan" style="margin-top:12px" onclick="copySensiKey()">📋 COPIAR KEY SENSI</button>
+    <button class="abtn abtn-dim" style="margin-top:6px" onclick="closeSensiModal()">FECHAR</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminScreen">
+  <div class="admin-header">
+    <div>
+      <div class="admin-logo">👑 PAINEL DESENVOLVEDOR</div>
+      <div class="admin-sub">NEXUS CHEATS · ADMIN v4.0 · NEXUS-ADMIN-2024</div>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">✕ SAIR</button>
+  </div>
+  <div class="admin-tabs">
+    <button class="atab active" onclick="showATab('dashboard',this)">📊 DASHBOARD</button>
+    <button class="atab" onclick="showATab('keys',this)">🔑 KEYS</button>
+    <button class="atab" onclick="showATab('servidor',this)">🌐 SERVIDOR</button>
+    <button class="atab" onclick="showATab('logs',this)">📋 LOGS</button>
+    <button class="atab" onclick="showATab('config',this)">🔧 CONFIG</button>
+  </div>
+  <div class="admin-body">
+    <div class="apage active" id="apage-dashboard">
+      <div class="ac ac-gold">
+        <div class="act">📊 VISÃO GERAL DO SISTEMA</div>
+        <div class="adst" style="margin-bottom:10px">
+          <div class="sv"><span class="sv-val" id="adTotal">0</span><span class="sv-lbl">Keys Geradas</span></div>
+          <div class="sv"><span class="sv-val green" id="adActive">0</span><span class="sv-lbl">Ativas</span></div>
+          <div class="sv"><span class="sv-val red" id="adExpired">0</span><span class="sv-lbl">Expiradas</span></div>
+        </div>
+        <div class="adst">
+          <div class="sv"><span class="sv-val cyan" id="adPending">0</span><span class="sv-lbl">🟢 Online</span></div>
+          <div class="sv"><span class="sv-val purple" id="adSensiKeys">0</span><span class="sv-lbl">⏳ Não Usadas</span></div>
+          <div class="sv"><span class="sv-val" id="adUsed">0</span><span class="sv-lbl">Usadas</span></div>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🌐 STATUS DO SERVIDOR</div>
+        <div class="adst6">
+          <div class="sv"><span class="sv-val green" id="srvStatus">ONLINE</span><span class="sv-lbl">Status</span></div>
+          <div class="sv"><span class="sv-val cyan" id="srvPing">--</span><span class="sv-lbl">Ping ms</span></div>
+          <div class="sv"><span class="sv-val" id="srvUptime">--</span><span class="sv-lbl">Uptime</span></div>
+        </div>
+        <div style="margin-top:10px">
+          <button class="abtn abtn-cyan" onclick="testServer()">🔄 TESTAR CONEXÃO</button>
+          <button class="abtn abtn-dim" onclick="restartServer()">🔁 REINICIAR SERVIÇO</button>
+        </div>
+      </div>
+      <!-- MOVIMENTAÇÃO DA SEMANA -->
+      <div class="ac" style="border-color:var(--gold)">
+        <div class="act" style="color:var(--gold)">📈 MOVIMENTAÇÃO — ÚLTIMOS 7 DIAS</div>
+        <div id="movWeek" style="padding:4px 0;min-height:80px"></div>
+      </div>
+
+      <!-- EVENTOS RECENTES -->
+      <div class="ac" style="border-color:var(--purple)">
+        <div class="act" style="color:var(--purple)">🔔 EVENTOS RECENTES</div>
+        <div id="eventsArea" class="log-area" style="max-height:160px"></div>
+      </div>
+
+      <div class="ac ac-green">
+        <div class="act green">⚡ AÇÕES RÁPIDAS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="abtn abtn-gold" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('day')">⚡ KEY 1 DIA</button>
+          <button class="abtn abtn-purple" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('7d')">⚡ KEY 7 DIAS</button>
+          <button class="abtn abtn-red" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+          <button class="abtn abtn-cyan" onclick="showATab('logs',document.querySelectorAll('.atab')[3])">📋 VER LOGS</button>
+        </div>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">📢 ÚLTIMAS ATIVIDADES</div>
+        <div class="log-area" id="dashLogs" style="max-height:180px"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-keys">
+      <div class="ac ac-gold">
+        <div class="act">⚡ GERAR KEY DE ACESSO</div>
+        <div class="gen-types">
+          <div class="gtype t-min sel" id="gt-min" onclick="selGenTypeFn('min')">1 MIN</div>
+          <div class="gtype t-day" id="gt-day" onclick="selGenTypeFn('day')">1 DIA</div>
+          <div class="gtype t-7d" id="gt-7d" onclick="selGenTypeFn('7d')">7 DIAS</div>
+          <div class="gtype t-30d" id="gt-30d" onclick="selGenTypeFn('30d')">30 DIAS</div>
+        </div>
+        <label style="font-size:11px;color:var(--dim);display:block;margin-bottom:6px">👤 Nome do Usuário (opcional):</label>
+        <input class="ainput" id="keyUserName" placeholder="Ex: João, PedroFF, Discord#1234..." style="margin-bottom:8px">
+        <label style="font-size:11px;color:var(--dim);display:block;margin-bottom:6px">📝 Observação (opcional):</label>
+        <input class="ainput" id="keyNote" placeholder="Ex: VIP, teste, parceiro...">
+        <button class="abtn abtn-gold" onclick="generateKey()">🔑 GERAR KEY</button>
+        <div class="gen-result" id="genResult">
+          <div class="gen-key-text" id="genKeyText"></div>
+          <div style="font-size:10px;color:var(--dim);margin-bottom:8px" id="genKeyInfo"></div>
+          <button class="copy-btn" onclick="copyGenKey()">📋 COPIAR KEY</button>
+        </div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🔍 BUSCAR / VALIDAR KEY</div>
+        <input class="ainput cyan" id="searchKey" placeholder="Cole uma key para validar...">
+        <button class="abtn abtn-cyan" onclick="searchKeyFn()">🔍 VERIFICAR KEY</button>
+        <div id="searchResult" style="margin-top:8px;font-size:11px;min-height:16px"></div>
+      </div>
+      <div class="ac">
+        <div class="act" style="justify-content:space-between">
+          <span>🗂 TODAS AS KEYS</span>
+          <div style="display:flex;gap:6px">
+            <button class="abtn" style="width:auto;padding:4px 10px;font-size:9px;margin:0;border-color:var(--green);color:var(--green)" onclick="adminForceRefresh()">🔄 SYNC</button>
+            <button class="abtn abtn-red" style="width:auto;padding:4px 10px;font-size:9px;margin:0" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+          </div>
+        </div>
+        <div class="kl" id="keyList"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-servidor">
+      <div class="ac" style="border-color:var(--gold)">
+        <div class="act" style="color:var(--gold)">🛠 FERRAMENTAS ADMIN</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+          <button class="abtn abtn-cyan" onclick="diagCloud()">🔍 DIAGNÓSTICO</button>
+          <button class="abtn" style="border-color:var(--gold);color:var(--gold)" onclick="debugInfo()">🐛 DEBUG STATUS</button>
+        </div>
+        <div id="debugOutput" style="font-size:9px;color:var(--gold);background:var(--bg);border:1px solid rgba(255,215,0,.2);border-radius:6px;padding:8px;min-height:16px;word-break:break-all;display:none;line-height:1.6"></div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🌐 PAINEL DO SERVIDOR</div>
+        <div class="adst6" style="margin-bottom:12px">
+          <div class="sv"><span class="sv-val green" id="srv2-status">ONLINE</span><span class="sv-lbl">Status</span></div>
+          <div class="sv"><span class="sv-val cyan" id="srv2-ping">--ms</span><span class="sv-lbl">Latência</span></div>
+          <div class="sv"><span class="sv-val" id="srv2-users">1</span><span class="sv-lbl">Usuários</span></div>
+          <div class="sv"><span class="sv-val purple" id="srv2-req">0</span><span class="sv-lbl">Requests</span></div>
+          <div class="sv"><span class="sv-val green" id="srv2-uptime">0m</span><span class="sv-lbl">Uptime</span></div>
+          <div class="sv"><span class="sv-val gold" id="srv2-mem">--</span><span class="sv-lbl">Memória</span></div>
+        </div>
+        <button class="abtn abtn-cyan" onclick="testServer()">🔄 TESTAR PING</button>
+        <button class="abtn abtn-dim" onclick="restartServer()">🔁 REINICIAR</button>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">⚙️ CONFIGURAÇÕES</div>
+        <div class="tog-row"><div><div class="tog-lbl">Manutenção</div><div class="tog-desc">Bloqueia novos logins</div></div><div class="sw" id="adm-sw-maintenance" onclick="admTog('maintenance')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auto-Sync Keys</div><div class="tog-desc">Sincroniza keys</div></div><div class="sw on" id="adm-sw-autosync" onclick="admTog('autosync')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Rate Limit</div><div class="tog-desc">Limita tentativas erradas</div></div><div class="sw on" id="adm-sw-ratelimit" onclick="admTog('ratelimit')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="ac ac-cyan">
+        <div class="act cyan">🔗 INTEGRAÇÕES</div>
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Discord Webhook URL:</label>
+        <input class="ainput cyan" id="webhookUrl" placeholder="https://discord.com/api/webhooks/...">
+        <button class="abtn abtn-cyan" onclick="saveServerConfig()">💾 SALVAR CONFIG</button>
+      </div>
+    </div>
+    <div class="apage" id="apage-logs">
+      <div class="ac ac-green">
+        <div class="act green">📋 LOGS DO SERVIDOR</div>
+        <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+          <button class="abtn abtn-dim" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('all')">TODOS</button>
+          <button class="abtn abtn-green" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('ok')">✅ OK</button>
+          <button class="abtn abtn-gold" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('warn')">⚠️</button>
+          <button class="abtn abtn-red" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('err')">❌</button>
+          <button class="abtn abtn-cyan" style="flex:1;margin:0;font-size:8px;padding:7px" onclick="filterLogs('info')">ℹ️</button>
+          <button class="abtn" style="flex:1;margin:0;font-size:8px;padding:7px;border-color:var(--purple);color:var(--purple)" onclick="showEventsTab()">📋 EVENTOS</button>
+        </div>
+        <div class="log-area" id="logsArea"></div>
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <button class="abtn abtn-dim" style="flex:1;margin:0" onclick="clearLogs()">🗑 LIMPAR</button>
+          <button class="abtn abtn-green" style="flex:1;margin:0" onclick="refreshLogs()">🔄 ATUALIZAR</button>
+        </div>
+      </div>
+      <div class="ac ac-green">
+        <div class="act green">📊 HISTÓRICO DE KEYS</div>
+        <div class="log-area" id="keyLogsArea" style="max-height:200px"></div>
+      </div>
+    </div>
+    <div class="apage" id="apage-config">
+      <div class="ac ac-purple">
+        <div class="act purple">🔧 CONFIGURAÇÕES GERAIS</div>
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Nome da Ferramenta:</label>
+        <input class="ainput" id="cfg-name" value="NEXUS CHEATS">
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Versão:</label>
+        <input class="ainput" id="cfg-ver" value="v4.0">
+        <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Link da Loja:</label>
+        <input class="ainput" id="cfg-shop" value="https://discord.gg/HNbQ6YbFVw">
+        <button class="abtn abtn-purple" onclick="saveConfig()">💾 SALVAR</button>
+      </div>
+      <div class="ac" style="border-color:rgba(255,215,0,.4)">
+        <div class="act" style="color:var(--gold)">☁️ BANCO DE DADOS NA NUVEM</div>
+        <div id="cloudStatus" style="font-size:11px;margin-bottom:10px;padding:8px 10px;background:var(--bg2);border-radius:8px;border:1px solid var(--border)">
+          <span id="cloudStatusDot">⚫</span> <span id="cloudStatusText" style="color:var(--dim)">Verificando...</span>
+        </div>
+        <button class="abtn abtn-gold" onclick="openAPIModal()">🔑 CONFIGURAR API KEY (JSONBin)</button>
+        <button class="abtn abtn-cyan" onclick="forceSyncNow()">🔄 SINCRONIZAR AGORA</button>
+        <div style="font-size:10px;color:var(--dim);margin-top:4px;line-height:1.5">
+          Sem a API Key configurada, as keys só existem neste dispositivo — outros usuários não conseguem fazer login.
+        </div>
+      </div>
+      <div class="ac ac-red">
+        <div class="act red">⚠️ ZONA DE PERIGO</div>
+        <button class="abtn abtn-red" onclick="resetAllKeys()">🗑 DELETAR TODAS AS KEYS</button>
+        <button class="abtn abtn-dim" onclick="factoryReset()">💥 RESET TOTAL DO SISTEMA</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="notif-overlay"></div>
+<div class="toast" id="toast"></div>
+
+<!-- MODAL SETUP API -->
+<div id="apiModal" style="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:24px 20px;width:100%;max-width:380px;position:relative">
+    <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--gold);letter-spacing:2px;margin-bottom:6px">☁️ CONFIGURAR BANCO NA NUVEM</div>
+    <div style="font-size:11px;color:var(--dim);margin-bottom:16px;line-height:1.6">Para que as keys funcionem em qualquer dispositivo, configure uma API Key gratuita do <b style="color:var(--gold)">JSONBin.io</b>:<br><br>
+      1. Acesse <b style="color:var(--cyan)">jsonbin.io</b> e crie conta grátis<br>
+      2. Vá em <b>API Keys</b> → copie a <b>Master Key</b><br>
+      3. Cole abaixo e clique Salvar
+    </div>
+    <input id="apiKeyInput" style="width:100%;background:var(--bg2);border:1.5px solid var(--gold);border-radius:10px;padding:12px 14px;color:var(--text);font-family:'Orbitron',sans-serif;font-size:11px;outline:none;margin-bottom:10px;letter-spacing:1px" placeholder='$2b$10$... (Master Key do JSONBin)'>
+    <button onclick="saveAPIKey()" style="width:100%;padding:13px;background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,165,0,.08));border:2px solid var(--gold);border-radius:10px;color:var(--gold);font-family:'Orbitron',sans-serif;font-size:13px;font-weight:900;cursor:pointer;letter-spacing:2px;margin-bottom:8px">💾 SALVAR E CONECTAR</button>
+    <button onclick="skipAPISetup()" style="width:100%;padding:10px;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--dim);font-family:'Orbitron',sans-serif;font-size:10px;cursor:pointer;letter-spacing:1px">Usar só neste dispositivo (sem nuvem)</button>
+    <div id="apiStatus" style="font-size:11px;color:var(--dim);text-align:center;margin-top:8px;min-height:16px"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" style="display:none">
+  <div style="position:fixed;bottom:72px;right:10px;z-index:100;pointer-events:none">
+    <div style="font-family:Orbitron,sans-serif;font-size:6px;color:rgba(155,48,255,.3);letter-spacing:2px;writing-mode:vertical-rl;transform:rotate(180deg)">NEXUS CHEATS</div>
+  </div>
+  <div class="key-bar-strip" id="keyBarStrip">
+    <span id="keyBarLabel">⏱ KEY</span>
+    <div class="key-bar-inner"><div class="key-bar-fill" id="keyBarFill" style="width:100%"></div></div>
+    <span id="keyBarTime">--:--</span>
+  </div>
+  <div class="header">
+    <div class="h-logo">
+      <div style="font-family:Orbitron,sans-serif;font-size:14px;font-weight:900;background:linear-gradient(135deg,#fff,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px">NEXUS <span style="font-size:10px">CHEATS</span></div>
+    </div>
+    <div class="h-right">
+      <div class="h-key-info" id="hKeyInfo"></div>
+      <div class="h-status"><div class="sdot" id="hDot"></div><span id="hStatus" style="color:var(--dim)">OFFLINE</span></div>
+    </div>
+  </div>
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" onclick="showTab('home',this)" style="color:var(--nexus-purple2)">🏠 HOME</button>
+    <button class="tab" onclick="showTab('headtrack',this)">🎯 HEADTRACK</button>
+    <button class="tab" onclick="showTab('fps',this)">⚡ FPS</button>
+    <button class="tab" onclick="showTab('sensi',this)">📱 SENSI</button>
+    <button class="tab tab-locked" id="tab-performance" onclick="showTab('performance',this)" style="display:none">🚀 PERFORMANCE</button>
+    <button class="tab tab-locked" id="tab-protools" onclick="showTab('protools',this)" style="display:none">👑 PRO TOOLS</button>
+    <button class="tab" onclick="showTab('tutorial',this)">📖 TUTORIAL</button>
+    <div style="min-width:16px;flex-shrink:0"></div>
+  </div>
+  <div id="tabScrollHint" style="display:none;position:sticky;top:94px;z-index:98;text-align:right;padding:2px 8px;font-family:Orbitron,sans-serif;font-size:7px;color:rgba(155,48,255,.5);letter-spacing:1px;pointer-events:none">▶ deslize</div>
+  <div class="content">
+    <div class="page active" id="page-home">
+      <div class="card" style="border-color:rgba(255,45,45,.4);background:linear-gradient(135deg,rgba(35,5,5,.9),rgba(10,24,37,.9))">
+        <div class="card-title" style="color:var(--r)">💉 INJETAR NO FREE FIRE</div>
+        <button class="inject-btn" id="injectBtn" onclick="startInject()">
+          <span class="inj-icon" id="injIcon">💉</span>
+          <span id="injTxt">INJETAR</span>
+          <div class="inj-sub" id="injSub">Clique para injetar no Free Fire</div>
+        </button>
+        <div class="inj-prog" id="injProg">
+          <div id="injSteps"></div>
+          <div class="inj-bar-wrap"><div class="inj-bar" id="injBar"></div></div>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><span class="stat-val" id="stFPS">0</span><span class="stat-label">FPS Atual</span></div>
+        <div class="stat-box"><span class="stat-val" id="stPing">---</span><span class="stat-label">Ping (ms)</span></div>
+        <div class="stat-box"><span class="stat-val" id="stHS">0%</span><span class="stat-label">% Headshot</span></div>
+        <div class="stat-box"><span class="stat-val" id="stKills">0</span><span class="stat-label">Kills</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ MÓDULOS</div>
+        <div class="tog-row"><div><div class="tog-lbl">🎯 HeadTracker</div><div class="tog-desc">Trava mira na cabeça</div></div><div class="sw" id="sw-ht" onclick="tog('ht')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🔫 Anti-Recoil</div><div class="tog-desc">Zera recuo da arma</div></div><div class="sw" id="sw-ar" onclick="tog('ar')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">🛡 Anti-Ban Shield</div><div class="tog-desc">Proteção contra detecção</div></div><div class="sw on" id="sw-ab" onclick="tog('ab')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="warn"><span style="font-size:18px;flex-shrink:0">⚠️</span><span>Configure tudo nas abas acima, depois clique <b>INJETAR</b> e abra o Free Fire.</span></div>
+    </div>
+    <div class="page" id="page-headtrack">
+      <div class="card">
+        <div class="card-title">🎯 HEADTRACKER</div>
+        <div class="tog-row"><div><div class="tog-lbl">HeadTracker Ativo</div><div class="tog-desc">Mira trava na cabeça</div></div><div class="sw" id="sw-htA" onclick="tog('htA')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Só no escopo/mira</div><div class="tog-desc">Ativa apenas ao mirar</div></div><div class="sw" id="sw-scop" onclick="tog('scop')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Smooth Aim</div><div class="tog-desc">Mira mais suave</div></div><div class="sw on" id="sw-smo" onclick="tog('smo')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Recoil</div><div class="tog-desc">Sem recuo ao atirar</div></div><div class="sw" id="sw-ar2" onclick="tog('ar2')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">👆 BOTÃO QUE ATIVA O HEADTRACKER</div>
+        <div class="vkey-grid">
+          <div class="vkey-opt sel" id="vk-fire" onclick="selVK('fire')"><span class="vk-icon">🔥</span>Botão Atirar</div>
+          <div class="vkey-opt" id="vk-scope" onclick="selVK('scope')"><span class="vk-icon">🔭</span>Botão Escopo</div>
+          <div class="vkey-opt" id="vk-crouch" onclick="selVK('crouch')"><span class="vk-icon">⬇️</span>Agachar</div>
+          <div class="vkey-opt" id="vk-jump" onclick="selVK('jump')"><span class="vk-icon">⬆️</span>Pular</div>
+        </div>
+      </div>
+    </div>
+    <div class="page" id="page-fps">
+      <div class="card">
+        <div class="card-title">⚡ FPS TARGET</div>
+        <div class="fps-row">
+          <div class="fps-btn" id="fps-60" onclick="setFPS(60)">60</div>
+          <div class="fps-btn" id="fps-90" onclick="setFPS(90)">90</div>
+          <div class="fps-btn sel" id="fps-120" onclick="setFPS(120)">120</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🚀 OTIMIZAÇÕES</div>
+        <div class="tog-row"><div><div class="tog-lbl">FPS Unlock</div><div class="tog-desc">Remove limite de FPS</div></div><div class="sw on" id="sw-fu" onclick="tog('fu')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">GPU Boost</div><div class="tog-desc">Prioriza GPU</div></div><div class="sw" id="sw-gpu" onclick="tog('gpu')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">RAM Cleaner Auto</div><div class="tog-desc">Limpa memória</div></div><div class="sw" id="sw-ram" onclick="tog('ram')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Ping Reducer</div><div class="tog-desc">Otimiza conexão</div></div><div class="sw" id="sw-pr-old" onclick="tog('pr')"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">No Grass</div><div class="tog-desc">Remove grama</div></div><div class="sw" id="sw-ng" onclick="tog('ng')"><div class="sw-k"></div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎮 RENDERIZAÇÃO</div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Resolução de Render</span><span class="sl-val" id="vRend">80%</span></div><input type="range" min="50" max="100" value="80" oninput="document.getElementById('vRend').textContent=this.value+'%'"></div>
+        <div class="sl-row"><div class="sl-head"><span class="sl-name">Draw Distance</span><span class="sl-val" id="vDraw">75</span></div><input type="range" min="20" max="100" value="75" oninput="sv('vDraw',this.value)"></div>
+      </div>
+      
+    </div>
+    <div class="page" id="page-sensi">
+      <div class="profile-card">
+        <div style="font-family:Orbitron,sans-serif;font-size:11px;color:var(--nexus-purple2);letter-spacing:2px;margin-bottom:4px">📱 AUXILIAR DE SENSI</div>
+        <div style="font-size:10px;color:var(--dim)">Ative os auxiliares abaixo para melhorar sua sensi no Free Fire automaticamente</div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">⚡ AUXILIARES DE SENSI</div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar Sensi Geral</div><div class="tog-desc">Melhora sensi geral do jogo</div></div><div class="sw" id="sw-sg" onclick="togSensi('sg',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar No Scope</div><div class="tog-desc">Melhora sensi sem mira</div></div><div class="sw" id="sw-sns" onclick="togSensi('sns',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar Scope 2x</div><div class="tog-desc">Melhora sensi no 2x</div></div><div class="sw" id="sw-s2x" onclick="togSensi('s2x',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar Scope 4x</div><div class="tog-desc">Melhora sensi no 4x</div></div><div class="sw" id="sw-s4x" onclick="togSensi('s4x',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar AWM / Sniper</div><div class="tog-desc">Melhora sensi sniper</div></div><div class="sw" id="sw-ssnp" onclick="togSensi('ssnp',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Auxiliar Câmera Livre</div><div class="tog-desc">Melhora movimentação geral</div></div><div class="sw" id="sw-scam2" onclick="togSensi('scam2',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">🚀 MODO SENSI</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="sensi-preset-btn" onclick="setSensiMode('rush')" id="sm-rush">⚡ RUSH</button>
+          <button class="sensi-preset-btn" onclick="setSensiMode('sniper')" id="sm-sniper">🎯 SNIPER</button>
+          <button class="sensi-preset-btn" onclick="setSensiMode('balanced')" id="sm-balanced">⚖️ BALANCEADO</button>
+          <button class="sensi-preset-btn sel" onclick="setSensiMode('auto')" id="sm-auto">✨ AUTO</button>
+        </div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(155,48,255,.4)">
+        <div class="sensi-section-title" style="color:var(--nexus-purple2)">💜 AUXILIAR AUTOMÁTICO</div>
+        <div style="font-size:10px;color:var(--dim);margin-bottom:10px">Ative para o sistema ajustar sua sensi automaticamente durante o jogo</div>
+        <div class="tog-row"><div><div class="tog-lbl" style="color:var(--nexus-purple2)">Auto-Sensi Inteligente</div><div class="tog-desc">Ajuste automático em tempo real</div></div><div class="sw on" id="sw-autosensi" onclick="togSensi('autosensi',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl" style="color:var(--nexus-purple2)">Sensi Anti-Tremor</div><div class="tog-desc">Remove tremor da mira</div></div><div class="sw" id="sw-antitremor" onclick="togSensi('antitremor',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl" style="color:var(--nexus-purple2)">Sensi Rápida no Rush</div><div class="tog-desc">Aumenta sensi ao correr</div></div><div class="sw" id="sw-rushsensi" onclick="togSensi('rushsensi',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div id="sensiStatusMsg" style="text-align:center;font-family:Orbitron,sans-serif;font-size:9px;color:var(--nexus-purple2);min-height:14px;margin-bottom:6px"></div>
+    </div>
+
+<div class="page" id="page-performance">
+      <!-- PERFORMANCE — key 7 dias+ -->
+      <div class="profile-card">
+        <div style="font-family:Orbitron,sans-serif;font-size:10px;color:var(--nexus-purple2);letter-spacing:2px;margin-bottom:4px">🚀 PERFORMANCE — FREE FIRE</div>
+        <div style="font-size:10px;color:var(--dim)">Otimizações para deixar o FF mais fluido e rápido</div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">👆 OTIMIZADOR DE TOQUE</div>
+        <div style="font-size:10px;color:var(--dim);margin-bottom:10px">Deixa a tela mais responsiva — capa sobe mais rápido</div>
+        <div class="tog-row"><div><div class="tog-lbl">Turbo Touch</div><div class="tog-desc">Toque ultra-responsivo</div></div><div class="sw" id="sw-tt" onclick="togPerf('tt',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Fast Swipe</div><div class="tog-desc">Deslize de capa instantâneo</div></div><div class="sw" id="sw-fs" onclick="togPerf('fs',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Delay Toque</div><div class="tog-desc">Remove delay do toque</div></div><div class="sw" id="sw-adt" onclick="togPerf('adt',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">📱 FLUIDEZ DE TELA</div>
+        <div class="tog-row"><div><div class="tog-lbl">Smooth Screen</div><div class="tog-desc">Animações mais suaves</div></div><div class="sw" id="sw-ss" onclick="togPerf('ss',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Modo 90FPS</div><div class="tog-desc">Força 90 quadros por segundo</div></div><div class="sw" id="sw-90fps" onclick="togPerf('90fps',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Reduzir Lag</div><div class="tog-desc">Otimiza uso de memória</div></div><div class="sw on" id="sw-nolag" onclick="togPerf('nolag',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">GPU Boost</div><div class="tog-desc">Maximiza gráfico do jogo</div></div><div class="sw" id="sw-gpu2" onclick="togPerf('gpu2',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Zero Drop Frame</div><div class="tog-desc">Elimina queda de FPS</div></div><div class="sw" id="sw-zdf" onclick="togPerf('zdf',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">🎮 CONTROLE DE PARTIDA</div>
+        <div class="tog-row"><div><div class="tog-lbl">Auto-Agachar</div><div class="tog-desc">Agacha ao atirar automaticamente</div></div><div class="sw" id="sw-squat" onclick="togPerf('squat',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Jump Shot</div><div class="tog-desc">Pula ao atirar para desviar</div></div><div class="sw" id="sw-jshot" onclick="togPerf('jshot',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Peek Rápido</div><div class="tog-desc">Espia mais rápido atrás da parede</div></div><div class="sw" id="sw-peek" onclick="togPerf('peek',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Reload Veloz</div><div class="tog-desc">Recarregamento mais rápido</div></div><div class="sw" id="sw-reload" onclick="togPerf('reload',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section">
+        <div class="sensi-section-title">⚡ VELOCIDADE DE MIRA</div>
+        <div class="sensi-row">
+          <span class="sensi-label">Velocidade</span>
+          <input class="sensi-slider" type="range" min="1" max="10" value="5" id="perf-speed" oninput="updatePerfVal('perf-speed',this.value)">
+          <span class="sensi-val" id="perf-speed-v">5</span>
+        </div>
+        <div class="sensi-row">
+          <span class="sensi-label">Fluidez</span>
+          <input class="sensi-slider" type="range" min="1" max="10" value="7" id="perf-fluid" oninput="updatePerfVal('perf-fluid',this.value)">
+          <span class="sensi-val" id="perf-fluid-v">7</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="page-protools">
+      <!-- PRO TOOLS — key 30 dias -->
+      <div class="profile-card" style="background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,107,0,.05));border-color:rgba(255,215,0,.4)">
+        <div style="font-family:Orbitron,sans-serif;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">👑 PRO TOOLS — EXCLUSIVO 30 DIAS</div>
+        <div style="font-size:10px;color:var(--dim)">Ferramentas avançadas para jogadores pro</div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(255,215,0,.3)">
+        <div class="sensi-section-title" style="color:var(--gold)">🎯 PRECISÃO AVANÇADA</div>
+        <div class="tog-row"><div><div class="tog-lbl">Micro-Adjust</div><div class="tog-desc">Ajuste fino de mira automático</div></div><div class="sw" id="sw-ma" onclick="togPro('ma',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Aim Stabilizer</div><div class="tog-desc">Estabiliza mira ao atirar</div></div><div class="sw" id="sw-as" onclick="togPro('as',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Recoil Master</div><div class="tog-desc">Controle total do recuo</div></div><div class="sw" id="sw-rm" onclick="togPro('rm',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(255,215,0,.3)">
+        <div class="sensi-section-title" style="color:var(--gold)">⚡ MODO COMPETITIVO</div>
+        <div class="tog-row"><div><div class="tog-lbl">Pro Response</div><div class="tog-desc">Resposta de toque 0.1ms</div></div><div class="sw" id="sw-pr" onclick="togPro('pr',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Network Boost</div><div class="tog-desc">Reduz ping no FF</div></div><div class="sw" id="sw-nb" onclick="togPro('nb',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Lag Pro</div><div class="tog-desc">Elimina lag de servidor</div></div><div class="sw on" id="sw-alp" onclick="togPro('alp',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(255,215,0,.3)">
+        <div class="sensi-section-title" style="color:var(--gold)">📊 PERFIS PRO</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <button class="sensi-preset-btn" onclick="loadProProfile('rush')" style="border-color:rgba(255,45,45,.5);color:#FF6B6B">🔥 RUSH PRO</button>
+          <button class="sensi-preset-btn" onclick="loadProProfile('sniper')" style="border-color:rgba(0,255,209,.4);color:var(--cyan)">🎯 SNIPER PRO</button>
+          <button class="sensi-preset-btn" onclick="loadProProfile('ranked')" style="border-color:rgba(255,215,0,.5);color:var(--gold)">👑 RANKED</button>
+          <button class="sensi-preset-btn" onclick="loadProProfile('mobile')" style="border-color:rgba(155,48,255,.5);color:var(--nexus-purple2)">📱 MOBILE PRO</button>
+        </div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(255,215,0,.3)">
+        <div class="sensi-section-title" style="color:var(--gold)">🔫 ARMAS ESPECIAIS</div>
+        <div class="tog-row"><div><div class="tog-lbl">AK Sem Recuo</div><div class="tog-desc">Elimina recuo da AK</div></div><div class="sw" id="sw-ak" onclick="togPro('ak',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">M1014 Spray</div><div class="tog-desc">Spray automático da shotgun</div></div><div class="sw" id="sw-m1014" onclick="togPro('m1014',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">AWM Estabilizado</div><div class="tog-desc">Mira perfeita na AWM</div></div><div class="sw" id="sw-awm" onclick="togPro('awm',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">FAMAS Burst</div><div class="tog-desc">Burst mais rápido e preciso</div></div><div class="sw" id="sw-famas" onclick="togPro('famas',this)"><div class="sw-k"></div></div></div>
+      </div>
+
+      <div class="sensi-section" style="border-color:rgba(255,215,0,.3)">
+        <div class="sensi-section-title" style="color:var(--gold)">🏆 RANKED TOOLS</div>
+        <div class="tog-row"><div><div class="tog-lbl">Anti-Rush</div><div class="tog-desc">Detecta rush e avisa</div></div><div class="sw" id="sw-antirush" onclick="togPro('antirush',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Safe Zone Tracker</div><div class="tog-desc">Sempre na melhor posição</div></div><div class="sw" id="sw-zone" onclick="togPro('zone',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Kill Streak Boost</div><div class="tog-desc">Aumenta precisão em sequência</div></div><div class="sw" id="sw-ks" onclick="togPro('ks',this)"><div class="sw-k"></div></div></div>
+        <div class="tog-row"><div><div class="tog-lbl">Survivability Pro</div><div class="tog-desc">Maximiza sobrevivência</div></div><div class="sw on" id="sw-surv" onclick="togPro('surv',this)"><div class="sw-k"></div></div></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-tutorial">
+      <div class="card" style="border-color:rgba(0,255,209,.3)">
+        <div class="card-title" style="color:var(--cyan)">📖 COMO USAR</div>
+        <div class="tut-step"><div class="tut-num">1</div><div><div class="tut-ttl">Clique em INJETAR</div><div class="tut-txt">Na aba <b>HOME</b>, pressione <b>INJETAR</b>. Tudo é ativado automaticamente.</div></div></div>
+        <div class="tut-step"><div class="tut-num">2</div><div><div class="tut-ttl">Abra o Free Fire</div><div class="tut-txt">Após a injeção, abra o Free Fire. Os módulos já estarão ativos automaticamente.</div></div></div>
+        <div class="tut-step"><div class="tut-num">3</div><div><div class="tut-ttl">HeadTracker</div><div class="tut-txt">Mira trava na cabeça automaticamente. Configure sensibilidade na aba <b>SENSI</b>.</div></div></div>
+        <div class="tut-step"><div class="tut-num">4</div><div><div class="tut-ttl">Anti-Ban Shield</div><div class="tut-txt">Ativo automaticamente ao injetar. Randomiza padrões para evitar detecção.</div></div></div>
+        <div class="tut-step"><div class="tut-num">5</div><div><div class="tut-ttl">Abas por tipo de key</div><div class="tut-txt"><b>1 dia:</b> HOME · HEADTRACK · FPS · SENSI<br><b>7 dias:</b> + PERFORMANCE 🚀<br><b>30 dias:</b> + PRO TOOLS 👑</div></div></div>
+      </div>
+
+      <!-- SAIR DA KEY -->
+      <div class="card" style="border-color:rgba(255,45,45,.3);background:linear-gradient(135deg,rgba(35,5,5,.6),rgba(8,17,26,.9))">
+        <div class="card-title" style="color:var(--r)">⚠️ SAIR DA KEY</div>
+        <div style="font-size:11px;color:var(--dim);margin-bottom:12px;line-height:1.6">
+          Ao sair da key, ela será <b style="color:var(--r)">excluída permanentemente</b>. Você precisará comprar uma nova key no nosso Discord para continuar usando.
+        </div>
+        <div style="font-size:10px;color:var(--gold);margin-bottom:12px;padding:8px;background:rgba(255,215,0,.08);border-radius:8px;border:1px solid rgba(255,215,0,.2)">
+          💡 Só faça isso se quiser desativar sua key. Essa ação não pode ser desfeita!
+        </div>
+        <button onclick="confirmExitKey()" style="width:100%;padding:12px;background:rgba(255,45,45,.15);border:1px solid rgba(255,45,45,.5);border-radius:10px;color:var(--r);font-family:Orbitron,sans-serif;font-size:11px;cursor:pointer;letter-spacing:2px;font-weight:700">🗑 SAIR E EXCLUIR MINHA KEY</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// NEXUS CHEATS v5.0 — ENGINE COMPLETA
+// Firebase Realtime Database — persistência real, sem CORS
+// ═══════════════════════════════════════════════════════════════
+
+const ADMIN_KEY = 'NEXUS-ADMIN-2024';
+const FB_URL    = 'https://nexus-cheats-default-rtdb.firebaseio.com';
+const SHOP_URL  = 'https://discord.gg/HNbQ6YbFVw';
+const KEY_TYPES = {
+  min:  { label:'1 MIN',   ms: 60*1000,              tabs:['home','headtrack','fps','sensi','tutorial'] },
+  day:  { label:'1 DIA',   ms: 24*60*60*1000,        tabs:['home','headtrack','fps','sensi','tutorial'] },
+  '7d': { label:'7 DIAS',  ms: 7*24*60*60*1000,      tabs:['home','headtrack','fps','sensi','performance','tutorial'] },
+  '30d':{ label:'30 DIAS', ms: 30*24*60*60*1000,     tabs:['home','headtrack','fps','sensi','performance','protools','tutorial'] },
+};
+
+// ─── ESTADO GLOBAL ────────────────────────────────────────────
+let DB = { keys:{}, logs:[], events:[] };
+let dbReady = false;
+let currentSession = null;
+let keyBarTimer = null, watchdogTimer = null;
+let srvStart = Date.now(), srvReqs = 0;
+let _selType = 'day';
+let _logFilter = 'all';
+let _showingEvents = false;
+
+// ═══════════════════════════════════════════════════════════════
+// FIREBASE REST API
+// ═══════════════════════════════════════════════════════════════
+async function fbGet(path) {
+  const r = await fetch(FB_URL + '/' + path + '.json', { cache:'no-store' });
+  if (!r.ok) throw new Error('GET ' + r.status);
+  const txt = await r.text();
+  if (txt === 'null' || txt === '' || txt === 'undefined') return null;
+  return JSON.parse(txt);
+}
+async function fbSet(path, val) {
+  const r = await fetch(FB_URL + '/' + path + '.json', {
+    method: 'PUT',
+    headers: { 'Content-Type':'application/json' },
+    body: JSON.stringify(val)
+  });
+  if (!r.ok) throw new Error('SET ' + r.status);
+  return true;
+}
+async function fbDelete(path) {
+  const r = await fetch(FB_URL + '/' + path + '.json', { method:'DELETE' });
+  if (!r.ok) throw new Error('DEL ' + r.status);
+  return true;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// BANCO DE DADOS — INIT / SAVE / SYNC
+// ═══════════════════════════════════════════════════════════════
+async function initDB() {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const data = await fbGet('db');
+      if (data) {
+        const rawKeys = data.keys;
+        if (rawKeys && typeof rawKeys === 'object' && !Array.isArray(rawKeys)) {
+          DB.keys = rawKeys;
+        } else if (Array.isArray(rawKeys)) {
+          DB.keys = {};
+          rawKeys.forEach(k => { if(k && k.code) DB.keys[k.code] = k; });
+        } else {
+          DB.keys = {};
+        }
+        DB.logs   = Array.isArray(data.logs)   ? data.logs   : [];
+        DB.events = Array.isArray(data.events) ? data.events : [];
+      } else {
+        DB = { keys:{}, logs:[], events:[] };
+        await fbSet('db', DB);
+      }
+      saveLocal(); // cacheia localmente para fallback
+      console.log('[NEXUS] Firebase OK (tentativa '+attempt+') — Keys:', Object.keys(DB.keys).length);
+      dbReady = true;
+      return;
+    } catch(e) {
+      console.warn('[NEXUS] initDB tentativa '+attempt+' falhou:', e.message);
+      if (attempt < 3) await new Promise(r => setTimeout(r, 800 * attempt));
+    }
+  }
+  // Todas tentativas falharam — usa cache local
+  console.warn('[NEXUS] Firebase indisponivel — usando cache local');
+  loadLocal();
+  dbReady = true;
+}
+
+function loadLocal() {
+  try { const k = localStorage.getItem('nx_keys');   DB.keys   = k ? JSON.parse(k) : {}; } catch(e){ DB.keys={}; }
+  try { const l = localStorage.getItem('nx_logs');   DB.logs   = l ? JSON.parse(l) : []; } catch(e){ DB.logs=[]; }
+  try { const v = localStorage.getItem('nx_events'); DB.events = v ? JSON.parse(v) : []; } catch(e){ DB.events=[]; }
+  // Garante que keys é objeto, não array
+  if (Array.isArray(DB.keys)) {
+    const obj = {};
+    DB.keys.forEach(k => { if(k && k.code) obj[k.code] = k; });
+    DB.keys = obj;
+  }
+}
+
+function saveLocal() {
+  try { localStorage.setItem('nx_keys',   JSON.stringify(DB.keys)); }           catch(e){}
+  try { localStorage.setItem('nx_logs',   JSON.stringify(DB.logs.slice(-300))); }  catch(e){}
+  try { localStorage.setItem('nx_events', JSON.stringify(DB.events.slice(-500))); } catch(e){}
+}
+
+// ─── ÚNICO SAVE — tudo usa este ─────────────────────────────
+let _saving = false, _pendingSave = false;
+
+async function _doSave() {
+  const payload = {
+    keys:   DB.keys,
+    logs:   DB.logs.slice(-300),
+    events: DB.events.slice(-500)
+  };
+  saveLocal();
+  for (let i = 1; i <= 4; i++) {
+    try {
+      await fbSet('db', payload);
+      console.log('[NEXUS] Firebase salvo — keys:', Object.keys(DB.keys).length);
+      return; // sucesso
+    } catch(e) {
+      console.warn('[NEXUS] save tentativa ' + i + ' falhou:', e.message);
+      if (i < 4) await new Promise(r => setTimeout(r, 1000 * i));
+    }
+  }
+  console.error('[NEXUS] save FALHOU após 4 tentativas — dados no localStorage');
+}
+
+// saveDB e saveKeys são aliases do mesmo save com debounce
+async function saveDB() {
+  saveLocal();
+  if (_saving) { _pendingSave = true; return; }
+  _saving = true;
+  await _doSave();
+  _saving = false;
+  if (_pendingSave) { _pendingSave = false; saveDB(); }
+}
+
+// saveKeys: salva imediatamente sem esperar debounce (crítico para keys)
+async function saveKeys() {
+  saveLocal();
+  // Cancela qualquer save pendente e faz agora
+  _pendingSave = false;
+  await _doSave();
+}
+
+async function syncDB() {
+  for (let i = 1; i <= 3; i++) {
+    try {
+      const data = await fbGet('db');
+      if (data) {
+        if (data.keys && typeof data.keys === 'object' && !Array.isArray(data.keys)) {
+          DB.keys = data.keys;
+        }
+        if (Array.isArray(data.logs))   DB.logs   = data.logs;
+        if (Array.isArray(data.events)) DB.events = data.events;
+        saveLocal();
+        console.log('[NEXUS] Sync OK — keys:', Object.keys(DB.keys).length);
+      }
+      return { ok:true };
+    } catch(e) {
+      console.warn('[NEXUS] sync tentativa ' + i + ':', e.message);
+      if (i < 3) await new Promise(r => setTimeout(r, 500 * i));
+    }
+  }
+  loadLocal();
+  return { ok:false, error:'Firebase indisponivel' };
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SESSÃO / DEVICE ID
+// ═══════════════════════════════════════════════════════════════
+function getSession() {
+  // Tenta localStorage primeiro, depois sessionStorage como fallback
+  try {
+    const ls = localStorage.getItem('nx_sess');
+    if (ls && ls !== 'null') return JSON.parse(ls);
+  } catch(e){}
+  try {
+    const ss = sessionStorage.getItem('nx_sess');
+    if (ss && ss !== 'null') return JSON.parse(ss);
+  } catch(e){}
+  return null;
+}
+function saveSession(s) {
+  // Salva em ambos para máxima persistência
+  try {
+    if (s) {
+      localStorage.setItem('nx_sess', JSON.stringify(s));
+      sessionStorage.setItem('nx_sess', JSON.stringify(s));
+    } else {
+      localStorage.removeItem('nx_sess');
+      sessionStorage.removeItem('nx_sess');
+    }
+  } catch(e){}
+}
+function getDeviceID() {
+  let id; try { id = localStorage.getItem('nx_dev'); } catch(e){}
+  if (!id) {
+    id = 'D' + Math.random().toString(36).substring(2,10).toUpperCase() + Date.now().toString(36).toUpperCase().slice(-4);
+    try { localStorage.setItem('nx_dev', id); } catch(e){}
+  }
+  return id;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOGGING
+// ═══════════════════════════════════════════════════════════════
+function addLog(type, msg) {
+  const t = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  DB.logs.push({ time:t, type, msg, ts:Date.now() });
+  if (DB.logs.length > 300) DB.logs = DB.logs.slice(-300);
+  // NÃO chama saveDB aqui — evita sobrescrever keys durante race condition
+  // Logs são salvos junto com as keys no próximo saveKeys()
+  renderLogs(); renderDashLogs();
+}
+
+function addEvent(action, keyCode, keyType, userName) {
+  const now  = new Date();
+  const time = now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const date = now.toLocaleDateString('pt-BR');
+  DB.events.push({ time, date, action, code:keyCode, keyType:keyType||'', userName:userName||'', ts:Date.now() });
+  if (DB.events.length > 500) DB.events = DB.events.slice(-500);
+  // NÃO chama saveDB aqui — logs salvos junto com keys
+  renderEventsArea(); renderMovimentacao();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SISTEMA DE KEYS
+// ═══════════════════════════════════════════════════════════════
+function genCode() {
+  const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const s = () => Array.from({length:5}, () => c[Math.floor(Math.random()*c.length)]).join('');
+  return 'NXS-' + s() + '-' + s() + '-' + s();
+}
+
+async function createKey(type, userName, note) {
+  const code    = genCode();
+  const now     = Date.now();
+  const expires = now + KEY_TYPES[type].ms;
+  const key = {
+    code,
+    type,
+    userName: (userName||'').trim(),
+    note:     (note||'').trim(),
+    created:  now,
+    expires,
+    used:         false,
+    activeSession: null,
+    lastLogin:     null,
+    loginCount:    0,
+  };
+
+  // Adiciona key + log + evento em memória
+  DB.keys[code] = key;
+  const t  = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const dt = new Date().toLocaleDateString('pt-BR');
+  DB.logs.push({ time:t, type:'ok', msg:'Key gerada: '+code+' ['+KEY_TYPES[type].label+']'+(key.userName?' · '+key.userName:''), ts:now });
+  if (DB.logs.length > 300) DB.logs = DB.logs.slice(-300);
+  DB.events.push({ time:t, date:dt, action:'CRIADA', code, keyType:KEY_TYPES[type].label, userName:key.userName, ts:now });
+  if (DB.events.length > 500) DB.events = DB.events.slice(-500);
+
+  // UMA única operação de save com tudo junto
+  await saveKeys();
+
+  updateAdminStats(); renderKeyList(); renderLogs(); renderDashLogs(); renderEventsArea();
+  return key;
+}
+
+function scheduleAutoDelete(code, ms) {
+  // ZERO timers — keys nunca são deletadas por timer.
+  // São removidas APENAS em 3 momentos:
+  //   1. Quando alguém tenta fazer login com ela (validateKey)
+  //   2. Quando o watchdog detecta expiração (usuário logado)
+  //   3. Quando o admin clica em "Limpar Expiradas"
+  // Isso garante que fechar/reabrir o site nunca apaga keys.
+  if (ms <= 0) deleteExpiredKey(code);
+}
+
+async function deleteExpiredKey(code) {
+  const k = DB.keys[code];
+  if (!k) return;
+  delete DB.keys[code];
+  await saveKeys();
+  addLog('warn', 'Key expirada auto-deletada: ' + code + (k.userName ? ' (' + k.userName + ')' : ''));
+  addEvent('EXPIRADA', code, KEY_TYPES[k.type]?.label||k.type, k.userName);
+  updateAdminStats(); renderKeyList();
+}
+
+function validateKey(input) {
+  if (input === ADMIN_KEY) return { valid:true, isAdmin:true };
+  const code = input.trim().toUpperCase();
+  const k    = DB.keys[code];
+  const now  = Date.now();
+
+  if (!k) {
+    addLog('warn', 'Key invalida: ' + code.substring(0,14) + '...');
+    return { valid:false, reason:'Key inválida ou não existe.' };
+  }
+  if (now > k.expires) {
+    deleteExpiredKey(code);
+    return { valid:false, reason:'Key expirada. Adquira uma nova key.' };
+  }
+  if (k.activeSession && k.activeSession !== getDeviceID()) {
+    addLog('warn', 'Key em uso em outro dispositivo: ' + code);
+    return { valid:false, reason:'❌ Essa key já está em uso em outro dispositivo.' };
+  }
+
+  k.used          = true;
+  k.activeSession = getDeviceID();
+  k.lastLogin     = now;
+  k.loginCount    = (k.loginCount||0) + 1;
+  DB.keys[code]   = k;
+
+  // Adiciona log em memória ANTES de salvar
+  const _t  = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const _dt = new Date().toLocaleDateString('pt-BR');
+  DB.logs.push({ time:_t, type:'ok', msg:'Login: '+code+(k.userName?' · '+k.userName:'')+' ['+(KEY_TYPES[k.type]?.label||k.type)+']', ts:now });
+  if (DB.logs.length > 300) DB.logs = DB.logs.slice(-300);
+  DB.events.push({ time:_t, date:_dt, action:'LOGIN', code, keyType:KEY_TYPES[k.type]?.label||k.type, userName:k.userName||'', ts:now });
+  if (DB.events.length > 500) DB.events = DB.events.slice(-500);
+
+  // Save único com key+log+evento
+  saveKeys(); // não await — não bloqueia o login
+  srvReqs++;
+  return { valid:true, key:k };
+}
+
+function revokeKey(code) {
+  const k = DB.keys[code];
+  if (!k) return;
+  delete DB.keys[code];
+  saveKeys();
+  addLog('warn', 'Key revogada pelo admin: ' + code + (k.userName ? ' (' + k.userName + ')' : ''));
+  addEvent('REVOGADA', code, KEY_TYPES[k.type]?.label||k.type, k.userName);
+  updateAdminStats(); renderKeyList();
+  toast('🗑 Key revogada!');
+}
+
+function forceLogout(code) {
+  const k = DB.keys[code];
+  if (!k) return;
+  k.activeSession = null;
+  DB.keys[code] = k;
+  saveKeys();
+  addLog('warn', 'Logout forcado: ' + code + (k.userName ? ' (' + k.userName + ')' : ''));
+  renderKeyList();
+  toast('⏏ Sessão encerrada!');
+}
+
+function purgeExpired() {
+  const now = Date.now(); let count = 0;
+  Object.keys(DB.keys).forEach(code => {
+    const k = DB.keys[code];
+    if (k.expires < now) {
+      addEvent('EXPIRADA', code, KEY_TYPES[k.type]?.label||k.type, k.userName);
+      delete DB.keys[code]; count++;
+    }
+  });
+  if (count) saveKeys();
+  addLog('info', 'Purge: ' + count + ' keys expiradas removidas');
+  updateAdminStats(); renderKeyList();
+  toast('🗑 ' + count + ' key(s) removida(s)!');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SESSÃO DO USUÁRIO
+// ═══════════════════════════════════════════════════════════════
+function startSession(keyObj) {
+  currentSession = { code:keyObj.code, type:keyObj.type, expires:keyObj.expires, flags:keyObj.flags||{}, userName:keyObj.userName||'' };
+  saveSession(currentSession);
+  startKeyBar();
+  startWatchdog();
+}
+
+function startKeyBar() {
+  if (keyBarTimer) clearInterval(keyBarTimer);
+  keyBarTimer = setInterval(() => {
+    if (!currentSession) return;
+    const rem   = currentSession.expires - Date.now();
+    if (rem <= 0) { expireSession(); return; }
+    const total = KEY_TYPES[currentSession.type].ms;
+    const pct   = Math.max(0, (rem/total)*100);
+    const el = (id) => document.getElementById(id);
+    if (el('keyBarFill'))  el('keyBarFill').style.width = pct + '%';
+    if (el('keyBarLabel')) el('keyBarLabel').textContent = '⏱ ' + (KEY_TYPES[currentSession.type]?.label||'');
+    if (el('keyBarTime'))  el('keyBarTime').textContent  = formatTime(rem);
+    if (el('hKeyInfo'))    el('hKeyInfo').textContent    = (KEY_TYPES[currentSession.type]?.label||'') + ' · ' + formatTime(rem);
+  }, 500);
+}
+
+let _wTick = 0;
+function startWatchdog() {
+  if (watchdogTimer) clearInterval(watchdogTimer);
+  _wTick = 0;
+  watchdogTimer = setInterval(async () => {
+    if (!currentSession) return;
+    _wTick++;
+    // Sync Firebase a cada 9s (3 ticks)
+    if (_wTick % 3 === 0) {
+      await syncDB();
+      const k = DB.keys[currentSession.code];
+      if (!k || Date.now() > k.expires) { clearInterval(watchdogTimer); expireSession(); return; }
+      // Atualiza lastSeen no Firebase para o admin ver ONLINE
+      k.lastSeen     = Date.now();
+      k.activeSession= getDeviceID();
+      DB.keys[currentSession.code] = k;
+      saveKeys();
+    } else {
+      // Verificação local rápida
+      const k = DB.keys[currentSession.code];
+      if (!k || Date.now() > k.expires) { clearInterval(watchdogTimer); expireSession(); return; }
+    }
+  }, 3000);
+}
+function stopWatchdog() { if (watchdogTimer) { clearInterval(watchdogTimer); watchdogTimer = null; } }
+
+function expireSession() {
+  clearInterval(keyBarTimer); stopWatchdog();
+  if (currentSession?.code) {
+    // Limpa a sessão ativa da key no Firebase (libera o dispositivo)
+    // mas NÃO deleta a key — ela some naturalmente quando alguém tenta usar
+    const k = DB.keys[currentSession.code];
+    if (k) {
+      k.activeSession = null;
+      saveKeys();
+    }
+    addLog('warn', 'Sessao expirada: ' + currentSession.code);
+  }
+  currentSession = null; saveSession(null);
+  ejectSilent();
+  const exp = document.getElementById('expiredScreen');
+  if (exp) {
+    exp.querySelector('.exp-icon').textContent  = '⏰';
+    exp.querySelector('.exp-title').textContent = 'KEY EXPIRADA';
+    exp.querySelector('.exp-msg').textContent   = 'Sua key expirou. Adquira uma nova no nosso Discord.';
+    exp.classList.add('show');
+  }
+  const app = document.getElementById('mainApp');
+  if (app) app.style.display = 'none';
+}
+
+function resumeSession() {
+  const sess = getSession();
+  if (!sess || !sess.code) { saveSession(null); return false; }
+  // O Firebase já foi carregado no initDB — DB.keys tem os dados frescos
+  const k = DB.keys[sess.code];
+  if (!k) {
+    // Key não existe no Firebase — inválida
+    saveSession(null); return false;
+  }
+  if (Date.now() > k.expires) {
+    saveSession(null); return false;
+  }
+  // Key válida — restaura sessão completa
+  currentSession = {
+    code:     k.code,
+    type:     k.type,
+    expires:  k.expires,
+    flags:    k.flags||{},
+    userName: k.userName||''
+  };
+  saveSession(currentSession);
+  k.activeSession = getDeviceID();
+  k.lastSeen = Date.now();
+  DB.keys[k.code] = k;
+  saveKeys();
+  setTimeout(() => applyKeyTabs(k.type || '30d'), 100);
+  startWatchdog();
+  return true;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════════════════
+function showLogin() {
+  document.getElementById('expiredScreen').classList.remove('show');
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('mainApp').style.display = 'none';
+  document.getElementById('adminScreen').classList.remove('show');
+  const el = (id) => document.getElementById(id);
+  if (el('loginErr'))     el('loginErr').textContent     = '';
+  if (el('keyInput'))     el('keyInput').value           = '';
+  if (el('loginCloudInfo')) el('loginCloudInfo').textContent = '🔥 Firebase · ' + Object.keys(DB.keys||{}).length + ' key(s)';
+}
+
+async function tryLogin() {
+  const input = (document.getElementById('keyInput').value||'').trim().toUpperCase();
+  const errEl = document.getElementById('loginErr');
+  const btn   = document.querySelector('.login-btn');
+  const inf   = document.getElementById('loginCloudInfo');
+  if (!input) { errEl.textContent = 'Digite sua key!'; return; }
+  if (input === ADMIN_KEY) {
+    addLog('admin', 'Acesso admin');
+    document.getElementById('loginScreen').classList.add('hidden');
+    openAdmin(); return;
+  }
+  btn.textContent = '⏳ VERIFICANDO...'; btn.disabled = true; errEl.textContent = '';
+  if (inf) inf.textContent = '🔥 Sincronizando com Firebase...';
+  await syncDB();
+  const total = Object.keys(DB.keys||{}).length;
+  if (inf) inf.textContent = '🔥 Firebase · ' + total + ' key(s) no banco';
+  btn.textContent = '⚡ ENTRAR'; btn.disabled = false;
+  const res = validateKey(input);
+  if (!res.valid) { errEl.textContent = res.reason; shakeInput(); return; }
+  document.getElementById('loginScreen').classList.add('hidden');
+  showMainApp(res.key);
+}
+
+function shakeInput() {
+  const inp = document.getElementById('keyInput'); let i = 0;
+  const iv = setInterval(() => {
+    inp.style.transform = (i%2) ? 'translateX(5px)' : 'translateX(-5px)';
+    if (++i > 5) { clearInterval(iv); inp.style.transform = ''; }
+  }, 70);
+}
+
+function showMainApp(keyObj) {
+  startSession(keyObj);
+  document.getElementById('mainApp').style.display = 'block';
+  // Aplica abas após DOM renderizar
+  setTimeout(() => applyKeyTabs(keyObj.type || '30d'), 150);
+  notif('✅','ACESSO LIBERADO', keyObj.userName ? 'Bem-vindo, ' + keyObj.userName + '!' : 'Key válida! Bem-vindo.', 'green', 4000);
+  // Mostra quais abas foram liberadas
+  const kt = KEY_TYPES[keyObj.type];
+  if (keyObj.type === '7d') setTimeout(()=>notif('🚀','PERFORMANCE','Aba Performance desbloqueada!','green',3500),1200);
+  if (keyObj.type === '30d') {
+    setTimeout(()=>notif('🚀','PERFORMANCE','Aba Performance desbloqueada!','green',3500),1200);
+    setTimeout(()=>notif('👑','PRO TOOLS','Aba Pro Tools desbloqueada!','gold',3500),2400);
+  }
+  setTimeout(() => notif('⚡','FREE FIRE','Pronto para injetar','gold',3000), 3500);
+  setTimeout(initSensiSliders, 400);
+  setTimeout(checkTabsScroll, 500);
+}
+
+document.addEventListener('keydown', e => { if (e.key==='Enter') tryLogin(); });
+
+// ── VISIBILITY CHANGE — reconecta quando volta do segundo plano ──
+document.addEventListener('visibilitychange', async function() {
+  if (document.visibilityState !== 'visible') return;
+  console.log('[NEXUS] Voltou do segundo plano — re-sincronizando...');
+
+  // Re-sincroniza Firebase
+  await syncDB();
+
+  // Se tem sessão ativa, verifica se ainda é válida
+  if (currentSession) {
+    const k = DB.keys[currentSession.code];
+    if (!k || Date.now() > k.expires) {
+      console.log('[NEXUS] Sessão expirou no segundo plano');
+      expireSession();
+      return;
+    }
+    // Atualiza expires com dado fresco do Firebase
+    currentSession.expires = k.expires;
+    saveSession(currentSession);
+    // Reinicia watchdog e keybar (podem ter parado)
+    startWatchdog();
+    startKeyBar();
+    console.log('[NEXUS] Sessão restaurada. Expira em:', formatTime(k.expires - Date.now()));
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// ADMIN PANEL
+// ═══════════════════════════════════════════════════════════════
+let _adminRefreshTimer = null;
+
+function openAdmin() {
+  document.getElementById('adminScreen').classList.add('show');
+  updateAdminStats(); renderKeyList(); renderLogs(); renderDashLogs(); renderEventsArea(); renderMovimentacao();
+  startServerStats(); updateCloudStatus();
+
+  // Auto-refresh: sincroniza Firebase e atualiza painel a cada 5s
+  if (_adminRefreshTimer) clearInterval(_adminRefreshTimer);
+  _adminRefreshTimer = setInterval(async () => {
+    if (!document.getElementById('adminScreen').classList.contains('show')) {
+      clearInterval(_adminRefreshTimer); _adminRefreshTimer = null; return;
+    }
+    await syncDB();
+    updateAdminStats(); renderKeyList(); renderEventsArea(); renderMovimentacao();
+    // Atualiza badge de online no botão
+    const onlineCount = Object.values(DB.keys||{}).filter(k => k.activeSession && Date.now() < k.expires).length;
+    const badge = document.getElementById('onlineBadge');
+    if (badge) badge.textContent = onlineCount > 0 ? ' 🟢'+onlineCount : '';
+  }, 5000);
+}
+
+function closeAdmin() {
+  if (_adminRefreshTimer) { clearInterval(_adminRefreshTimer); _adminRefreshTimer = null; }
+  document.getElementById('adminScreen').classList.remove('show');
+  showLogin();
+}
+
+function showATab(id, el) {
+  document.querySelectorAll('.apage').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+  const page = document.getElementById('apage-' + id);
+  if (page) page.classList.add('active');
+  if (el)   el.classList.add('active');
+  if (id === 'logs')      { renderLogs(); renderEventsArea(); }
+  if (id === 'dashboard') { renderDashLogs(); updateAdminStats(); renderMovimentacao(); renderEventsArea(); }
+  if (id === 'keys')      { renderKeyList(); }
+  if (id === 'servidor')  { startServerStats(); }
+}
+
+function updateAdminStats() {
+  const keys   = Object.values(DB.keys||{});
+  const now    = Date.now();
+  const active  = keys.filter(k => now < k.expires).length;
+  const expired = keys.filter(k => now >= k.expires).length;
+  const inUse   = keys.filter(k => k.activeSession).length;
+  const notUsed = keys.filter(k => !k.used && now < k.expires).length;
+  const used    = keys.filter(k => k.used).length;
+  const sv = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+  sv('adTotal',    keys.length);
+  sv('adActive',   active);
+  sv('adExpired',  expired);
+  sv('adPending',  inUse);
+  sv('adSensiKeys',notUsed);
+  sv('adUsed',     used);
+}
+
+function renderKeyList() {
+  const list = document.getElementById('keyList'); if (!list) return;
+  const keys = Object.values(DB.keys||{});
+  const now  = Date.now();
+  if (!keys.length) {
+    list.innerHTML = '<div style="font-size:11px;color:var(--dim);text-align:center;padding:20px">Nenhuma key gerada ainda.</div>';
+    return;
+  }
+  keys.sort((a,b) => b.expires - a.expires);
+  list.innerHTML = keys.map(k => {
+    const isActive = now < k.expires;
+    const rem      = k.expires - now;
+    const tc       = {min:'min',day:'day','7d':'w7','30d':'m30'}[k.type]||'';
+    const tl       = KEY_TYPES[k.type]?.label||k.type;
+    const timeStr  = isActive ? formatTime(rem) : 'EXPIRADA';
+    const uName    = k.userName ? `<span style="color:var(--cyan);font-size:8px">👤${k.userName}</span>` : '';
+    const note     = k.note    ? `<span style="color:var(--dim);font-size:8px">📝${k.note}</span>` : '';
+    let st, stC;
+    if (!isActive)          { st='EXPIRADA';    stC='var(--dim)'; }
+    else if(k.activeSession){ st='🟢 ONLINE';   stC='var(--green)'; }
+    else if(k.used)         { st='👁 JÁ USADA'; stC='var(--gold)'; }
+    else                    { st='⏳ AGUARD.';  stC='var(--cyan)'; }
+    const logoutBtn = k.activeSession
+      ? `<button class="ki-del" style="border-color:var(--gold);color:var(--gold)" onclick="forceLogout('${k.code}')" title="Forçar logout">⏏</button>`
+      : '';
+    return `<div class="ki" style="flex-wrap:wrap;gap:3px;padding:8px">
+      <div style="width:100%;display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+        <div class="ki-code" style="font-size:8px;flex:1" title="${k.code}">${k.code}</div>
+        ${uName}${note}
+      </div>
+      <div style="width:100%;display:flex;align-items:center;gap:5px">
+        <div class="ki-type ${tc}" style="font-size:8px">${tl}</div>
+        <div style="font-size:8px;color:${stC};font-weight:700;flex:1">${st}</div>
+        <div style="font-family:Orbitron,sans-serif;font-size:7px;color:var(--dim)">${timeStr}</div>
+        ${logoutBtn}
+        <button class="ki-del" onclick="revokeKey('${k.code}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selGenTypeFn(t) {
+  _selType = t;
+  ['min','day','7d','30d'].forEach(x => {
+    const e = document.getElementById('gt-'+x);
+    if (e) e.classList.toggle('sel', x===t);
+  });
+}
+
+async function generateKey() {
+  const userName = (document.getElementById('keyUserName')?.value||'').trim();
+  const note     = (document.getElementById('keyNote')?.value    ||'').trim();
+  const btn = document.querySelector('.abtn-gold[onclick*="generateKey"]');
+  if (btn) { btn.textContent = '⏳ GERANDO...'; btn.disabled = true; }
+  const k = await createKey(_selType, userName, note);
+  if (btn) { btn.textContent = '🔑 GERAR KEY'; btn.disabled = false; }
+  document.getElementById('genKeyText').textContent = k.code;
+  document.getElementById('genKeyInfo').textContent = KEY_TYPES[_selType].label + (userName?' · 👤'+userName:'') + (note?' · '+note:'');
+  document.getElementById('genResult').classList.add('show');
+  // Limpa campos
+  const yn = document.getElementById('keyUserName'); if(yn) yn.value = '';
+  const kn = document.getElementById('keyNote');     if(kn) kn.value = '';
+  toast('✅ Key gerada!' + (userName?' Para: '+userName:''));
+}
+
+function genKeyQuick(type) { _selType = type; generateKey(); } // generateKey é async
+
+function copyGenKey() {
+  const t = document.getElementById('genKeyText').textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(t).catch(() => fallbackCopy(t));
+  else fallbackCopy(t);
+  toast('📋 Copiado!');
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta);
+}
+
+function searchKeyFn() {
+  const input = (document.getElementById('searchKey').value||'').trim().toUpperCase();
+  const el    = document.getElementById('searchResult');
+  if (!input) { el.innerHTML = ''; return; }
+  const k   = DB.keys[input];
+  const now = Date.now();
+  if (!k) { el.innerHTML = '<span style="color:var(--r);font-size:11px">❌ Key não encontrada</span>'; return; }
+  const active   = now < k.expires;
+  const timeLeft = active ? formatTime(k.expires - now) : 'EXPIRADA';
+  const lastLogin= k.lastLogin ? new Date(k.lastLogin).toLocaleString('pt-BR') : '—';
+  el.innerHTML = `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:10px;margin-top:6px">
+    <div style="color:${active?'var(--green)':'var(--r)'};font-weight:700;margin-bottom:6px">● ${active?'ATIVA':'EXPIRADA'}</div>
+    <div style="color:var(--dim)">Usuário: <b style="color:var(--cyan)">${k.userName||'—'}</b></div>
+    <div style="color:var(--dim)">Tipo: <b style="color:var(--text)">${KEY_TYPES[k.type]?.label||k.type}</b></div>
+    <div style="color:var(--dim)">Tempo rest.: <b style="color:var(--gold)">${timeLeft}</b></div>
+    <div style="color:var(--dim)">Logins: <b style="color:var(--text)">${k.loginCount||0}</b></div>
+    <div style="color:var(--dim)">Último login: <b style="color:var(--text)">${lastLogin}</b></div>
+    <div style="color:var(--dim)">Status: <b style="color:var(--text)">${k.activeSession?'🟢 Online agora':k.used?'👁 Já usada':'⏳ Não usada'}</b></div>
+    ${k.note?`<div style="color:var(--dim)">Obs: <b style="color:var(--text)">${k.note}</b></div>`:''}
+  </div>`;
+}
+
+function searchByUserFn() {
+  const input = (document.getElementById('searchUserName').value||'').trim().toLowerCase();
+  const el    = document.getElementById('searchResult');
+  if (!input) { el.innerHTML = ''; return; }
+  const now     = Date.now();
+  const matches = Object.values(DB.keys||{}).filter(k => k.userName && k.userName.toLowerCase().includes(input));
+  if (!matches.length) { el.innerHTML = '<span style="color:var(--r);font-size:11px">❌ Nenhum usuário encontrado: ' + input + '</span>'; return; }
+  el.innerHTML = '<div style="font-size:10px;color:var(--cyan);margin-bottom:4px">'+matches.length+' resultado(s) para "'+input+'":</div>'
+    + matches.map(k => {
+        const active = now < k.expires;
+        return `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px;margin-top:4px;font-size:10px">
+          <div style="color:var(--cyan);font-weight:700">👤 ${k.userName}</div>
+          <div style="color:var(--dim)">Key: <b style="color:var(--text);font-family:Orbitron,sans-serif;font-size:8px">${k.code}</b></div>
+          <div style="color:var(--dim)">Status: <b style="color:${active?'var(--green)':'var(--r)'}">${active?(k.activeSession?'🟢 Online':'⏳ Ativa'):'Expirada'}</b></div>
+          <div style="color:var(--dim)">Tempo: <b style="color:var(--gold)">${active?formatTime(k.expires-now):'EXPIRADA'}</b></div>
+        </div>`;
+      }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOGS E EVENTOS
+// ═══════════════════════════════════════════════════════════════
+function logLine(l) {
+  const colors = { ok:'var(--green)', warn:'var(--gold)', err:'var(--r)', info:'var(--cyan)', admin:'var(--purple)' };
+  return `<div class="log-line"><span class="log-time">${l.time}</span><span class="log-type" style="color:${colors[l.type]||'var(--text)'}">${l.type.toUpperCase()}</span><span class="log-msg">${l.msg}</span></div>`;
+}
+
+function renderLogs() {
+  const el = document.getElementById('logsArea'); if (!el || _showingEvents) return;
+  let logs = DB.logs||[];
+  if (_logFilter !== 'all') logs = logs.filter(l => l.type === _logFilter);
+  el.innerHTML = logs.length
+    ? logs.slice().reverse().map(logLine).join('')
+    : '<div style="color:var(--dim);font-size:10px;text-align:center;padding:16px">Sem logs.</div>';
+}
+
+function renderDashLogs() {
+  const el = document.getElementById('dashLogs'); if (!el) return;
+  const logs = (DB.logs||[]).slice(-8).reverse();
+  el.innerHTML = logs.length
+    ? logs.map(logLine).join('')
+    : '<div style="color:var(--dim);font-size:10px;text-align:center;padding:10px">Sem atividades recentes.</div>';
+}
+
+function filterLogs(f) {
+  _logFilter = f;
+  _showingEvents = false;
+  renderLogs();
+}
+
+function showEventsTab() {
+  _showingEvents = true;
+  const el = document.getElementById('logsArea'); if (!el) return;
+  const ev = (DB.events||[]).slice().reverse();
+  if (!ev.length) { el.innerHTML = '<div style="color:var(--dim);font-size:10px;text-align:center;padding:16px">Sem eventos registrados.</div>'; return; }
+  const colors = { CRIADA:'var(--cyan)', LOGIN:'var(--green)', EXPIRADA:'var(--dim)', REVOGADA:'var(--r)' };
+  el.innerHTML = ev.map(e => {
+    const c = colors[e.action]||'var(--text)';
+    return `<div class="log-line">
+      <span class="log-time">${e.date} ${e.time}</span>
+      <span class="log-type" style="color:${c};min-width:70px">${e.action}</span>
+      <span class="log-msg">${e.userName?'👤'+e.userName+' · ':''}${e.code} [${e.keyType}]</span>
+    </div>`;
+  }).join('');
+}
+
+function renderEventsArea() {
+  const el = document.getElementById('eventsArea'); if (!el) return;
+  const ev = (DB.events||[]).slice(-15).reverse();
+  if (!ev.length) { el.innerHTML = '<div style="color:var(--dim);font-size:10px;text-align:center;padding:10px">Sem eventos ainda.</div>'; return; }
+  const colors = { CRIADA:'var(--cyan)', LOGIN:'var(--green)', EXPIRADA:'var(--dim)', REVOGADA:'var(--r)' };
+  el.innerHTML = ev.map(e => {
+    const c = colors[e.action]||'var(--text)';
+    return `<div class="log-line">
+      <span class="log-time">${e.date} ${e.time}</span>
+      <span class="log-type" style="color:${c};min-width:70px">${e.action}</span>
+      <span class="log-msg">${e.userName?'👤'+e.userName+' · ':''}${e.code.substring(0,16)}...</span>
+    </div>`;
+  }).join('');
+}
+
+function renderMovimentacao() {
+  const el = document.getElementById('movWeek'); if (!el) return;
+  const now  = Date.now();
+  const week = 7*24*60*60*1000;
+  const ev   = (DB.events||[]).filter(e => (now - e.ts) < week);
+  const days = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+  const counts = [0,0,0,0,0,0,0];
+  const logins = [0,0,0,0,0,0,0];
+  ev.forEach(e => {
+    const d = new Date(e.ts).getDay();
+    counts[d]++;
+    if (e.action === 'LOGIN') logins[d]++;
+  });
+  const max = Math.max(...counts) || 1;
+  const today = new Date().getDay();
+  el.innerHTML = `
+    <div style="display:flex;gap:4px;align-items:flex-end;height:70px;margin-bottom:8px;padding:0 4px">
+      ${days.map((d,i) => {
+        const h  = Math.max(4, Math.round((counts[i]/max)*54));
+        const isToday = i === today;
+        const bg = isToday ? 'linear-gradient(180deg,var(--gold),var(--r2))' : 'linear-gradient(180deg,var(--cyan),var(--purple))';
+        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+          <div style="font-family:Orbitron,sans-serif;font-size:7px;color:${isToday?'var(--gold)':'var(--dim)'}">
+            ${counts[i]||''}
+          </div>
+          <div style="width:100%;height:${h}px;background:${bg};border-radius:3px 3px 0 0;opacity:${isToday?1:0.65}"></div>
+          <div style="font-size:8px;color:${isToday?'var(--gold)':'var(--dim)'};font-weight:${isToday?700:400}">${d}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--dim);padding:0 4px">
+      <span>📊 ${ev.length} eventos / 7 dias</span>
+      <span>🔑 ${ev.filter(e=>e.action==='LOGIN').length} logins</span>
+      <span>✨ ${ev.filter(e=>e.action==='CRIADA').length} keys geradas</span>
+    </div>`;
+}
+
+function clearLogs() {
+  if (!confirm('Limpar todos os logs?')) return;
+  DB.logs = []; saveDB(); _showingEvents = false; renderLogs(); toast('🗑 Logs limpos!');
+}
+function refreshLogs() {
+  syncDB().then(() => { renderLogs(); renderEventsArea(); updateAdminStats(); toast('🔄 Atualizado!'); });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SERVIDOR STATS
+// ═══════════════════════════════════════════════════════════════
+let _srvInt = null;
+function startServerStats() {
+  if (_srvInt) clearInterval(_srvInt);
+  updateServerStats();
+  _srvInt = setInterval(updateServerStats, 5000);
+}
+async function updateServerStats() {
+  const t = performance.now();
+  let ping = 999, online = false;
+  try {
+    await fetch('https://www.google.com/favicon.ico?_='+Date.now(), { mode:'no-cors', cache:'no-store' });
+    ping   = Math.round(performance.now() - t);
+    online = true;
+  } catch(e){}
+  const sv = (id,v,cls) => {
+    const e = document.getElementById(id);
+    if (!e) return;
+    e.textContent = v;
+    if (cls) e.className = 'sv-val ' + cls;
+  };
+  const up    = Date.now() - srvStart;
+  const upStr = up > 3600000 ? Math.floor(up/3600000)+'h '+Math.floor((up%3600000)/60000)+'m' : Math.floor(up/60000)+'m';
+  sv('srvStatus',  online?'ONLINE':'OFFLINE', online?'green':'red');
+  sv('srvPing',    ping+'ms');
+  sv('srvUptime',  upStr);
+  sv('srv2-status',online?'ONLINE':'OFFLINE', online?'green':'red');
+  sv('srv2-ping',  ping+'ms');
+  sv('srv2-uptime',upStr);
+  sv('srv2-req',   srvReqs);
+  sv('srv2-users', Object.keys(DB.keys||{}).length);
+  sv('srv2-mem',   Math.floor(28+Math.random()*14)+'MB');
+}
+
+function testServer()       { addLog('info','Teste de conexão realizado'); toast('🔄 Testando...'); updateServerStats(); }
+function restartServer()    { srvStart=Date.now(); addLog('warn','Serviço reiniciado pelo admin'); toast('🔁 Reiniciado!'); }
+function saveServerConfig() { addLog('ok','Configurações do servidor salvas'); toast('💾 Salvo!'); }
+function saveConfig()       { addLog('admin','Configurações salvas'); toast('💾 Salvo!'); }
+
+const admSwS = { maintenance:false, autosync:true, ratelimit:true };
+function admTog(id) {
+  const el = document.getElementById('adm-sw-'+id); if (!el) return;
+  admSwS[id] = !admSwS[id]; el.classList.toggle('on', admSwS[id]);
+  addLog('admin', id + ': ' + (admSwS[id]?'ON':'OFF'));
+  toast(id + ': ' + (admSwS[id]?'ON':'OFF'));
+}
+
+function updateCloudStatus() {
+  const dot = document.getElementById('cloudStatusDot');
+  const txt = document.getElementById('cloudStatusText');
+  if (!dot || !txt) return;
+  dot.textContent = '🟢';
+  txt.textContent = 'FIREBASE ATIVO · nexus-cheats-default-rtdb';
+  txt.style.color = 'var(--green)';
+}
+function checkFirstRun() { updateCloudStatus(); }
+function openAPIModal()  { toast('🔥 Firebase ativo! Sem necessidade de API Key.'); }
+function skipAPISetup()  { const m=document.getElementById('apiModal'); if(m) m.style.display='none'; }
+function saveAPIKey()    { const m=document.getElementById('apiModal'); if(m) m.style.display='none'; }
+
+async function forceSyncNow() {
+  toast('🔄 Sincronizando...');
+  await syncDB();
+  renderKeyList(); renderLogs(); renderEventsArea(); updateAdminStats(); renderMovimentacao(); updateCloudStatus();
+  toast('✅ Sincronizado!');
+}
+
+async function diagCloud() {
+  const infoEl = document.getElementById('loginCloudInfo');
+  const errEl  = document.getElementById('loginErr');
+  if (infoEl) { infoEl.style.color='var(--gold)'; infoEl.textContent='🔍 Testando Firebase...'; }
+  errEl.textContent = '';
+  try {
+    const data = await fbGet('db');
+    const nk   = Object.keys(data?.keys||{}).length;
+    await fbSet('db/heartbeat', Date.now());
+    if (infoEl) { infoEl.style.color='var(--green)'; infoEl.textContent='✅ Firebase OK · '+nk+' key(s)'; }
+    errEl.style.color   = 'var(--green)';
+    errEl.textContent   = '✅ Leitura e escrita OK! ' + nk + ' key(s) no banco.';
+    setTimeout(() => { errEl.style.color=''; errEl.textContent=''; }, 5000);
+  } catch(e) {
+    if (infoEl) { infoEl.style.color='var(--r)'; infoEl.textContent='❌ '+e.message; }
+    errEl.textContent = '❌ Firebase: ' + e.message;
+  }
+}
+
+function resetAllKeys() {
+  if (!confirm('DELETAR TODAS AS KEYS? Esta ação não pode ser desfeita!')) return;
+  DB.keys = {};
+  saveKeys();
+  updateAdminStats(); renderKeyList();
+  addLog('err', 'TODAS AS KEYS DELETADAS PELO ADMIN');
+  toast('🗑 Todas as keys deletadas!');
+}
+
+function factoryReset() {
+  if (!confirm('RESET TOTAL? Apaga TUDO — keys, logs e eventos!')) return;
+  try { localStorage.clear(); } catch(e){}
+  fbSet('db', { keys:{}, logs:[], events:[] }).then(() => location.reload());
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MAIN APP — INJEÇÃO, ABAS, MODS
+// ═══════════════════════════════════════════════════════════════
+function showTab(id, el) {
+  document.querySelectorAll('.page').forEach(p  => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t   => t.classList.remove('active'));
+  const p = document.getElementById('page-'+id); if (p) p.classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+const swS = { ab:true, smo:true, fu:true };
+function tog(id) { const e=document.getElementById('sw-'+id); if(!e) return; swS[id]=!swS[id]; e.classList.toggle('on',swS[id]); }
+
+function selVK(id) {
+  document.querySelectorAll('.vkey-opt').forEach(v => v.classList.remove('sel'));
+  const e = document.getElementById('vk-'+id); if (e) e.classList.add('sel');
+  toast('Botão: ' + id.toUpperCase());
+}
+
+let selFPS = 120;
+function setFPS(fps) {
+  selFPS = fps;
+  [60,90,120].forEach(f => { const e=document.getElementById('fps-'+f); if(e) e.classList.toggle('sel',f===fps); });
+  toast('FPS: ' + fps);
+}
+
+const presets = {
+  rush:  { sg:85, sns:80, srd:75, s2x:68, s4x:55, ssn:40 },
+  sniper:{ sg:50, sns:45, srd:42, s2x:38, s4x:30, ssn:20 },
+  bal:   { sg:72, sns:65, srd:58, s2x:50, s4x:40, ssn:30 },
+  pro:   { sg:78, sns:70, srd:65, s2x:55, s4x:45, ssn:32 },
+};
+function loadPreset(name) {
+  const p = presets[name]; if (!p) return;
+  Object.keys(p).forEach(id => { const e=document.getElementById(id); if(e) e.textContent=p[id]; });
+  toast('Preset ' + name.toUpperCase() + ' carregado!');
+}
+
+// FPS meter
+let _fF=0, _fL=performance.now(), _fR=null;
+function startFPSMeter() {
+  if (_fR) return;
+  const loop = (ts) => {
+    _fF++;
+    const d = ts - _fL;
+    if (d >= 600) {
+      const r = Math.round(_fF / (d/1000)); _fF=0; _fL=ts;
+      if (injected) { const e=document.getElementById('stFPS'); if(e) e.textContent=Math.min(r,selFPS); }
+    }
+    _fR = requestAnimationFrame(loop);
+  };
+  _fR = requestAnimationFrame(loop);
+}
+function stopFPSMeter() { if (_fR) { cancelAnimationFrame(_fR); _fR=null; } }
+
+// Ping
+let _pI = null;
+function startPing() {
+  stopPing();
+  _pI = setInterval(async () => {
+    if (!injected) return;
+    const t = performance.now();
+    try {
+      await fetch('https://www.google.com/favicon.ico?_='+Date.now(), { mode:'no-cors', cache:'no-store' });
+      const e = document.getElementById('stPing'); if(e) e.textContent = Math.round(performance.now()-t);
+    } catch(e) {
+      const el = document.getElementById('stPing'); if(el) el.textContent = Math.floor(20+Math.random()*35);
+    }
+  }, 2500);
+}
+function stopPing() { if (_pI) { clearInterval(_pI); _pI=null; } }
+
+// Kill tracker
+let _kI = null;
+function startKillTracker() {
+  stopKillTracker();
+  _kI = setInterval(() => {
+    if (!injected) return;
+    if (Math.random() < 0.1) {
+      const kEl = document.getElementById('stKills'); if(kEl) kEl.textContent = parseInt(kEl.textContent)+1;
+      const hEl = document.getElementById('stHS');    if(hEl) hEl.textContent = Math.floor(62+Math.random()*32)+'%';
+    }
+  }, 2500);
+}
+function stopKillTracker() { if (_kI) { clearInterval(_kI); _kI=null; } }
+
+// Injeção
+let injected=false, injecting=false;
+const injSteps = [
+  'Abrindo processo do Free Fire',
+  'Alocando memória segura',
+  'Injetando HeadTracker',
+  'Injetando Anti-Recoil',
+  'Ativando Anti-Ban Shield',
+  'Aplicando FPS Unlock',
+  'Sincronizando sensibilidade',
+  'Finalizando injeção'
+];
+
+function startInject() {
+  if (injecting) return;
+  if (injected) { eject(); return; }
+  injecting = true;
+  const btn  = document.getElementById('injectBtn');
+  const icon = document.getElementById('injIcon');
+  const sub  = document.getElementById('injSub');
+  const prog = document.getElementById('injProg');
+  const stEl = document.getElementById('injSteps');
+  const bar  = document.getElementById('injBar');
+  btn.disabled=true; icon.textContent='⏳'; sub.textContent='Injetando...'; prog.classList.add('show');
+  stEl.innerHTML = injSteps.map((s,i) => `<div class="inj-step" id="is${i}"><div class="inj-ic">○</div><span>${s}</span></div>`).join('');
+  let idx = 0;
+  const step = () => {
+    if (idx >= injSteps.length) { finish(); return; }
+    if (idx > 0) {
+      const p = document.getElementById('is'+(idx-1));
+      if (p) { p.classList.remove('cur'); p.classList.add('done'); p.querySelector('.inj-ic').textContent='✓'; }
+    }
+    const c = document.getElementById('is'+idx); if (c) c.classList.add('cur');
+    bar.style.width = ((idx+1)/injSteps.length*100) + '%';
+    idx++;
+    setTimeout(step, 380 + Math.random()*180);
+  };
+  const finish = () => {
+    const last = document.getElementById('is'+(injSteps.length-1));
+    if (last) { last.classList.remove('cur'); last.classList.add('done'); last.querySelector('.inj-ic').textContent='✓'; }
+    bar.style.width = '100%';
+    setTimeout(() => {
+      injecting=false; injected=true; btn.disabled=false; btn.classList.add('done');
+      icon.textContent='✅'; document.getElementById('injTxt').textContent='INJETADO';
+      sub.textContent='Ativo! Clique para ejetar';
+      const hDot = document.getElementById('hDot'); if(hDot) hDot.classList.add('on');
+      const hSt  = document.getElementById('hStatus'); if(hSt) { hSt.textContent='INJETADO'; hSt.style.color='var(--green)'; }
+      autoActivateAll(); // Ativa todos toggles automaticamente
+      notif('💉','INJEÇÃO COMPLETA','Todos os módulos ativos!','green',5000);
+      setTimeout(() => notif('🎯','HEADTRACKER ON','Mira na cabeça ativada','cyan',4000), 700);
+      setTimeout(() => notif('⚡','FREE FIRE',selFPS+' FPS!','gold',3500), 1600);
+      setTimeout(() => notif('🛡','ANTI-BAN','Shield operacional','green',3000), 2800);
+      toast('✅ Nexus Cheats injetado!');
+      addLog('ok', 'Injeção concluída | FPS: '+selFPS);
+      srvReqs++;
+      startFPSMeter(); startPing(); startKillTracker();
+    }, 400);
+  };
+  step();
+}
+
+function ejectSilent() {
+  injected=false; stopFPSMeter(); stopPing(); stopKillTracker();
+  const btn = document.getElementById('injectBtn'); if(btn) btn.classList.remove('done');
+  const icon= document.getElementById('injIcon');   if(icon) icon.textContent='💉';
+  const txt = document.getElementById('injTxt');    if(txt)  txt.textContent='INJETAR';
+  const sub = document.getElementById('injSub');    if(sub)  sub.textContent='Clique para injetar no Free Fire';
+  const prg = document.getElementById('injProg');   if(prg)  prg.classList.remove('show');
+  const hDot= document.getElementById('hDot');      if(hDot) hDot.classList.remove('on');
+  const hSt = document.getElementById('hStatus');   if(hSt)  { hSt.textContent='OFFLINE'; hSt.style.color='var(--dim)'; }
+  ['stFPS','stPing','stKills','stHS'].forEach(id => {
+    const e = document.getElementById(id);
+    if (e) e.textContent = id==='stHS'?'0%':id==='stPing'?'---':'0';
+  });
+}
+function eject() {
+  stopWatchdog(); ejectSilent();
+  notif('⛔','EJETADO','Módulos removidos','',3000);
+  toast('Módulos ejetados');
+  addLog('warn','Injeção encerrada');
+}
+function applyMod(name) {
+  if (!injected) { notif('⚠️','AVISO','Injete primeiro!','gold',3000); toast('⚠️ Injete primeiro!'); return; }
+  notif('⚡', name+' APLICADO', 'Config enviada', 'green', 3000);
+  toast('✅ ' + name + ' aplicado!');
+  addLog('ok', 'Módulo aplicado: ' + name);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UTILITÁRIOS
+// ═══════════════════════════════════════════════════════════════
+function formatTime(ms) {
+  if (ms >= 86400000) return Math.floor(ms/86400000)+'d '+Math.floor((ms%86400000)/3600000)+'h';
+  if (ms >= 3600000)  return Math.floor(ms/3600000)+'h '+Math.floor((ms%3600000)/60000)+'m';
+  if (ms >= 60000)    return Math.floor(ms/60000)+'m '+Math.floor((ms%60000)/1000)+'s';
+  return Math.floor(ms/1000)+'s';
+}
+
+function notif(icon, title, body, type, dur) {
+  const ov = document.getElementById('notif-overlay');
+  const d  = document.createElement('div');
+  d.className = 'notif' + (type?' '+type:'');
+  d.innerHTML = `<span class="notif-icon">${icon}</span><div><div class="notif-title">${title}</div><div class="notif-body">${body}</div></div><span class="notif-brand" style="color:var(--nexus-purple2)">NEXUS</span>`;
+  ov.appendChild(d);
+  requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('show')));
+  setTimeout(() => { d.classList.remove('show'); d.classList.add('hide'); setTimeout(() => d.remove(), 400); }, dur||3000);
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.style.cssText = ''; t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SPLASH — INICIALIZAÇÃO
+// ═══════════════════════════════════════════════════════════════
+const splashMsgs = [
+  'Inicializando módulos...',
+  'Carregando engine v5.0...',
+  'Conectando Firebase...',
+  'Verificando licença...',
+  'Ativando Anti-Ban Shield...',
+  'Carregando HeadTracker...',
+  'Sincronizando banco de dados...',
+  'Carregando eventos...',
+  'Tudo pronto!'
+];
+
+(function initSplash() {
+  const msgEl = document.getElementById('spMsg');
+  const barEl = document.getElementById('spBar');
+  const pctEl = document.getElementById('spPct');
+  const splEl = document.getElementById('splash');
+  let pct = 0, mi = 0;
+  const mI = setInterval(() => { if (mi < splashMsgs.length && msgEl) msgEl.textContent = splashMsgs[mi++]; }, 380);
+  const bI = setInterval(() => {
+    pct += Math.random()*3.5 + 1.5;
+    if (pct > 92) pct = 92;
+    if (barEl) barEl.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = Math.floor(pct) + '%';
+  }, 80);
+
+  initDB().then(() => {
+    clearInterval(bI); clearInterval(mI);
+    pct = 100;
+    if (barEl) barEl.style.width = '100%';
+    if (pctEl) pctEl.textContent = '100%';
+    if (msgEl) msgEl.textContent = 'Tudo pronto!';
+
+    setTimeout(() => {
+      if (!splEl) return;
+      splEl.style.transition = 'opacity .5s';
+      splEl.style.opacity    = '0';
+      setTimeout(() => {
+        if (splEl) splEl.remove();
+        // NÃO purga keys no startup — admin pode ter gerado keys
+        // enquanto estava fora. Purge só é feito manualmente pelo admin.
+
+        if (resumeSession()) {
+          // Busca a key atualizada do Firebase e mostra o app completo
+          const sess = getSession();
+          const k = sess && DB.keys[sess.code];
+          if (k) {
+            document.getElementById('mainApp').style.display = 'block';
+            startKeyBar();
+            startWatchdog();
+            setTimeout(() => initSensiSliders(), 400);
+            notif('✅','SESSÃO RESTAURADA', k.userName ? 'Bem-vindo de volta, '+k.userName+'!' : 'Key válida!','green',3000);
+          } else {
+            showLogin();
+          }
+        } else {
+          showLogin();
+        }
+      }, 500);
+    }, 350);
+  }).catch(() => {
+    clearInterval(bI); clearInterval(mI);
+    if (barEl) barEl.style.width = '100%';
+    if (pctEl) pctEl.textContent = '100%';
+    setTimeout(() => {
+      if (splEl) {
+        splEl.style.transition = 'opacity .5s';
+        splEl.style.opacity    = '0';
+        setTimeout(() => { if(splEl) splEl.remove(); showLogin(); }, 500);
+      }
+    }, 350);
+  });
+})();
+
+addLog('info', 'Nexus Cheats v5.0 iniciado');
+
+// ═══════════════════════════════════════════════════════════════
+// PARTÍCULAS DE FUNDO
+// ═══════════════════════════════════════════════════════════════
+function initParticles() {
+  const canvas = document.getElementById('bgCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = Array.from({length: 35}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + .5,
+    dx: (Math.random() - .5) * .4,
+    dy: (Math.random() - .5) * .4,
+    alpha: Math.random() * .6 + .2,
+    color: ['155,48,255','0,255,209','255,45,45','192,96,255'][Math.floor(Math.random()*4)],
+    pulse: Math.random() * Math.PI * 2,
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const now = Date.now() / 1000;
+    particles.forEach(p => {
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      const a = p.alpha * (.7 + .3 * Math.sin(now * 2 + p.pulse));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.color + ',' + a + ')';
+      ctx.fill();
+      // Linha para partícula mais próxima
+      particles.forEach(p2 => {
+        const dx = p.x - p2.x, dy = p.y - p2.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 80 && dist > 0) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = 'rgba(' + p.color + ',' + ((.08 - dist/1000)) + ')';
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      });
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+window.addEventListener('load', initParticles);
+
+
+// Hint de scroll nas abas
+function checkTabsScroll() {
+  const tabs = document.getElementById('mainTabs');
+  const hint = document.getElementById('tabScrollHint');
+  if (!tabs || !hint) return;
+  hint.style.display = tabs.scrollWidth > tabs.clientWidth ? 'block' : 'none';
+  tabs.addEventListener('scroll', () => {
+    const atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 10;
+    hint.style.display = atEnd ? 'none' : 'block';
+  }, { passive:true });
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// SISTEMA DE ACESSO POR NÍVEL DE KEY
+// ═══════════════════════════════════════════════════════════════
+function applyKeyTabs(keyType) {
+  window._keyType = keyType;
+  const perfTab = document.getElementById('tab-performance');
+  const proTab  = document.getElementById('tab-protools');
+  // 30d = TUDO visível
+  if (keyType === '30d') {
+    if (perfTab) perfTab.style.display = '';
+    if (proTab)  proTab.style.display  = '';
+    return;
+  }
+  // 7d = performance visível
+  if (keyType === '7d') {
+    if (perfTab) perfTab.style.display = '';
+    if (proTab)  proTab.style.display  = 'none';
+    return;
+  }
+  // 1d / min = esconde tudo extra
+  if (perfTab) perfTab.style.display = 'none';
+  if (proTab)  proTab.style.display  = 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// AUTO-ATIVAR TUDO AO INJETAR
+// ═══════════════════════════════════════════════════════════════
+function autoActivateAll() {
+  // Ativa todos os switches do headtracker
+  ['htA','scop','smo','ar2'].forEach(id => {
+    const sw = document.getElementById('sw-'+id);
+    if (sw && !sw.classList.contains('on')) sw.classList.add('on');
+  });
+  // Ativa auxiliares de sensi
+  ['sg','sns','s2x','s4x','ssnp','scam2','autosensi'].forEach(id => {
+    const sw = document.getElementById('sw-'+id);
+    if (sw && !sw.classList.contains('on')) sw.classList.add('on');
+  });
+  // Ativa switches de performance se tiver acesso
+  if (window._keyType === '7d' || window._keyType === '30d') {
+    ['tt','fs','adt','ss','nolag'].forEach(id => {
+      const sw = document.getElementById('sw-'+id);
+      if (sw && !sw.classList.contains('on')) sw.classList.add('on');
+    });
+  }
+  // Ativa switches pro tools se tiver acesso
+  if (window._keyType === '30d') {
+    ['ma','as','rm','pr','alp'].forEach(id => {
+      const sw = document.getElementById('sw-'+id);
+      if (sw && !sw.classList.contains('on')) sw.classList.add('on');
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TOGGLES PERFORMANCE E PRO TOOLS
+// ═══════════════════════════════════════════════════════════════
+function togPerf(id, el) {
+  const sw = document.getElementById('sw-'+id) || el;
+  if (!sw) return;
+  sw.classList.toggle('on');
+  const on = sw.classList.contains('on');
+  const labels = {
+    tt:'Turbo Touch', fs:'Fast Swipe', adt:'Anti-Delay',
+    ss:'Smooth Screen', '90fps':'Modo 90FPS', nolag:'Reduzir Lag',
+    gpu:'GPU Boost', zdf:'Zero Drop Frame',
+    squat:'Auto-Agachar', jshot:'Jump Shot', peek:'Peek Rápido', reload:'Reload Veloz'
+  };
+  const lbl = labels[id] || id;
+  if (on) notif('🚀', lbl, 'Ativado!', 'green', 2000);
+  else    toast('❌ ' + lbl + ' desativado');
+  addLog('ok', 'Performance: ' + lbl + ' = ' + (on?'ON':'OFF'));
+}
+
+function togPro(id, el) {
+  const sw = document.getElementById('sw-'+id) || el;
+  if (!sw) return;
+  sw.classList.toggle('on');
+  const on = sw.classList.contains('on');
+  const labels = {
+    ma:'Micro-Adjust', as:'Aim Stabilizer', rm:'Recoil Master',
+    pr:'Pro Response', nb:'Network Boost', alp:'Anti-Lag Pro',
+    ak:'AK Sem Recuo', m1014:'M1014 Spray', awm:'AWM Estabilizado', famas:'FAMAS Burst',
+    antirush:'Anti-Rush', zone:'Safe Zone', ks:'Kill Streak', surv:'Survivability'
+  };
+  const lbl = labels[id] || id;
+  if (on) notif('👑', lbl, 'Ativado!', 'gold', 2000);
+  else    toast('❌ ' + lbl + ' desativado');
+  addLog('ok', 'ProTools: ' + lbl + ' = ' + (on?'ON':'OFF'));
+}
+
+function updatePerfVal(id, val) {
+  const el = document.getElementById(id+'-v');
+  if (el) el.textContent = val;
+  const rng = document.getElementById(id);
+  if (rng) rng.style.setProperty('--pct', (val*10)+'%');
+}
+
+function applyPerformance() {
+  if (!injected) { notif('⚠️','AVISO','Injete primeiro!','gold',2000); return; }
+  notif('🚀','PERFORMANCE','Otimizações aplicadas!','green',3000);
+  toast('✅ Performance aplicada!');
+  addLog('ok','Performance aplicada');
+}
+
+function applyProTools() {
+  if (!injected) { notif('⚠️','AVISO','Injete primeiro!','gold',2000); return; }
+  notif('👑','PRO TOOLS','Configurações pro aplicadas!','gold',3000);
+  toast('✅ Pro Tools aplicado!');
+  addLog('ok','Pro Tools aplicado');
+}
+
+function loadProProfile(name) {
+  if (!injected) { notif('⚠️','AVISO','Injete primeiro!','gold',2000); return; }
+  const profiles = {
+    rush:   { label:'Rush Pro',    sg:92, sns:85, srd:80, s2x:72 },
+    sniper: { label:'Sniper Pro',  sg:45, sns:38, srd:35, s2x:28 },
+    ranked: { label:'Ranked',      sg:75, sns:68, srd:62, s2x:54 },
+    mobile: { label:'Mobile Pro',  sg:82, sns:75, srd:70, s2x:62 },
+  };
+  const p = profiles[name]; if (!p) return;
+  setSensiValues(p, 1.0);
+  notif('👑', p.label, 'Perfil pro carregado!','gold',3000);
+  toast('✅ Perfil ' + p.label + ' aplicado!');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SAIR E EXCLUIR KEY
+// ═══════════════════════════════════════════════════════════════
+function confirmExitKey() {
+  const modal = document.getElementById('exitKeyModal');
+  if (modal) { modal.style.display = 'flex'; }
+}
+function closeExitModal() {
+  const modal = document.getElementById('exitKeyModal');
+  if (modal) modal.style.display = 'none';
+}
+
+async function exitAndDeleteKey() {
+  // Fecha o modal
+  closeExitModal();
+  const sess = getSession();
+  if (!sess || !sess.code) { showLogin(); return; }
+  const code = sess.code;
+  toast('🗑 Excluindo key...');
+  // Remove do Firebase
+  if (DB.keys[code]) {
+    delete DB.keys[code];
+    await saveKeys();
+    addLog('warn', 'Key auto-excluída pelo usuário: ' + code);
+  }
+  // Limpa sessão local
+  saveSession(null);
+  currentSession = null;
+  stopWatchdog();
+  clearInterval(keyBarTimer);
+  // Volta ao login
+  document.getElementById('mainApp').style.display = 'none';
+  showLogin();
+  notif('🗑','KEY EXCLUÍDA','Compre uma nova no Discord','gold',5000);
+}
+
+function stopWatchdog() {
+  if (watchdogTimer) { clearInterval(watchdogTimer); watchdogTimer = null; }
+}
+
+
+async function adminForceRefresh() {
+  const btn = event?.target;
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  await syncDB();
+  updateAdminStats(); renderKeyList(); renderLogs(); renderDashLogs(); renderEventsArea(); renderMovimentacao();
+  if (btn) { btn.textContent = '✅'; btn.disabled = false; setTimeout(() => { if(btn) btn.textContent = '🔄 ATUALIZAR'; }, 1500); }
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// TOGGLES DE SENSI
+// ═══════════════════════════════════════════════════════════════
+function togSensi(id, el) {
+  const sw = el || document.getElementById('sw-'+id);
+  if (!sw) return;
+  sw.classList.toggle('on');
+  const on = sw.classList.contains('on');
+  const labels = {
+    sg:'Auxiliar Geral', sns:'No Scope', s2x:'Scope 2x',
+    s4x:'Scope 4x', ssnp:'AWM/Sniper', scam2:'Câmera Livre',
+    autosensi:'Auto-Sensi', antitremor:'Anti-Tremor', rushsensi:'Sensi Rush'
+  };
+  const lbl = labels[id] || id;
+  const msg = document.getElementById('sensiStatusMsg');
+  if (msg) {
+    msg.textContent = on ? '✅ ' + lbl + ' ativado!' : '❌ ' + lbl + ' desativado';
+    setTimeout(() => { if(msg) msg.textContent = ''; }, 2000);
+  }
+  if (on) notif('📱', lbl, 'Sensi auxiliada!', 'green', 1500);
+  addLog('ok', 'Sensi: ' + lbl + ' = ' + (on?'ON':'OFF'));
+}
+
+function setSensiMode(mode) {
+  // Visual — destaca o botão selecionado
+  ['rush','sniper','balanced','auto'].forEach(m => {
+    const btn = document.getElementById('sm-'+m);
+    if (btn) btn.classList.toggle('sel', m === mode);
+  });
+  const msgs = { rush:'⚡ Modo Rush ativado!', sniper:'🎯 Modo Sniper ativado!', balanced:'⚖️ Modo Balanceado ativado!', auto:'✨ Modo Auto ativado!' };
+  toast(msgs[mode] || 'Modo ativado');
+  addLog('ok', 'Modo sensi: ' + mode);
+}
+
+// ── DEBUG VISÍVEL ─────────────────────────────────────────────
+async function debugInfo() {
+  const errEl = document.getElementById('debugOutput');
+  if (errEl) { errEl.style.display='block'; errEl.textContent = '🔍 Coletando info...'; }
+  const inf   = null;
+
+  // 1. Testa Firebase direto
+  let fbStatus = '❌ OFFLINE';
+  let fbKeys   = 0;
+  try {
+    const data = await fbGet('db');
+    fbKeys   = Object.keys(data?.keys || {}).length;
+    fbStatus = '✅ ONLINE';
+    // Atualiza DB com dados frescos
+    if (data && data.keys) {
+      DB.keys   = typeof data.keys === 'object' && !Array.isArray(data.keys) ? data.keys : DB.keys;
+      DB.logs   = Array.isArray(data.logs)   ? data.logs   : DB.logs;
+      DB.events = Array.isArray(data.events) ? data.events : DB.events;
+      saveLocal();
+    }
+  } catch(e) { fbStatus = '❌ ERRO: ' + e.message.substring(0,30); }
+
+  // 2. localStorage
+  let lsKeys = 0;
+  try { lsKeys = Object.keys(JSON.parse(localStorage.getItem('nx_keys')||'{}')).length; } catch(e){}
+
+  // 3. Sessão atual
+  const sess = getSession();
+  const sessInfo = sess ? sess.code.substring(0,12)+'... exp:'+new Date(sess.expires).toLocaleTimeString('pt-BR') : 'Nenhuma';
+
+  // 4. DB em memória
+  const memKeys = Object.keys(DB.keys||{}).length;
+
+  const msg = [
+    'Firebase: ' + fbStatus,
+    'Keys no Firebase: ' + fbKeys,
+    'Keys em memória: ' + memKeys,
+    'Keys no cache: ' + lsKeys,
+    'Sessão: ' + sessInfo,
+    'dbReady: ' + dbReady,
+  ].join(' | ');
+
+  if (errEl) errEl.textContent = msg;
+
+  // Mostra no console tb
+  console.log('[NEXUS DEBUG]', {fbStatus, fbKeys, memKeys, lsKeys, sess, dbReady});
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SISTEMA DE SENSIBILIDADE AVANÇADO
+// ═══════════════════════════════════════════════════════════════
+let _currentDPI = 800;
+let _playStyle  = 'rush';
+let _device     = 'mid';
+
+const SENSI_PROFILES = {
+  custom: { label:'Personalizado', sg:72, sns:65, srd:58, s2x:50, s4x:40, ssn:30, scam:60, sacc:0, sgyro:0, sgsht:0 },
+  rush:   { label:'Rush / Agressivo', sg:88, sns:82, srd:76, s2x:68, s4x:55, ssn:38, scam:72, sacc:0, sgyro:0, sgsht:0 },
+  sniper: { label:'Sniper / Long', sg:48, sns:42, srd:38, s2x:32, s4x:26, ssn:18, scam:55, sacc:0, sgyro:0, sgsht:0 },
+  pro:    { label:'Pro Player',    sg:78, sns:70, srd:64, s2x:54, s4x:44, ssn:32, scam:65, sacc:0, sgyro:0, sgsht:0 },
+  cqb:    { label:'CQB / Close',   sg:95, sns:88, srd:82, s2x:72, s4x:60, ssn:42, scam:80, sacc:0, sgyro:0, sgsht:0 },
+  gyro:   { label:'Giroscópio',    sg:60, sns:55, srd:50, s2x:44, s4x:35, ssn:25, scam:58, sacc:0, sgyro:65, sgsht:70 },
+};
+
+const DPI_MULT = { 400:1.4, 800:1.0, 1000:0.88, 1200:0.78, 1600:0.65 };
+
+function updateSensi(id, val) {
+  val = parseInt(val);
+  const el  = document.getElementById(id+'-v'); if(el) el.textContent = val;
+  const rng = document.getElementById(id);
+  if (rng) rng.style.setProperty('--pct', val+'%');
+  // Troca perfil para custom ao editar manualmente
+  const profileEl = document.getElementById('activeProfileName');
+  if (profileEl && profileEl.textContent !== 'Personalizado') {
+    profileEl.textContent = 'Personalizado';
+    document.querySelectorAll('.sensi-preset-btn').forEach(b => b.classList.remove('sel'));
+    const pp = document.getElementById('pp-custom'); if(pp) pp.classList.add('sel');
+  }
+}
+
+function setSensiValues(profile, dpiMult) {
+  if (!dpiMult) dpiMult = DPI_MULT[_currentDPI] || 1.0;
+  const fields = ['sg','sns','srd','s2x','s4x','ssn','scam','sacc','sgyro','sgsht'];
+  fields.forEach(id => {
+    const raw = profile[id] || 0;
+    const val = Math.min(100, Math.max(0, Math.round(raw * dpiMult)));
+    const rng = document.getElementById(id);       if(rng) { rng.value = val; rng.style.setProperty('--pct', val+'%'); }
+    const lbl = document.getElementById(id+'-v');  if(lbl) lbl.textContent = val;
+  });
+}
+
+function selectProfile(name, btn) {
+  const p = SENSI_PROFILES[name]; if (!p) return;
+  document.querySelectorAll('.sensi-preset-btn').forEach(b => b.classList.remove('sel'));
+  if (btn) btn.classList.add('sel');
+  const nameEl = document.getElementById('activeProfileName');
+  if (nameEl) nameEl.textContent = p.label;
+  setSensiValues(p);
+  toast('✅ Perfil ' + p.label + ' carregado!');
+  addLog('ok', 'Perfil sensi: ' + p.label);
+}
+
+function setDPI(dpi) {
+  _currentDPI = dpi;
+  document.querySelectorAll('.dpi-btn').forEach(b => {
+    b.classList.toggle('sel', b.textContent == dpi);
+  });
+  const el = document.getElementById('activeDPI'); if(el) el.textContent = dpi;
+  const tips = {
+    400:  '💡 DPI baixo — precisa de sensi mais alta. Bom para precisão.',
+    800:  '💡 DPI 800 — padrão competitivo. Sensi equilibrada.',
+    1000: '💡 DPI médio-alto — sensi levemente menor.',
+    1200: '💡 DPI alto — reduza a sensi para manter controle.',
+    1600: '💡 DPI muito alto — sensi bem reduzida recomendada.',
+  };
+  const tip = document.getElementById('dpiTip'); if(tip) tip.textContent = tips[dpi]||'';
+  // Re-aplica o perfil atual com o novo DPI
+  const activeBtn = document.querySelector('.sensi-preset-btn.sel');
+  if (activeBtn) {
+    const profileId = activeBtn.id.replace('pp-','');
+    const p = SENSI_PROFILES[profileId];
+    if (p) setSensiValues(p);
+  }
+  toast('DPI: ' + dpi);
+}
+
+function setPlayStyle(style, btn) {
+  _playStyle = style;
+  document.querySelectorAll('[id^="play-"]').forEach(b => b.classList.remove('sel'));
+  if (btn) btn.classList.add('sel');
+}
+
+function setDevice(dev, btn) {
+  _device = dev;
+  document.querySelectorAll('[id^="dev-"]').forEach(b => b.classList.remove('sel'));
+  if (btn) btn.classList.add('sel');
+}
+
+function autoOptimize() {
+  if (!injected) { toast('⚠️ Injete primeiro!'); return; }
+  const deviceMult = { low:1.15, mid:1.0, high:0.9 };
+  const styleMult  = { rush:1.12, mid:1.0, passive:0.88 };
+  const base = SENSI_PROFILES.pro;
+  const dm = deviceMult[_device]  || 1.0;
+  const sm = styleMult[_playStyle] || 1.0;
+  const dm2= DPI_MULT[_currentDPI]|| 1.0;
+  const mult = dm * sm * dm2;
+  const optimized = {};
+  Object.keys(base).forEach(k => {
+    if (typeof base[k] === 'number') optimized[k] = base[k] * mult;
+    else optimized[k] = base[k];
+  });
+  setSensiValues(optimized, 1.0);
+  const result = document.getElementById('optimizeResult');
+  if (result) {
+    result.textContent = '✅ Sensi otimizada! Mult: x' + mult.toFixed(2) + ' · DPI: ' + _currentDPI;
+    setTimeout(() => { result.textContent = ''; }, 4000);
+  }
+  const nameEl = document.getElementById('activeProfileName');
+  if (nameEl) nameEl.textContent = 'Otimizado (' + _playStyle + ')';
+  toast('✨ Sensi auto-otimizada!');
+  addLog('ok', 'Auto-otimização: estilo=' + _playStyle + ' device=' + _device + ' dpi=' + _currentDPI);
+}
+
+function saveSensiProfile() {
+  const fields = ['sg','sns','srd','s2x','s4x','ssn','scam','sacc','sgyro','sgsht'];
+  const vals = {};
+  fields.forEach(id => { const e=document.getElementById(id); if(e) vals[id]=parseInt(e.value); });
+  try { localStorage.setItem('nx_sensi_profile', JSON.stringify(vals)); } catch(e){}
+  toast('💾 Perfil salvo!');
+}
+
+function loadSavedSensi() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('nx_sensi_profile')||'null');
+    if (saved) setSensiValues(saved, 1.0);
+  } catch(e){}
+}
+
+function copySensiCode() {
+  const fields = ['sg','sns','srd','s2x','s4x','ssn','scam','sacc'];
+  const vals = fields.map(id => { const e=document.getElementById(id); return (e?e.value:'?'); });
+  const code = 'NX:' + vals.join('-') + ':' + _currentDPI;
+  const el = document.getElementById('sensiCode');
+  if (el) { el.style.display='block'; el.textContent = code; }
+  if (navigator.clipboard) navigator.clipboard.writeText(code).catch(()=>fallbackCopy(code));
+  else fallbackCopy(code);
+  toast('📋 Código copiado: ' + code);
+}
+
+// Inicializa sliders com %
+function initSensiSliders() {
+  const fields = ['sg','sns','srd','s2x','s4x','ssn','scam','sacc','sgyro','sgsht'];
+  fields.forEach(id => {
+    const rng = document.getElementById(id);
+    if (rng) rng.style.setProperty('--pct', rng.value+'%');
+  });
+  loadSavedSensi();
+}
+
+// initSensiSliders é chamada dentro do showMainApp original — sem override
+
+
+</script>
+
+<script>
+// Registra Service Worker para PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('[NEXUS] SW registrado:', reg.scope))
+      .catch(err => console.log('[NEXUS] SW erro:', err));
+  });
+}
+
+// Prompt de instalação
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Mostra botão de instalar após 3s
+  setTimeout(() => {
+    if (deferredPrompt) showInstallBanner();
+  }, 3000);
+});
+
+function showInstallBanner() {
+  // Só mostra se não estiver instalado ainda
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+  const banner = document.createElement('div');
+  banner.id = 'installBanner';
+  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,rgba(10,24,37,.98),rgba(155,48,255,.15));border-top:1px solid rgba(155,48,255,.4);padding:12px 16px;z-index:9999;display:flex;align-items:center;gap:10px;max-width:480px;margin:0 auto';
+  banner.innerHTML = '<div style="flex:1"><div style="font-family:Orbitron,sans-serif;font-size:11px;color:#C060FF;font-weight:700;letter-spacing:2px">📲 INSTALAR APP</div><div style="font-size:10px;color:#3A6A8A;margin-top:2px">Nexus Cheats como app</div></div><button onclick="installApp()" style="padding:8px 14px;background:rgba(155,48,255,.3);border:1px solid rgba(155,48,255,.6);border-radius:8px;color:#C060FF;font-family:Orbitron,sans-serif;font-size:9px;cursor:pointer;font-weight:700">INSTALAR</button><button onclick="document.getElementById(\'installBanner\').remove()" style="padding:8px;background:none;border:none;color:#3A6A8A;cursor:pointer;font-size:14px">✕</button>';
+  document.body.appendChild(banner);
+}
+
+async function installApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log('[NEXUS] Install:', outcome);
+  deferredPrompt = null;
+  const b = document.getElementById('installBanner');
+  if (b) b.remove();
+}
+</script>
+</body>
+</html>
