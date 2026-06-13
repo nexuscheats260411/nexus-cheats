@@ -359,6 +359,338 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 /* Grid com brilho suave */
 .bg-grid{background-image:linear-gradient(rgba(155,48,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(155,48,255,.08) 1px,transparent 1px);background-size:32px 32px;animation:gridPulse 4s ease-in-out infinite}
 @keyframes gridPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* ══ MELHORIAS GOLD + LOGIN ══════════════════════════════════════════════ */
+:root {
+  --gold2: #FFB800;
+  --gold3: #FFA000;
+}
+
+/* LOGIN BOX melhorado */
+#loginScreen {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(155,48,255,.18) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,183,0,.10) 0%, transparent 60%),
+              var(--bg);
+}
+.login-box {
+  background: linear-gradient(160deg, rgba(15,8,35,.97) 0%, rgba(10,5,20,.99) 100%);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 1px rgba(255,215,0,.25), 0 0 40px rgba(155,48,255,.2), inset 0 1px 0 rgba(255,215,0,.1);
+  border-radius: 20px;
+}
+.login-box::before {
+  background: linear-gradient(90deg, var(--nexus-purple), var(--gold), var(--r2), transparent);
+  height: 2px;
+}
+.login-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,.3), transparent);
+}
+
+/* KEY INPUT melhorado */
+.key-input {
+  background: rgba(5,2,15,.9);
+  border: 1.5px solid rgba(255,215,0,.2);
+  box-shadow: inset 0 0 20px rgba(155,48,255,.05);
+  border-radius: 12px;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 3px;
+  padding: 16px 18px;
+  transition: all .25s;
+}
+.key-input::placeholder { color: rgba(192,96,255,.4); font-size: 11px; }
+.key-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255,215,0,.1), 0 0 25px rgba(255,215,0,.2), inset 0 0 20px rgba(255,215,0,.05);
+  color: var(--gold);
+}
+
+/* BOTÃO LOGIN */
+.login-btn {
+  background: linear-gradient(135deg, rgba(155,48,255,.25) 0%, rgba(255,183,0,.15) 50%, rgba(255,45,45,.2) 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255,215,0,.25), inset 0 1px 0 rgba(255,255,255,.05);
+  font-size: 15px;
+  letter-spacing: 4px;
+  transition: all .2s;
+  position: relative; overflow: hidden;
+}
+.login-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,.08), transparent);
+  transform: translateX(-100%);
+  animation: btnShine 3s ease-in-out infinite;
+}
+@keyframes btnShine { 0%,100%{transform:translateX(-100%)} 50%{transform:translateX(100%)} }
+.login-btn:hover { box-shadow: 0 0 40px rgba(255,215,0,.4); border-color: #FFD700; }
+.login-btn:active { transform: scale(.97); }
+
+/* SHOP BTN melhorado */
+.shop-btn {
+  background: linear-gradient(135deg, rgba(155,48,255,.2), rgba(255,215,0,.1)) !important;
+  border: 1.5px solid var(--gold) !important;
+  box-shadow: 0 0 20px rgba(255,215,0,.2) !important;
+  color: var(--gold) !important;
+  border-radius: 14px;
+  letter-spacing: 2px;
+}
+
+/* KEY BADGES melhora */
+.kbadge { padding: 6px 14px; border-radius: 20px; font-size: 10px; letter-spacing: 2px; }
+.kbadge.min { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,.1); box-shadow: 0 0 10px rgba(255,215,0,.15); }
+.kbadge.day { border-color: var(--nexus-purple); color: var(--nexus-purple2); background: rgba(155,48,255,.1); }
+.kbadge.w7  { border-color: var(--cyan); color: var(--cyan); background: rgba(0,255,209,.08); }
+.kbadge.m30 { border-color: var(--r); color: var(--r); background: rgba(255,45,45,.08); }
+
+/* ══ INJEÇÃO MELHORADA ══════════════════════════════════════════════════ */
+.inject-btn {
+  background: linear-gradient(135deg, rgba(20,5,0,.95) 0%, rgba(40,10,0,.9) 50%, rgba(10,0,30,.95) 100%);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 30px rgba(255,215,0,.25), inset 0 0 40px rgba(255,183,0,.04);
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative; overflow: hidden;
+}
+.inject-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,215,0,.05) 90deg, transparent 180deg);
+  animation: rotateGlow 4s linear infinite;
+}
+@keyframes rotateGlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.inject-btn.done {
+  border-color: var(--green);
+  box-shadow: 0 0 40px rgba(0,255,136,.35), inset 0 0 30px rgba(0,255,136,.05);
+}
+
+/* Steps da injeção */
+.inj-step { padding: 7px 0; border-bottom: 1px solid rgba(255,215,0,.06); }
+.inj-step.done { color: var(--green); }
+.inj-step.cur  { color: var(--gold); }
+.inj-step.done .inj-ic { background: var(--green); border-color: var(--green); color:#000; box-shadow: 0 0 8px rgba(0,255,136,.5); }
+.inj-step.cur  .inj-ic { border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,.6); }
+
+/* Barra de progresso da injeção */
+.inj-bar {
+  background: linear-gradient(90deg, var(--nexus-purple), var(--gold), var(--green));
+  box-shadow: 0 0 12px rgba(255,215,0,.5);
+}
+
+/* ══ ADMIN MELHORADO ════════════════════════════════════════════════════ */
+#adminScreen {
+  background: linear-gradient(180deg, #050010 0%, #0a0018 30%, #030608 100%);
+}
+.admin-header {
+  background: linear-gradient(135deg, rgba(20,0,50,.99), rgba(40,20,0,.95), rgba(10,0,30,.99));
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 2px 30px rgba(255,215,0,.15), inset 0 -1px 0 rgba(255,215,0,.1);
+  padding: 14px 16px;
+}
+.admin-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 17px; font-weight: 900;
+  background: linear-gradient(135deg, #fff 0%, var(--gold) 45%, var(--nexus-purple2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+}
+.admin-sub {
+  font-size: 8px; letter-spacing: 3px; margin-top: 4px;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, var(--gold), var(--nexus-purple2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.admin-close {
+  background: linear-gradient(135deg, rgba(255,215,0,.15), rgba(155,48,255,.1));
+  border: 1px solid var(--gold);
+  color: var(--gold); border-radius: 10px;
+  padding: 8px 16px; letter-spacing: 1px;
+  box-shadow: 0 0 12px rgba(255,215,0,.2);
+  transition: all .2s;
+}
+.admin-close:active { transform: scale(.97); }
+
+/* Tabs admin */
+.admin-tabs { background: rgba(5,0,16,.95); border-bottom: 1px solid rgba(255,215,0,.2); }
+.atab { font-size: 9px; padding: 11px 16px; color: rgba(255,215,0,.35); }
+.atab.active { color: var(--gold); border-bottom: 2px solid var(--gold); background: rgba(255,215,0,.05); }
+
+/* Admin cards */
+.ac {
+  background: linear-gradient(160deg, rgba(12,5,30,.92) 0%, rgba(8,3,20,.95) 100%);
+  border: 1px solid rgba(255,215,0,.15);
+  box-shadow: 0 2px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,215,0,.05);
+}
+.ac::before { background: linear-gradient(90deg, var(--gold), var(--nexus-purple), transparent); }
+.ac-gold::before { background: linear-gradient(90deg, var(--gold), #FFA500, transparent); }
+.ac-cyan::before { background: linear-gradient(90deg, var(--cyan), #0088FF, transparent); }
+.ac-red::before  { background: linear-gradient(90deg, var(--r), var(--r2), transparent); }
+.ac-green::before{ background: linear-gradient(90deg, var(--green), #00AA44, transparent); }
+.ac-purple::before{ background: linear-gradient(90deg, var(--nexus-purple), var(--nexus-purple2), transparent); }
+
+/* ACT títulos */
+.act { color: var(--gold); font-size: 11px; }
+.act::before { background: var(--gold); box-shadow: 0 0 8px rgba(255,215,0,.8); }
+.act.cyan   { color: var(--cyan); }
+.act.cyan::before { background: var(--cyan); }
+.act.green  { color: var(--green); }
+.act.green::before{ background: var(--green); }
+.act.red    { color: var(--r); }
+.act.red::before  { background: var(--r); }
+.act.purple { color: var(--nexus-purple2); }
+.act.purple::before{ background: var(--nexus-purple); }
+
+/* Stats values */
+.sv-val { color: var(--gold); text-shadow: 0 0 15px rgba(255,215,0,.5); }
+.sv { border: 1px solid rgba(255,215,0,.15); }
+.sv::before { background: linear-gradient(90deg, transparent, rgba(255,215,0,.3), transparent); }
+
+/* ══ BOTÕES ADMIN ÚNICOS ════════════════════════════════════════════════ */
+.abtn {
+  padding: 13px 12px;
+  border-radius: 12px;
+  font-size: 10px; letter-spacing: 2px;
+  position: relative; overflow: hidden;
+  transition: all .2s;
+}
+.abtn::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+  transition: left .4s;
+}
+.abtn:hover::before { left: 100%; }
+.abtn:active { transform: scale(.96); }
+
+.abtn-gold {
+  background: linear-gradient(135deg, rgba(255,215,0,.18), rgba(255,160,0,.08));
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 15px rgba(255,215,0,.2), inset 0 1px 0 rgba(255,215,0,.1);
+}
+.abtn-gold:hover { box-shadow: 0 0 25px rgba(255,215,0,.4); }
+
+.abtn-red {
+  background: linear-gradient(135deg, rgba(255,45,45,.18), rgba(255,107,0,.08));
+  border: 1.5px solid var(--r);
+  color: var(--r);
+  box-shadow: 0 0 12px rgba(255,45,45,.2), inset 0 1px 0 rgba(255,45,45,.1);
+}
+.abtn-red:hover { box-shadow: 0 0 25px rgba(255,45,45,.4); }
+
+.abtn-cyan {
+  background: linear-gradient(135deg, rgba(0,255,209,.12), rgba(0,150,255,.06));
+  border: 1.5px solid var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0,255,209,.15);
+}
+.abtn-cyan:hover { box-shadow: 0 0 25px rgba(0,255,209,.35); }
+
+.abtn-purple {
+  background: linear-gradient(135deg, rgba(168,85,247,.15), rgba(124,58,237,.06));
+  border: 1.5px solid var(--nexus-purple);
+  color: var(--nexus-purple2);
+  box-shadow: 0 0 12px rgba(155,48,255,.2);
+}
+.abtn-purple:hover { box-shadow: 0 0 25px rgba(155,48,255,.4); }
+
+.abtn-green {
+  background: linear-gradient(135deg, rgba(0,255,136,.12), rgba(0,180,90,.06));
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  box-shadow: 0 0 12px rgba(0,255,136,.15);
+}
+.abtn-green:hover { box-shadow: 0 0 25px rgba(0,255,136,.35); }
+
+.abtn-dim {
+  background: linear-gradient(135deg, rgba(30,50,80,.5), rgba(15,25,40,.7));
+  border: 1px solid rgba(58,106,138,.4);
+  color: var(--dim);
+}
+
+/* ══ PAINEL LOGIN — INFO BAR DOURADA ═══════════════════════════════════ */
+.login-gold-bar {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: rgba(255,215,0,.06);
+  border: 1px solid rgba(255,215,0,.2);
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin-bottom: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px; letter-spacing: 2px;
+}
+.lgb-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: blink 1.2s infinite; }
+
+/* ══ HEADTRACKER CARD MELHORADO ═════════════════════════════════════════ */
+.inject-btn-wrap {
+  position: relative;
+}
+.inject-corner {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.inject-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.inject-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.inject-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.inject-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* ══ APPLY / ACTION BUTTONS MELHORADOS ══════════════════════════════════ */
+.apply-btn {
+  background: linear-gradient(135deg, var(--gold), var(--r2), var(--r));
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 25px rgba(255,215,0,.35);
+  color: #000 !important;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+.apply-btn:hover { box-shadow: 0 6px 35px rgba(255,215,0,.5); transform: translateY(-1px); }
+.apply-btn:active { transform: scale(.97) translateY(0); }
+
+/* ══ CARDS SEÇÃO HOME MELHORADOS ════════════════════════════════════════ */
+.card { background: linear-gradient(160deg, rgba(10,5,25,.95), rgba(8,18,30,.95)); border: 1px solid rgba(255,215,0,.12); }
+.card::before { background: linear-gradient(90deg, var(--gold), var(--nexus-purple), transparent); }
+.card-title { color: var(--gold); font-size: 11px; }
+
+/* ══ TABS MAIN MELHORADAS ════════════════════════════════════════════════ */
+.tab.active { color: var(--gold) !important; border-bottom-color: var(--gold) !important; }
+
+/* ══ HEADER PRINCIPAL ════════════════════════════════════════════════════ */
+.header { border-bottom: 1px solid rgba(255,215,0,.3); box-shadow: 0 2px 25px rgba(255,215,0,.12); }
+
+/* ══ KEY BAR ════════════════════════════════════════════════════════════ */
+.key-bar-strip { background: rgba(255,215,0,.06); border-bottom: 1px solid rgba(255,215,0,.2); }
+.key-bar-fill  { background: linear-gradient(90deg, var(--nexus-purple), var(--gold)); box-shadow: 0 0 8px rgba(255,215,0,.4); }
+
+/* ══ SWITCHES GOLD ══════════════════════════════════════════════════════ */
+.sw.on { background: linear-gradient(135deg, var(--gold), var(--r2)); box-shadow: 0 0 12px rgba(255,215,0,.4); }
+
+/* ══ FPS BTN ════════════════════════════════════════════════════════════ */
+.fps-btn.sel { border-color: var(--gold); background: rgba(255,215,0,.12); color: var(--gold); box-shadow: 0 0 15px rgba(255,215,0,.25); }
+
+/* ══ NOTIF BRAND ════════════════════════════════════════════════════════ */
+.notif-brand { color: var(--gold) !important; }
+
+/* ══ STAT BOXES ══════════════════════════════════════════════════════════ */
+.stat-box { border: 1px solid rgba(255,215,0,.15); background: linear-gradient(160deg,rgba(15,8,30,.9),rgba(8,18,30,.95)); }
+.stat-val { background: linear-gradient(135deg,var(--gold),var(--nexus-purple2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+/* ══ MODULES (toggles) ══════════════════════════════════════════════════ */
+.tog-row { border-bottom: 1px solid rgba(255,215,0,.08); }
+
+/* ══ PRESETS GOLD ════════════════════════════════════════════════════════ */
+.preset-btn:active, .preset-btn.active {
+  border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,.08);
+}
+
 </style>
 </head>
 <body>
@@ -404,7 +736,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <div id="loginScreen" class="hidden">
   <div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
   <div style="text-align:center;margin-bottom:4px">
-    <div style="font-family:Orbitron,sans-serif;font-size:38px;font-weight:900;background:linear-gradient(135deg,#fff 10%,#C060FF 50%,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:6px;filter:drop-shadow(0 0 20px rgba(155,48,255,.5));line-height:1">PRIME</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:38px;font-weight:900;background:linear-gradient(135deg,#FFD700 0%,#fff 30%,#C060FF 65%,#9B30FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:6px;filter:drop-shadow(0 0 25px rgba(255,215,0,.4)) drop-shadow(0 0 50px rgba(155,48,255,.3));line-height:1">PRIME</div>
     <div style="font-family:Orbitron,sans-serif;font-size:22px;font-weight:900;background:linear-gradient(135deg,#C060FF,#9B30FF,#7B20EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:10px;margin-top:-4px">CHEATS</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px">
       <div style="height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.6))"></div>
@@ -416,14 +748,15 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
     <div style="text-align:center;margin-bottom:12px">
         <span class="nexus-badge">💜 PRIME CHEATS OFICIAL</span>
       </div>
-      <div class="login-title">🔑 INSERIR KEY DE ACESSO</div>
+      <div class="login-gold-bar"><div class="lgb-dot"></div><span style="color:var(--gold)">SISTEMA ATIVO</span><span style="color:rgba(255,215,0,.4)">·</span><span style="color:rgba(192,96,255,.8)">FIREBASE CONECTADO</span><span style="color:rgba(255,215,0,.4)">·</span><span style="color:var(--gold)">v5.0</span></div>
+    <div class="login-title" style="color:var(--gold);border-bottom:1px solid rgba(255,215,0,.15);padding-bottom:10px;margin-bottom:14px">🔑 INSERIR KEY DE ACESSO</div>
     <input class="key-input" id="keyInput" type="text" placeholder="Digite sua key aqui..." maxlength="36" oninput="this.value=this.value.toUpperCase()">
     <button class="login-btn" onclick="tryLogin()">⚡ ENTRAR</button>
     <div class="login-err" id="loginErr"></div>
     <div id="loginCloudInfo" style="font-size:9px;color:var(--dim);text-align:center;margin-top:4px;font-family:'Orbitron',sans-serif;letter-spacing:1px;min-height:14px"></div>
 
     <div class="brand-divider"><span>PRIME CHEATS OFICIAL</span></div>
-    <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" class="shop-btn" style="border-color:var(--nexus-purple);box-shadow:0 0 20px rgba(155,48,255,.3);background:linear-gradient(135deg,rgba(155,48,255,.15),rgba(192,96,255,.08))">💜 DISCORD OFICIAL — PRIME CHEATS</a>
+    <a href="https://discord.gg/Pxfv8pCguD" target="_blank" class="shop-btn" style="border-color:var(--nexus-purple);box-shadow:0 0 20px rgba(155,48,255,.3);background:linear-gradient(135deg,rgba(155,48,255,.15),rgba(192,96,255,.08))">💜 DISCORD OFICIAL — PRIME CHEATS</a>
     <div class="key-badges">
       <span class="kbadge min">1 MIN</span>
       <span class="kbadge day">1 DIA</span>
@@ -453,7 +786,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
   <div class="exp-icon">⏰</div>
   <div class="exp-title">KEY EXPIRADA</div>
   <div class="exp-msg">Sua key de acesso expirou. Entre em contato para renovar.</div>
-  <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" style="display:block;margin:10px auto;padding:12px 20px;background:rgba(155,48,255,.15);border:1px solid rgba(155,48,255,.4);border-radius:10px;color:var(--nexus-purple2);font-family:Orbitron,sans-serif;font-size:10px;text-align:center;text-decoration:none;letter-spacing:2px">💜 RENOVAR NO DISCORD</a>
+  <a href="https://discord.gg/Pxfv8pCguD" target="_blank" style="display:block;margin:10px auto;padding:14px 24px;background:linear-gradient(135deg,rgba(255,215,0,.18),rgba(155,48,255,.12));border:1.5px solid var(--gold);border-radius:14px;color:var(--gold);font-family:Orbitron,sans-serif;font-size:11px;text-align:center;text-decoration:none;letter-spacing:2px;box-shadow:0 0 20px rgba(255,215,0,.2);animation:shopPulse 2s ease-in-out infinite">🚀 RENOVAR NO DISCORD OFICIAL</a>
   <button class="exp-btn" onclick="showLogin()">🔑 INSERIR NOVA KEY</button>
 </div>
 
@@ -472,8 +805,8 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <div id="adminScreen">
   <div class="admin-header">
     <div>
-        <div class="admin-logo">PRIME CONTROL</div>
-        <div class="admin-sub">ACESSO RESTRITO · DEV PANEL v4.0</div>
+        <div class="admin-logo">⚡ PRIME CHEATS</div>
+        <div class="admin-sub">PRIME-CHEATS-2025-ADM · PAINEL RESTRITO</div>
     </div>
     <button class="admin-close" onclick="closeAdmin()">✕ SAIR</button>
   </div>
@@ -486,6 +819,12 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
   </div>
   <div class="admin-body">
     <div class="apage active" id="apage-dashboard">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0 4px">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(155,48,255,.1));border:1px solid rgba(255,215,0,.35);border-radius:20px;padding:5px 14px;font-family:Orbitron,sans-serif;font-size:8px;color:var(--gold);letter-spacing:2px">
+          🔐 PRIME-CHEATS-2025-ADM
+        </div>
+        <div style="font-family:Orbitron,sans-serif;font-size:7px;color:rgba(255,215,0,.5);letter-spacing:2px" id="onlineBadge"></div>
+      </div>
       <div class="ac ac-gold">
         <div class="act">KEYS — VISÃO GERAL</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
@@ -526,8 +865,8 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <button class="abtn abtn-gold" style="margin:0" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('day')">⚡ KEY 1 DIA</button>
           <button class="abtn abtn-purple" style="margin:0" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('7d')">⚡ KEY 7 DIAS</button>
-          <button class="abtn abtn-red" style="margin:0" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
-          <button class="abtn abtn-cyan" style="margin:0" onclick="showATab('logs',document.querySelectorAll('.atab')[3])">📋 VER LOGS</button>
+          <button class="abtn abtn-red" style="margin:0" onclick="purgeExpired()" style="background:linear-gradient(135deg,rgba(255,45,45,.2),rgba(255,107,0,.1));border-color:var(--r);color:var(--r)">💥 LIMPAR EXPIRADAS</button>
+          <button class="abtn abtn-cyan" style="margin:0" onclick="showATab('logs',document.querySelectorAll('.atab')[3])" style="background:linear-gradient(135deg,rgba(0,255,209,.12),rgba(0,150,255,.06));border-color:var(--cyan);color:var(--cyan)">📋 VER LOGS</button>
         </div>
       </div>
       <div class="ac ac-red">
@@ -539,10 +878,10 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
       <div class="ac ac-gold">
         <div class="act">⚡ GERAR KEY DE ACESSO</div>
         <div class="gen-types">
-          <div class="gtype t-min sel" id="gt-min" onclick="selGenTypeFn('min')">1 MIN</div>
-          <div class="gtype t-day" id="gt-day" onclick="selGenTypeFn('day')">1 DIA</div>
-          <div class="gtype t-7d" id="gt-7d" onclick="selGenTypeFn('7d')">7 DIAS</div>
-          <div class="gtype t-30d" id="gt-30d" onclick="selGenTypeFn('30d')">30 DIAS</div>
+          <div class="gtype t-min sel" id="gt-min" onclick="selGenTypeFn('min')" style="border-color:var(--cyan);color:var(--cyan)">⏱ 1 MIN</div>
+          <div class="gtype t-day" id="gt-day" onclick="selGenTypeFn('day')" style="border-color:var(--gold);color:var(--gold)">⚡ 1 DIA</div>
+          <div class="gtype t-7d" id="gt-7d" onclick="selGenTypeFn('7d')" style="border-color:var(--purple);color:var(--purple)">💜 7 DIAS</div>
+          <div class="gtype t-30d" id="gt-30d" onclick="selGenTypeFn('30d')" style="border-color:var(--r);color:var(--r)">👑 30 DIAS</div>
         </div>
         <label style="font-size:11px;color:var(--dim);display:block;margin-bottom:6px">👤 Nome do Usuário (opcional):</label>
         <input class="ainput" id="keyUserName" placeholder="Ex: João, PedroFF, Discord#1234..." style="margin-bottom:8px">
@@ -566,7 +905,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
           <span>🗂 TODAS AS KEYS</span>
           <div style="display:flex;gap:6px">
             <button class="abtn" style="width:auto;padding:4px 10px;font-size:9px;margin:0;border-color:var(--green);color:var(--green)" onclick="adminForceRefresh()">🔄 SYNC</button>
-            <button class="abtn abtn-red" style="width:auto;padding:4px 10px;font-size:9px;margin:0" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+            <button class="abtn abtn-red" style="width:auto;padding:4px 10px;font-size:9px;margin:0" onclick="purgeExpired()" style="background:linear-gradient(135deg,rgba(255,45,45,.2),rgba(255,107,0,.1));border-color:var(--r);color:var(--r)">💥 LIMPAR EXPIRADAS</button>
           </div>
         </div>
         <div class="kl" id="keyList"></div>
@@ -635,9 +974,9 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Nome da Ferramenta:</label>
         <input class="ainput" id="cfg-name" value="PRIME CHEATS">
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Versão:</label>
-        <input class="ainput" id="cfg-ver" value="v4.0">
+        <input class="ainput" id="cfg-ver" value="v5.0">
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Link da Loja:</label>
-        <input class="ainput" id="cfg-shop" value="https://discord.gg/HNbQ6YbFVw">
+        <input class="ainput" id="cfg-shop" value="https://discord.gg/Pxfv8pCguD">
         <button class="abtn abtn-purple" onclick="saveConfig()">💾 SALVAR</button>
       </div>
       <div class="ac" style="border-color:rgba(255,215,0,.4)">
@@ -713,11 +1052,15 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
     <div class="page active" id="page-home">
       <div class="card" style="border-color:rgba(255,45,45,.4);background:linear-gradient(135deg,rgba(35,5,5,.9),rgba(10,24,37,.9))">
         <div class="card-title" style="color:var(--r)">💉 INJETAR NO FREE FIRE</div>
-        <button class="inject-btn" id="injectBtn" onclick="startInject()">
+        <div class="inject-btn-wrap">
+          <div class="inject-corner tl"></div><div class="inject-corner tr"></div>
+          <div class="inject-corner bl"></div><div class="inject-corner br"></div>
+          <button class="inject-btn" id="injectBtn" onclick="startInject()">
           <span class="inj-icon" id="injIcon">💉</span>
           <span id="injTxt">INJETAR</span>
           <div class="inj-sub" id="injSub">Clique para injetar no Free Fire</div>
         </button>
+        </div><!-- end inject-btn-wrap -->
         <div class="inj-prog" id="injProg">
           <div id="injSteps"></div>
           <div class="inj-bar-wrap"><div class="inj-bar" id="injBar"></div></div>
@@ -944,7 +1287,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 
 const ADMIN_KEY = 'PRIME-CHEATS-2025-ADM';
 const FB_URL    = 'https://nexus-cheats-default-rtdb.firebaseio.com';
-const SHOP_URL  = 'https://discord.gg/HNbQ6YbFVw';
+const SHOP_URL  = 'https://discord.gg/Pxfv8pCguD';
 const KEY_TYPES = {
   min:  { label:'1 MIN',   ms: 60*1000,              tabs:['home','headtrack','fps','sensi','tutorial'] },
   day:  { label:'1 DIA',   ms: 24*60*60*1000,        tabs:['home','headtrack','fps','sensi','tutorial'] },
