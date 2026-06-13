@@ -7,11 +7,11 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Nexus Cheats">
-  <meta name="application-name" content="Nexus Cheats">
-  <meta name="description" content="Nexus Cheats - Free Fire Tool v5.0">
+  <meta name="apple-mobile-web-app-title" content="PRIME CHEATS">
+  <meta name="application-name" content="PRIME CHEATS">
+  <meta name="description" content="PRIME CHEATS - Free Fire Tool v5.0">
   <link rel="manifest" href="manifest.json">
-<title>Nexus Cheats - FF Tool</title>
+<title>PRIME CHEATS - FF Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--r:#FF2D2D;--r2:#FF6B00;--gold:#FFD700;--cyan:#00FFD1;--purple:#A855F7;--green:#00FF88;--bg:#030608;--bg2:#08111A;--card:#0A1825;--border:#152535;--text:#C8E6FF;--dim:#3A6A8A;--nexus-purple:#9B30FF;--nexus-purple2:#C060FF}
@@ -254,7 +254,57 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 .profile-card{background:linear-gradient(135deg,rgba(155,48,255,.12),rgba(192,96,255,.06));border:1px solid rgba(155,48,255,.3);border-radius:12px;padding:12px;margin-bottom:8px;position:relative;overflow:hidden}
 .profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--nexus-purple),var(--nexus-purple2),transparent)}
 
-/* ── NEXUS BRAND ── */
+/* ── ADMIN REDESIGN ── */
+#adminScreen{background:linear-gradient(180deg,#0A0018 0%,#050010 60%,#030608 100%)}
+.admin-header{background:linear-gradient(135deg,rgba(155,48,255,.18),rgba(10,0,24,.99));border-bottom:1px solid rgba(155,48,255,.5);box-shadow:0 2px 30px rgba(155,48,255,.2),inset 0 -1px 0 rgba(192,96,255,.15);padding:14px 16px}
+.admin-logo{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;background:linear-gradient(135deg,#fff 10%,#C060FF 55%,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px}
+.admin-sub{font-size:8px;color:rgba(192,96,255,.5);letter-spacing:3px;margin-top:3px;font-family:'Orbitron',sans-serif}
+.admin-close{background:rgba(155,48,255,.15);border:1px solid rgba(155,48,255,.5);border-radius:8px;padding:7px 14px;color:var(--nexus-purple2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.admin-close:active{background:rgba(155,48,255,.3)}
+.admin-tabs{background:rgba(5,0,16,.9);border-bottom:1px solid rgba(155,48,255,.2)}
+.atab{color:rgba(155,48,255,.4);border-bottom:2px solid transparent}
+.atab.active{color:var(--nexus-purple2);border-bottom-color:var(--nexus-purple)}
+.admin-body{background:transparent}
+.ac{background:rgba(10,5,25,.85);border:1px solid rgba(155,48,255,.18);border-radius:14px;position:relative}
+.ac::before{background:linear-gradient(90deg,var(--nexus-purple),rgba(192,96,255,.4),transparent)}
+.ac::after{content:'';position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 18px 18px;border-color:transparent transparent rgba(155,48,255,.15) transparent;border-radius:0 0 14px 0}
+.ac-gold::before{background:linear-gradient(90deg,var(--nexus-purple),#C060FF,transparent)}
+.ac-cyan::before{background:linear-gradient(90deg,var(--cyan),rgba(0,170,255,.4),transparent)}
+.ac-purple::before{background:linear-gradient(90deg,var(--purple),rgba(124,58,237,.4),transparent)}
+.ac-green::before{background:linear-gradient(90deg,var(--green),rgba(0,204,102,.4),transparent)}
+.ac-red::before{background:linear-gradient(90deg,var(--r),rgba(255,107,0,.4),transparent)}
+.act{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--nexus-purple2);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.act::before{content:'';width:3px;height:12px;background:var(--nexus-purple);border-radius:2px;display:inline-block;box-shadow:0 0 8px rgba(155,48,255,.8)}
+.act.cyan{color:var(--cyan)}.act.cyan::before{background:var(--cyan);box-shadow:0 0 8px rgba(0,255,209,.6)}
+.act.purple{color:var(--purple)}.act.purple::before{background:var(--purple);box-shadow:0 0 8px rgba(168,85,247,.6)}
+.act.green{color:var(--green)}.act.green::before{background:var(--green);box-shadow:0 0 8px rgba(0,255,136,.6)}
+.act.red{color:var(--r)}.act.red::before{background:var(--r);box-shadow:0 0 8px rgba(255,45,45,.6)}
+.sv{background:rgba(5,0,16,.8);border:1px solid rgba(155,48,255,.2);border-radius:10px;padding:12px 8px;text-align:center;position:relative;overflow:hidden}
+.sv::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.5),transparent)}
+.sv-val{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:var(--nexus-purple2);display:block;text-shadow:0 0 15px rgba(155,48,255,.5)}
+.sv-val.cyan{color:var(--cyan);text-shadow:0 0 15px rgba(0,255,209,.4)}
+.sv-val.green{color:var(--green);text-shadow:0 0 15px rgba(0,255,136,.4)}
+.sv-val.red{color:var(--r);text-shadow:0 0 15px rgba(255,45,45,.4)}
+.sv-val.purple{color:var(--purple);text-shadow:0 0 15px rgba(168,85,247,.4)}
+.sv-lbl{font-size:8px;color:rgba(155,48,255,.5);letter-spacing:1px;font-family:'Orbitron',sans-serif;margin-top:3px;display:block}
+.abtn{border-radius:10px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;letter-spacing:2px;cursor:pointer;transition:all .15s;text-transform:uppercase;margin-bottom:8px;position:relative;overflow:hidden}
+.abtn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent);pointer-events:none}
+.abtn-gold{background:rgba(155,48,255,.12);border:1.5px solid rgba(155,48,255,.5);color:var(--nexus-purple2);box-shadow:0 0 12px rgba(155,48,255,.1)}
+.abtn-gold:active{background:rgba(155,48,255,.25);box-shadow:0 0 20px rgba(155,48,255,.3)}
+.abtn-red{background:rgba(255,45,45,.1);border:1.5px solid rgba(255,45,45,.5);color:var(--r);box-shadow:0 0 10px rgba(255,45,45,.1)}
+.abtn-cyan{background:rgba(0,255,209,.08);border:1.5px solid rgba(0,255,209,.4);color:var(--cyan)}
+.abtn-purple{background:rgba(168,85,247,.1);border:1.5px solid rgba(168,85,247,.4);color:var(--purple)}
+.abtn-green{background:rgba(0,255,136,.08);border:1.5px solid rgba(0,255,136,.4);color:var(--green)}
+.abtn-dim{background:rgba(21,37,53,.4);border:1px solid rgba(21,37,53,.8);color:var(--dim)}
+.ainput{background:rgba(5,0,16,.8);border:1.5px solid rgba(155,48,255,.25);border-radius:8px;color:var(--text);transition:all .2s}
+.ainput:focus{border-color:var(--nexus-purple);box-shadow:0 0 15px rgba(155,48,255,.2)}
+.ainput.cyan:focus{border-color:var(--cyan);box-shadow:0 0 15px rgba(0,255,209,.15)}
+.log-area{background:rgba(3,2,12,.8);border:1px solid rgba(155,48,255,.15)}
+.ki{background:rgba(5,0,16,.8);border:1px solid rgba(155,48,255,.15)}
+.ki:hover{border-color:rgba(155,48,255,.4)}
+.gen-result{background:rgba(5,0,16,.8);border:1px solid rgba(0,255,136,.3)}
+.admin-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(155,48,255,.15);border:1px solid rgba(155,48,255,.4);border-radius:20px;padding:3px 12px;font-family:'Orbitron',sans-serif;font-size:8px;color:var(--nexus-purple2);letter-spacing:2px;margin-bottom:12px}
+/* ── PRIME BRAND ── */
 .brand-tag{font-family:'Orbitron',sans-serif;font-size:7px;letter-spacing:3px;color:rgba(155,48,255,.4);text-align:center;padding:4px 0}
 .brand-divider{display:flex;align-items:center;gap:8px;margin:8px 0}
 .brand-divider::before,.brand-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.4),transparent)}
@@ -331,11 +381,11 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <!-- SPLASH -->
 <div id="splash">
   <div class="sp-marquee-wrap">
-    <div class="sp-marquee" style="color:rgba(155,48,255,.8)">NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS NEXUS&nbsp;CHEATS</div>
+    <div class="sp-marquee" style="color:rgba(155,48,255,.8)">PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS PRIME&nbsp;CHEATS</div>
   </div>
   <div class="sp-center">
     <div class="sp-skull" style="filter:drop-shadow(0 0 28px rgba(155,48,255,1))">💜</div>
-    <div class="sp-logo" style="background:linear-gradient(135deg,#fff 20%,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:8px">NEXUS</div>
+    <div class="sp-logo" style="background:linear-gradient(135deg,#fff 20%,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:8px">PRIME</div>
     <div style="font-family:Orbitron,sans-serif;font-size:18px;font-weight:900;background:linear-gradient(135deg,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:12px;margin-top:-6px">CHEATS</div>
     <div class="sp-ver" style="color:var(--nexus-purple2);letter-spacing:3px;margin-top:6px">FREE FIRE TOOL · v5.0</div>
     <div class="sp-bar-wrap"><div class="sp-bar" id="spBar"></div></div>
@@ -343,10 +393,10 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
     <div class="sp-msg" id="spMsg">Inicializando...</div>
   </div>
   <div style="position:absolute;bottom:40px;left:0;right:0;text-align:center;pointer-events:none">
-    <div style="font-family:Orbitron,sans-serif;font-size:7px;color:rgba(155,48,255,.25);letter-spacing:4px">NEXUS CHEATS · FREE FIRE TOOL v5.0</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:7px;color:rgba(155,48,255,.25);letter-spacing:4px">PRIME CHEATS · FREE FIRE TOOL v5.0</div>
   </div>
   <div class="sp-scroll-wrap">
-    <div class="sp-scroll" style="color:rgba(155,48,255,.6)">💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp; 💀 NEXUS CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp;</div>
+    <div class="sp-scroll" style="color:rgba(155,48,255,.6)">💀 PRIME CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp; 💀 PRIME CHEATS &nbsp;·&nbsp; HEADTRACKER &nbsp;·&nbsp; ANTI-BAN &nbsp;·&nbsp; FPS UNLOCK &nbsp;·&nbsp; ANTI-RECOIL &nbsp;·&nbsp; FREE FIRE TOOL &nbsp;·&nbsp;</div>
   </div>
 </div>
 
@@ -354,7 +404,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <div id="loginScreen" class="hidden">
   <div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
   <div style="text-align:center;margin-bottom:4px">
-    <div style="font-family:Orbitron,sans-serif;font-size:38px;font-weight:900;background:linear-gradient(135deg,#fff 10%,#C060FF 50%,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:6px;filter:drop-shadow(0 0 20px rgba(155,48,255,.5));line-height:1">NEXUS</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:38px;font-weight:900;background:linear-gradient(135deg,#fff 10%,#C060FF 50%,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:6px;filter:drop-shadow(0 0 20px rgba(155,48,255,.5));line-height:1">PRIME</div>
     <div style="font-family:Orbitron,sans-serif;font-size:22px;font-weight:900;background:linear-gradient(135deg,#C060FF,#9B30FF,#7B20EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:10px;margin-top:-4px">CHEATS</div>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px">
       <div style="height:1px;width:40px;background:linear-gradient(90deg,transparent,rgba(155,48,255,.6))"></div>
@@ -364,7 +414,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
   </div>
   <div class="login-box">
     <div style="text-align:center;margin-bottom:12px">
-        <span class="nexus-badge">💜 NEXUS CHEATS OFICIAL</span>
+        <span class="nexus-badge">💜 PRIME CHEATS OFICIAL</span>
       </div>
       <div class="login-title">🔑 INSERIR KEY DE ACESSO</div>
     <input class="key-input" id="keyInput" type="text" placeholder="Digite sua key aqui..." maxlength="36" oninput="this.value=this.value.toUpperCase()">
@@ -372,8 +422,8 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
     <div class="login-err" id="loginErr"></div>
     <div id="loginCloudInfo" style="font-size:9px;color:var(--dim);text-align:center;margin-top:4px;font-family:'Orbitron',sans-serif;letter-spacing:1px;min-height:14px"></div>
 
-    <div class="brand-divider"><span>NEXUS CHEATS OFICIAL</span></div>
-    <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" class="shop-btn" style="border-color:var(--nexus-purple);box-shadow:0 0 20px rgba(155,48,255,.3);background:linear-gradient(135deg,rgba(155,48,255,.15),rgba(192,96,255,.08))">💜 DISCORD OFICIAL — NEXUS CHEATS</a>
+    <div class="brand-divider"><span>PRIME CHEATS OFICIAL</span></div>
+    <a href="https://discord.gg/HNbQ6YbFVw" target="_blank" class="shop-btn" style="border-color:var(--nexus-purple);box-shadow:0 0 20px rgba(155,48,255,.3);background:linear-gradient(135deg,rgba(155,48,255,.15),rgba(192,96,255,.08))">💜 DISCORD OFICIAL — PRIME CHEATS</a>
     <div class="key-badges">
       <span class="kbadge min">1 MIN</span>
       <span class="kbadge day">1 DIA</span>
@@ -399,7 +449,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 
 <div id="expiredScreen">
   <div class="bg-layer"><div class="bg-grid"></div></div>
-  <div style="font-family:Orbitron,sans-serif;font-size:10px;color:rgba(155,48,255,.6);letter-spacing:3px;margin-bottom:10px">NEXUS CHEATS</div>
+  <div style="font-family:Orbitron,sans-serif;font-size:10px;color:rgba(155,48,255,.6);letter-spacing:3px;margin-bottom:10px">PRIME CHEATS</div>
   <div class="exp-icon">⏰</div>
   <div class="exp-title">KEY EXPIRADA</div>
   <div class="exp-msg">Sua key de acesso expirou. Entre em contato para renovar.</div>
@@ -422,68 +472,66 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <div id="adminScreen">
   <div class="admin-header">
     <div>
-      <div class="admin-logo">👑 PAINEL DESENVOLVEDOR</div>
-      <div class="admin-sub">NEXUS CHEATS · ADMIN v4.0 · NEXUS-ADMIN-2024</div>
+        <div class="admin-logo">PRIME CONTROL</div>
+        <div class="admin-sub">ACESSO RESTRITO · DEV PANEL v4.0</div>
     </div>
     <button class="admin-close" onclick="closeAdmin()">✕ SAIR</button>
   </div>
   <div class="admin-tabs">
-    <button class="atab active" onclick="showATab('dashboard',this)">📊 DASHBOARD</button>
+    <button class="atab active" onclick="showATab('dashboard',this)">⚡ DASH</button>
     <button class="atab" onclick="showATab('keys',this)">🔑 KEYS</button>
-    <button class="atab" onclick="showATab('servidor',this)">🌐 SERVIDOR</button>
+    <button class="atab" onclick="showATab('servidor',this)">🌐 SERVER</button>
     <button class="atab" onclick="showATab('logs',this)">📋 LOGS</button>
-    <button class="atab" onclick="showATab('config',this)">🔧 CONFIG</button>
+    <button class="atab" onclick="showATab('config',this)">⚙️ CONFIG</button>
   </div>
   <div class="admin-body">
     <div class="apage active" id="apage-dashboard">
       <div class="ac ac-gold">
-        <div class="act">📊 VISÃO GERAL DO SISTEMA</div>
-        <div class="adst" style="margin-bottom:10px">
-          <div class="sv"><span class="sv-val" id="adTotal">0</span><span class="sv-lbl">Keys Geradas</span></div>
-          <div class="sv"><span class="sv-val green" id="adActive">0</span><span class="sv-lbl">Ativas</span></div>
-          <div class="sv"><span class="sv-val red" id="adExpired">0</span><span class="sv-lbl">Expiradas</span></div>
+        <div class="act">KEYS — VISÃO GERAL</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+          <div class="sv"><span class="sv-val" id="adTotal">0</span><span class="sv-lbl">TOTAL</span></div>
+          <div class="sv"><span class="sv-val green" id="adActive">0</span><span class="sv-lbl">ATIVAS</span></div>
+          <div class="sv"><span class="sv-val red" id="adExpired">0</span><span class="sv-lbl">EXPIRADAS</span></div>
         </div>
-        <div class="adst">
-          <div class="sv"><span class="sv-val cyan" id="adPending">0</span><span class="sv-lbl">🟢 Online</span></div>
-          <div class="sv"><span class="sv-val purple" id="adSensiKeys">0</span><span class="sv-lbl">⏳ Não Usadas</span></div>
-          <div class="sv"><span class="sv-val" id="adUsed">0</span><span class="sv-lbl">Usadas</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="sv"><span class="sv-val cyan" id="adPending">0</span><span class="sv-lbl">ONLINE</span></div>
+          <div class="sv"><span class="sv-val purple" id="adSensiKeys">0</span><span class="sv-lbl">LIVRES</span></div>
+          <div class="sv"><span class="sv-val" id="adUsed">0</span><span class="sv-lbl">USADAS</span></div>
         </div>
       </div>
       <div class="ac ac-cyan">
-        <div class="act cyan">🌐 STATUS DO SERVIDOR</div>
-        <div class="adst6">
-          <div class="sv"><span class="sv-val green" id="srvStatus">ONLINE</span><span class="sv-lbl">Status</span></div>
-          <div class="sv"><span class="sv-val cyan" id="srvPing">--</span><span class="sv-lbl">Ping ms</span></div>
-          <div class="sv"><span class="sv-val" id="srvUptime">--</span><span class="sv-lbl">Uptime</span></div>
+        <div class="act cyan">SERVIDOR — STATUS</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+          <div class="sv"><span class="sv-val green" id="srvStatus">ONLINE</span><span class="sv-lbl">STATUS</span></div>
+          <div class="sv"><span class="sv-val cyan" id="srvPing">--</span><span class="sv-lbl">PING ms</span></div>
+          <div class="sv"><span class="sv-val" id="srvUptime">--</span><span class="sv-lbl">UPTIME</span></div>
         </div>
-        <div style="margin-top:10px">
-          <button class="abtn abtn-cyan" onclick="testServer()">🔄 TESTAR CONEXÃO</button>
-          <button class="abtn abtn-dim" onclick="restartServer()">🔁 REINICIAR SERVIÇO</button>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="abtn abtn-cyan" style="margin:0" onclick="testServer()">🔄 TESTAR</button>
+          <button class="abtn abtn-dim" style="margin:0" onclick="restartServer()">🔁 REINICIAR</button>
         </div>
       </div>
-      <!-- MOVIMENTAÇÃO DA SEMANA -->
-      <div class="ac" style="border-color:var(--gold)">
-        <div class="act" style="color:var(--gold)">📈 MOVIMENTAÇÃO — ÚLTIMOS 7 DIAS</div>
+      <div class="ac">
+        <div class="act">MOVIMENTAÇÃO — 7 DIAS</div>
         <div id="movWeek" style="padding:4px 0;min-height:80px"></div>
       </div>
 
-      <!-- EVENTOS RECENTES -->
-      <div class="ac" style="border-color:var(--purple)">
-        <div class="act" style="color:var(--purple)">🔔 EVENTOS RECENTES</div>
-        <div id="eventsArea" class="log-area" style="max-height:160px"></div>
+      <div class="ac">
+        <div class="act purple">EVENTOS RECENTES</div>
+        <div id="eventsArea" class="log-area" style="max-height:150px"></div>
       </div>
 
       <div class="ac ac-green">
-        <div class="act green">⚡ AÇÕES RÁPIDAS</div>
+        <div class="act green">AÇÕES RÁPIDAS</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <button class="abtn abtn-gold" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('day')">⚡ KEY 1 DIA</button>
-          <button class="abtn abtn-purple" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('7d')">⚡ KEY 7 DIAS</button>
-          <button class="abtn abtn-red" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
-          <button class="abtn abtn-cyan" onclick="showATab('logs',document.querySelectorAll('.atab')[3])">📋 VER LOGS</button>
+          <button class="abtn abtn-gold" style="margin:0" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('day')">⚡ KEY 1 DIA</button>
+          <button class="abtn abtn-purple" style="margin:0" onclick="showATab('keys',document.querySelectorAll('.atab')[1]);genKeyQuick('7d')">⚡ KEY 7 DIAS</button>
+          <button class="abtn abtn-red" style="margin:0" onclick="purgeExpired()">🗑 LIMPAR EXPIRADAS</button>
+          <button class="abtn abtn-cyan" style="margin:0" onclick="showATab('logs',document.querySelectorAll('.atab')[3])">📋 VER LOGS</button>
         </div>
       </div>
       <div class="ac ac-red">
-        <div class="act red">📢 ÚLTIMAS ATIVIDADES</div>
+        <div class="act red">ATIVIDADE RECENTE</div>
         <div class="log-area" id="dashLogs" style="max-height:180px"></div>
       </div>
     </div>
@@ -585,7 +633,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
       <div class="ac ac-purple">
         <div class="act purple">🔧 CONFIGURAÇÕES GERAIS</div>
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Nome da Ferramenta:</label>
-        <input class="ainput" id="cfg-name" value="NEXUS CHEATS">
+        <input class="ainput" id="cfg-name" value="PRIME CHEATS">
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Versão:</label>
         <input class="ainput" id="cfg-ver" value="v4.0">
         <label style="font-size:11px;color:var(--dim);margin-bottom:6px;display:block">Link da Loja:</label>
@@ -634,7 +682,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 <!-- MAIN APP -->
 <div id="mainApp" style="display:none">
   <div style="position:fixed;bottom:72px;right:10px;z-index:100;pointer-events:none">
-    <div style="font-family:Orbitron,sans-serif;font-size:6px;color:rgba(155,48,255,.3);letter-spacing:2px;writing-mode:vertical-rl;transform:rotate(180deg)">NEXUS CHEATS</div>
+    <div style="font-family:Orbitron,sans-serif;font-size:6px;color:rgba(155,48,255,.3);letter-spacing:2px;writing-mode:vertical-rl;transform:rotate(180deg)">PRIME CHEATS</div>
   </div>
   <div class="key-bar-strip" id="keyBarStrip">
     <span id="keyBarLabel">⏱ KEY</span>
@@ -643,7 +691,7 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
   </div>
   <div class="header">
     <div class="h-logo">
-      <div style="font-family:Orbitron,sans-serif;font-size:14px;font-weight:900;background:linear-gradient(135deg,#fff,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px">NEXUS <span style="font-size:10px">CHEATS</span></div>
+      <div style="font-family:Orbitron,sans-serif;font-size:14px;font-weight:900;background:linear-gradient(135deg,#fff,#C060FF,#9B30FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px">PRIME <span style="font-size:10px">CHEATS</span></div>
     </div>
     <div class="h-right">
       <div class="h-key-info" id="hKeyInfo"></div>
@@ -890,11 +938,11 @@ input[type=range].cyan-thumb::-webkit-slider-thumb{background:linear-gradient(13
 
 <script>
 // ═══════════════════════════════════════════════════════════════
-// NEXUS CHEATS v5.0 — ENGINE COMPLETA
+// PRIME CHEATS v5.0 — ENGINE COMPLETA
 // Firebase Realtime Database — persistência real, sem CORS
 // ═══════════════════════════════════════════════════════════════
 
-const ADMIN_KEY = 'NEXUS-ADMIN-2024';
+const ADMIN_KEY = 'PRIME-CHEATS-2025-ADM';
 const FB_URL    = 'https://nexus-cheats-default-rtdb.firebaseio.com';
 const SHOP_URL  = 'https://discord.gg/HNbQ6YbFVw';
 const KEY_TYPES = {
@@ -963,16 +1011,16 @@ async function initDB() {
         await fbSet('db', DB);
       }
       saveLocal(); // cacheia localmente para fallback
-      console.log('[NEXUS] Firebase OK (tentativa '+attempt+') — Keys:', Object.keys(DB.keys).length);
+      console.log('[PRIME] Firebase OK (tentativa '+attempt+') — Keys:', Object.keys(DB.keys).length);
       dbReady = true;
       return;
     } catch(e) {
-      console.warn('[NEXUS] initDB tentativa '+attempt+' falhou:', e.message);
+      console.warn('[PRIME] initDB tentativa '+attempt+' falhou:', e.message);
       if (attempt < 3) await new Promise(r => setTimeout(r, 800 * attempt));
     }
   }
   // Todas tentativas falharam — usa cache local
-  console.warn('[NEXUS] Firebase indisponivel — usando cache local');
+  console.warn('[PRIME] Firebase indisponivel — usando cache local');
   loadLocal();
   dbReady = true;
 }
@@ -1008,14 +1056,14 @@ async function _doSave() {
   for (let i = 1; i <= 4; i++) {
     try {
       await fbSet('db', payload);
-      console.log('[NEXUS] Firebase salvo — keys:', Object.keys(DB.keys).length);
+      console.log('[PRIME] Firebase salvo — keys:', Object.keys(DB.keys).length);
       return; // sucesso
     } catch(e) {
-      console.warn('[NEXUS] save tentativa ' + i + ' falhou:', e.message);
+      console.warn('[PRIME] save tentativa ' + i + ' falhou:', e.message);
       if (i < 4) await new Promise(r => setTimeout(r, 1000 * i));
     }
   }
-  console.error('[NEXUS] save FALHOU após 4 tentativas — dados no localStorage');
+  console.error('[PRIME] save FALHOU após 4 tentativas — dados no localStorage');
 }
 
 // saveDB e saveKeys são aliases do mesmo save com debounce
@@ -1047,11 +1095,11 @@ async function syncDB() {
         if (Array.isArray(data.logs))   DB.logs   = data.logs;
         if (Array.isArray(data.events)) DB.events = data.events;
         saveLocal();
-        console.log('[NEXUS] Sync OK — keys:', Object.keys(DB.keys).length);
+        console.log('[PRIME] Sync OK — keys:', Object.keys(DB.keys).length);
       }
       return { ok:true };
     } catch(e) {
-      console.warn('[NEXUS] sync tentativa ' + i + ':', e.message);
+      console.warn('[PRIME] sync tentativa ' + i + ':', e.message);
       if (i < 3) await new Promise(r => setTimeout(r, 500 * i));
     }
   }
@@ -1430,7 +1478,7 @@ document.addEventListener('keydown', e => { if (e.key==='Enter') tryLogin(); });
 // ── VISIBILITY CHANGE — reconecta quando volta do segundo plano ──
 document.addEventListener('visibilitychange', async function() {
   if (document.visibilityState !== 'visible') return;
-  console.log('[NEXUS] Voltou do segundo plano — re-sincronizando...');
+  console.log('[PRIME] Voltou do segundo plano — re-sincronizando...');
 
   // Re-sincroniza Firebase
   await syncDB();
@@ -1439,7 +1487,7 @@ document.addEventListener('visibilitychange', async function() {
   if (currentSession) {
     const k = DB.keys[currentSession.code];
     if (!k || Date.now() > k.expires) {
-      console.log('[NEXUS] Sessão expirou no segundo plano');
+      console.log('[PRIME] Sessão expirou no segundo plano');
       expireSession();
       return;
     }
@@ -1449,7 +1497,7 @@ document.addEventListener('visibilitychange', async function() {
     // Reinicia watchdog e keybar (podem ter parado)
     startWatchdog();
     startKeyBar();
-    console.log('[NEXUS] Sessão restaurada. Expira em:', formatTime(k.expires - Date.now()));
+    console.log('[PRIME] Sessão restaurada. Expira em:', formatTime(k.expires - Date.now()));
   }
 });
 
@@ -1983,7 +2031,7 @@ function startInject() {
       setTimeout(() => notif('🎯','HEADTRACKER ON','Mira na cabeça ativada','cyan',4000), 700);
       setTimeout(() => notif('⚡','FREE FIRE',selFPS+' FPS!','gold',3500), 1600);
       setTimeout(() => notif('🛡','ANTI-BAN','Shield operacional','green',3000), 2800);
-      toast('✅ Nexus Cheats injetado!');
+      toast('✅ PRIME CHEATS injetado!');
       addLog('ok', 'Injeção concluída | FPS: '+selFPS);
       srvReqs++;
       startFPSMeter(); startPing(); startKillTracker();
@@ -2122,7 +2170,7 @@ const splashMsgs = [
   });
 })();
 
-addLog('info', 'Nexus Cheats v5.0 iniciado');
+addLog('info', 'PRIME CHEATS v5.0 iniciado');
 
 // ═══════════════════════════════════════════════════════════════
 // PARTÍCULAS DE FUNDO
@@ -2454,7 +2502,7 @@ async function debugInfo() {
   if (errEl) errEl.textContent = msg;
 
   // Mostra no console tb
-  console.log('[NEXUS DEBUG]', {fbStatus, fbKeys, memKeys, lsKeys, sess, dbReady});
+  console.log('[PRIME DEBUG]', {fbStatus, fbKeys, memKeys, lsKeys, sess, dbReady});
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -2619,8 +2667,8 @@ function initSensiSliders() {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('[NEXUS] SW registrado:', reg.scope))
-      .catch(err => console.log('[NEXUS] SW erro:', err));
+      .then(reg => console.log('[PRIME] SW registrado:', reg.scope))
+      .catch(err => console.log('[PRIME] SW erro:', err));
   });
 }
 
@@ -2641,7 +2689,7 @@ function showInstallBanner() {
   const banner = document.createElement('div');
   banner.id = 'installBanner';
   banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,rgba(10,24,37,.98),rgba(155,48,255,.15));border-top:1px solid rgba(155,48,255,.4);padding:12px 16px;z-index:9999;display:flex;align-items:center;gap:10px;max-width:480px;margin:0 auto';
-  banner.innerHTML = '<div style="flex:1"><div style="font-family:Orbitron,sans-serif;font-size:11px;color:#C060FF;font-weight:700;letter-spacing:2px">📲 INSTALAR APP</div><div style="font-size:10px;color:#3A6A8A;margin-top:2px">Nexus Cheats como app</div></div><button onclick="installApp()" style="padding:8px 14px;background:rgba(155,48,255,.3);border:1px solid rgba(155,48,255,.6);border-radius:8px;color:#C060FF;font-family:Orbitron,sans-serif;font-size:9px;cursor:pointer;font-weight:700">INSTALAR</button><button onclick="document.getElementById(\'installBanner\').remove()" style="padding:8px;background:none;border:none;color:#3A6A8A;cursor:pointer;font-size:14px">✕</button>';
+  banner.innerHTML = '<div style="flex:1"><div style="font-family:Orbitron,sans-serif;font-size:11px;color:#C060FF;font-weight:700;letter-spacing:2px">📲 INSTALAR APP</div><div style="font-size:10px;color:#3A6A8A;margin-top:2px">PRIME CHEATS como app</div></div><button onclick="installApp()" style="padding:8px 14px;background:rgba(155,48,255,.3);border:1px solid rgba(155,48,255,.6);border-radius:8px;color:#C060FF;font-family:Orbitron,sans-serif;font-size:9px;cursor:pointer;font-weight:700">INSTALAR</button><button onclick="document.getElementById(\'installBanner\').remove()" style="padding:8px;background:none;border:none;color:#3A6A8A;cursor:pointer;font-size:14px">✕</button>';
   document.body.appendChild(banner);
 }
 
@@ -2649,7 +2697,7 @@ async function installApp() {
   if (!deferredPrompt) return;
   deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
-  console.log('[NEXUS] Install:', outcome);
+  console.log('[PRIME] Install:', outcome);
   deferredPrompt = null;
   const b = document.getElementById('installBanner');
   if (b) b.remove();
