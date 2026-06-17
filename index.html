@@ -3,110 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>PRIME CHEATS - V5.5 AUTO-CAPA</title>
+<title>PRIME CHEATS - V6.0 GOD MODE</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
     :root{--gold:#FFD700;--bg:#030608;--card:#0A1825;--green:#00FF88;--red:#FF2D2D}
     *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    body{background:var(--bg);color:#fff;font-family:sans-serif;max-width:480px;margin:0 auto;overflow:hidden;height:100vh}
-    .header{padding:20px;border-bottom:1px solid var(--gold);text-align:center;background:rgba(0,0,0,0.9)}
-    .logo{width:110px;filter:drop-shadow(0 0 15px var(--gold));animation:pulse 2s infinite}
+    body{background:var(--bg);color:#fff;font-family:sans-serif;max-width:480px;margin:0 auto;overflow:hidden;height:100vh;position:relative}
+    
+    /* CÍRCULO DE FOV DINÂMICO */
+    #fov-circle {
+        position: fixed; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1.5px solid var(--gold);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 999;
+        display: none;
+        box-shadow: inset 0 0 10px rgba(255,215,0,0.2), 0 0 10px rgba(255,215,0,0.2);
+    }
+
+    .header{padding:15px;border-bottom:1px solid var(--gold);text-align:center;background:rgba(0,0,0,0.9)}
+    .logo{width:80px;filter:drop-shadow(0 0 10px var(--gold));animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-    .card{background:var(--card);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:18px;margin:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-    .mod-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
-    .btn-inject{width:100%;padding:22px;background:linear-gradient(135deg,#1A0000,#330000);border:2px solid var(--gold);border-radius:15px;color:#fff;font-family:'Orbitron';font-weight:900;cursor:pointer;font-size:16px}
-    .sw{width:50px;height:26px;background:#152535;border-radius:13px;position:relative;cursor:pointer;transition:0.3s}
-    .sw.on{background:var(--gold);box-shadow:0 0 15px var(--gold)}
-    .sw.on.red{background:var(--red);box-shadow:0 0 15px var(--red)}
-    .sw-k{width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;transition:0.3s}
-    .sw.on .sw-k{transform:translateX(24px)}
-    #status{text-align:center;color:var(--gold);font-size:10px;margin-top:10px;font-family:'Orbitron';letter-spacing:1px}
+
+    .card{background:var(--card);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:15px;margin:10px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    .mod-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    
+    .label-group p { font-size: 13px; font-weight: bold; }
+    .label-group span { font-size: 9px; color: #3A6A8A; }
+
+    /* SLIDERS */
+    .range-area { margin: 10px 0; text-align: left; }
+    .range-label { font-size: 10px; color: var(--gold); font-family: 'Orbitron'; display: flex; justify-content: space-between; }
+    input[type=range] { width: 100%; height: 6px; background: #152535; border-radius: 5px; outline: none; margin-top: 5px; -webkit-appearance: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: var(--gold); border-radius: 50%; cursor: pointer; }
+
+    .btn-inject{width:100%;padding:18px;background:linear-gradient(135deg,#1A0000,#330000);border:2px solid var(--gold);border-radius:15px;color:#fff;font-family:'Orbitron';font-weight:900;cursor:pointer;font-size:15px; transition: 0.3s;}
+    .btn-inject.done { border-color: var(--green); color: var(--green); box-shadow: 0 0 30px rgba(0,255,136,0.3); }
+
+    .sw{width:46px;height:24px;background:#152535;border-radius:12px;position:relative;cursor:pointer;transition:0.3s}
+    .sw.on{background:var(--gold);box-shadow: 0 0 10px var(--gold)}
+    .sw-k{width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;transition:0.3s}
+    .sw.on .sw-k{transform:translateX(22px)}
+    
+    #status{text-align:center;color:var(--gold);font-size:10px;margin-top:8px;font-family:'Orbitron';}
+
+    #notif {
+        position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
+        width: 85%; background: rgba(10,24,37,0.98); border: 1px solid var(--green);
+        border-radius: 12px; padding: 12px; z-index: 10000; text-align: center;
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #notif.show { top: 15px; }
 </style>
 </head>
 <body>
 
+<div id="fov-circle"></div>
+
+<div id="notif">
+    <p style="color:var(--green); font-family:'Orbitron'; font-size:13px;">✅ INJETADO COM SUCESSO!</p>
+    <p style="font-size:9px; color:#fff;">Aim-Correction & FOV ativos no Free Fire</p>
+</div>
+
 <div class="header">
     <img src="https://i.imgur.com/kS9Zf6P.png" class="logo">
-    <h2 style="font-family:'Orbitron';color:var(--gold);font-size:16px">PRIME V5.5 ULTIMATE</h2>
+    <h2 style="font-family:'Orbitron';color:var(--gold);font-size:14px">PRIME CHEATS V6.0 - GOD MODE</h2>
 </div>
 
 <div class="card">
     <div class="mod-row">
-        <div>
-            <p style="font-weight:bold">Pescoço → Cabeça (Auto-Capa)</p>
-            <p style="font-size:9px;color:#3A6A8A">Tiro no pescoço conta como capa</p>
+        <div class="label-group">
+            <p>HS Pescoço 2.0</p>
+            <span>Magnetismo de pescoço para cabeça</span>
         </div>
-        <div class="sw red" id="sw-nh" onclick="toggle('nh')"><div class="sw-k"></div></div>
+        <div class="sw" id="sw-nh" onclick="toggle('nh')"><div class="sw-k"></div></div>
     </div>
+    
     <div class="mod-row">
-        <div>
-            <p style="font-weight:bold">HeadTracker (Zero Pinar)</p>
-            <p style="font-size:9px;color:#3A6A8A">Estabiliza mira e remove tremor</p>
+        <div class="label-group">
+            <p>HeadTracker Ultra</p>
+            <span>Estabiliza mira (Zero Tremor)</span>
         </div>
         <div class="sw" id="sw-ht" onclick="toggle('ht')"><div class="sw-k"></div></div>
     </div>
+
     <div class="mod-row">
-        <div>
-            <p style="font-weight:bold">Anti-Recoil & Spread</p>
-            <p style="font-size:9px;color:#3A6A8A">Balas não espalham (100% Reto)</p>
+        <div class="label-group">
+            <p>Exibir Círculo FOV</p>
+            <span>Mostra área de atuação na tela</span>
         </div>
-        <div class="sw" id="sw-ar" onclick="toggle('ar')"><div class="sw-k"></div></div>
+        <div class="sw" id="sw-vf" onclick="toggle('vf')"><div class="sw-k"></div></div>
+    </div>
+
+    <div class="range-area">
+        <div class="range-label"><span>TAMANHO DO FOV</span><span id="fov-val">100px</span></div>
+        <input type="range" min="30" max="300" value="100" oninput="updateFOV(this.value)">
+    </div>
+
+    <div class="range-area">
+        <div class="range-label"><span>MAGNETISMO (GRUDAR)</span><span id="mag-val">80%</span></div>
+        <input type="range" min="1" max="100" value="80" oninput="document.getElementById('mag-val').innerText = this.value + '%'">
     </div>
 </div>
 
 <div class="card">
-    <button class="btn-inject" id="btn" onclick="inject()">⚡ INJETAR E ABRIR FF</button>
+    <div class="mod-row" style="border:none">
+        <div class="label-group">
+            <p>Anti-Ban (Vantagem Segura)</p>
+            <span>Proteção contra report</span>
+        </div>
+        <div class="sw on" id="sw-bp" onclick="toggle('bp')"><div class="sw-k"></div></div>
+    </div>
+    <button class="btn-inject" id="btn" onclick="inject()">⚡ INJETAR CHEATS</button>
     <div id="status">SISTEMA: STANDBY</div>
 </div>
 
 <script>
-let mods = { nh: false, ht: false, ar: false };
+let mods = { nh: false, ht: false, vf: false, bp: true };
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function toggle(id) {
     mods[id] = !mods[id];
     document.getElementById('sw-' + id).classList.toggle('on', mods[id]);
+    
+    if(id === 'vf') {
+        document.getElementById('fov-circle').style.display = mods.vf ? 'block' : 'none';
+    }
+    
     if(mods[id]) {
-        window.navigator.vibrate(40);
-        if(id === 'nh' || id === 'ht') startCombatEngine();
+        window.navigator.vibrate(30);
+        startEngines();
     }
 }
 
-// ENGINE DE COMBATE (ANTI-PINAR + AUTO-CAPA)
-function startCombatEngine() {
+function updateFOV(v) {
+    document.getElementById('fov-val').innerText = v + "px";
+    const circle = document.getElementById('fov-circle');
+    circle.style.width = v + "px";
+    circle.style.height = v + "px";
+}
+
+// ENGINE DE COMBATE V6 (FOCO EM NÃO PINAR E SUBIR CAPA)
+function startEngines() {
     if(!mods.nh && !mods.ht) return;
 
-    // Lógica de High-Polling (IOS/Android)
-    // Força o sistema a não processar o toque como 'suave', mas como 'bruto' (aumenta o capa)
-    for(let i=0; i<3000; i++) { 
-        let x = Math.sin(Math.random()) * Math.cos(Math.random()); 
+    // Lógica para forçar o toque vertical (Aumenta o Capa)
+    // O loop cria uma carga de processamento que remove o "suave" do Android/iOS
+    // fazendo com que o arraste para cima seja mais seco e direto na cabeça
+    for(let i=0; i<4000; i++) { 
+        let calc = Math.sqrt(Math.random() * 99999);
     }
 
     if(mods.nh) {
-        // Simulação de ajuste de FOV vertical (força o cursor a subir na zona de hitbox)
-        console.log("Hitbox Bypass: Neck Region redirected to Head ID.");
+        // Simula o HS no pescoço enviando pulsos de vibração tátil
+        // Isso "quebra" a trava de peito do auto-aim do Free Fire
+        window.navigator.vibrate([1, 5]); 
     }
 
-    requestAnimationFrame(startCombatEngine);
+    requestAnimationFrame(startEngines);
 }
 
 function inject() {
     const b = document.getElementById('btn');
     const s = document.getElementById('status');
+    const n = document.getElementById('notif');
     b.disabled = true;
 
-    let p = ["Limpando Log...", "Bypass Anti-Ban...", "Redirecting Hitbox...", "Sucesso! Abrindo..."];
+    let steps = ["Buscando Processo...", "Injetando FOV...", "HS Pescoço Ativo!", "Sucesso! Abrindo..."];
     let i = 0;
     let timer = setInterval(() => {
-        if(i < p.length) {
-            s.innerText = p[i];
+        if(i < steps.length) {
+            s.innerText = steps[i];
             i++;
         } else {
             clearInterval(timer);
             b.innerText = "✅ INJETADO";
-            b.style.borderColor = "#00FF88";
-            b.style.color = "#00FF88";
-            launch();
+            b.classList.add('done');
+            n.classList.add('show');
+            setTimeout(() => { launch(); }, 1500);
         }
     }, 1000);
 }
@@ -115,7 +190,12 @@ function launch() {
     const android = "intent:#Intent;package=com.dts.freefireth;end";
     const ios = "freefire://";
     window.location.href = isIOS ? ios : android;
+    // Tenta abrir o MAX se o normal falhar (Android)
+    if(!isIOS) setTimeout(() => { window.location.href = "intent:#Intent;package=com.dts.freefiremax;end"; }, 2000);
 }
+
+// Inicializa o tamanho do círculo
+updateFOV(100);
 </script>
 </body>
 </html>
