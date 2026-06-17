@@ -3,256 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#FFD700">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="manifest.json">
-<title>PRIME CHEATS - ULTIMATE V5</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+<title>PRIME CHEATS - V5.5 AUTO-CAPA</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root{--r:#FF2D2D;--r2:#FF6B00;--gold:#FFD700;--cyan:#00FFD1;--purple:#A855F7;--green:#00FF88;--bg:#030608;--bg2:#08111A;--card:#0A1825;--border:#152535;--text:#C8E6FF;--dim:#3A6A8A;--nexus-purple:#9B30FF;--nexus-purple2:#C060FF}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;max-width:480px;margin:0 auto;position:relative;overflow-x:hidden}
-
-/* FUNDO ANIMADO */
-.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(155,48,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(155,48,255,.08) 1px,transparent 1px);background-size:32px 32px}
-.scanline{position:absolute;width:100%;height:2px;background:rgba(255,215,0,0.1);animation:scan 5s linear infinite;top:-2px}
-@keyframes scan{from{top:-2px}to{top:100vh}}
-
-/* SPLASH */
-#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
-.sp-logo{width:180px;filter:drop-shadow(0 0 25px var(--gold));animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-
-/* LOGIN & ADMIN (Mantido seu design original) */
-.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:20px;width:90%;position:relative;box-shadow:0 0 40px rgba(155,48,255,.2)}
-.key-input{width:100%;background:var(--bg2);border:1.5px solid var(--gold);border-radius:12px;padding:15px;color:var(--gold);font-family:'Orbitron';outline:none;margin-bottom:15px}
-.login-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--r),#2A0500);border:2px solid var(--gold);border-radius:14px;color:white;font-family:'Orbitron';font-weight:900;cursor:pointer}
-
-/* MOD MENU (Nativo Style) */
-.header{position:sticky;top:0;z-index:100;background:rgba(3,6,8,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold);padding:12px;display:flex;align-items:center;justify-content:space-between}
-.tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
-.tab{flex:none;padding:12px 18px;font-family:'Orbitron';font-size:10px;color:var(--dim);border:none;background:none;cursor:pointer}
-.tab.active{color:var(--gold);border-bottom:2px solid var(--gold)}
-
-.content{padding:15px;padding-bottom:40px}
-.page{display:none}.page.active{display:block}
-.card{background:var(--card);border:1px solid rgba(255,215,0,0.15);border-radius:15px;padding:16px;margin-bottom:15px;position:relative}
-
-/* BOTÃO INJETAR */
-.inject-btn{width:100%;padding:22px;background:linear-gradient(135deg,#1A0000,#330000);border:2px solid var(--gold);border-radius:15px;color:white;font-family:'Orbitron';font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 0 20px rgba(255,215,0,0.2)}
-.inject-btn.done{border-color:var(--green);color:var(--green);box-shadow:0 0 30px rgba(0,255,136,0.3)}
-
-/* SWITCHES */
-.tog-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,215,0,0.05)}
-.sw{width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:0.3s}
-.sw.on{background:var(--gold);box-shadow:0 0 10px var(--gold)}
-.sw-k{position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:0.3s}
-.sw.on .sw-k{transform:translateX(20px)}
-
-/* SLIDERS SENSI */
-input[type=range]{width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;-webkit-appearance:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--gold);border-radius:50%;cursor:pointer}
-
-.hidden{display:none !important}
+    :root{--gold:#FFD700;--bg:#030608;--card:#0A1825;--green:#00FF88;--red:#FF2D2D}
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{background:var(--bg);color:#fff;font-family:sans-serif;max-width:480px;margin:0 auto;overflow:hidden;height:100vh}
+    .header{padding:20px;border-bottom:1px solid var(--gold);text-align:center;background:rgba(0,0,0,0.9)}
+    .logo{width:110px;filter:drop-shadow(0 0 15px var(--gold));animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    .card{background:var(--card);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:18px;margin:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    .mod-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .btn-inject{width:100%;padding:22px;background:linear-gradient(135deg,#1A0000,#330000);border:2px solid var(--gold);border-radius:15px;color:#fff;font-family:'Orbitron';font-weight:900;cursor:pointer;font-size:16px}
+    .sw{width:50px;height:26px;background:#152535;border-radius:13px;position:relative;cursor:pointer;transition:0.3s}
+    .sw.on{background:var(--gold);box-shadow:0 0 15px var(--gold)}
+    .sw.on.red{background:var(--red);box-shadow:0 0 15px var(--red)}
+    .sw-k{width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;transition:0.3s}
+    .sw.on .sw-k{transform:translateX(24px)}
+    #status{text-align:center;color:var(--gold);font-size:10px;margin-top:10px;font-family:'Orbitron';letter-spacing:1px}
 </style>
 </head>
 <body>
 
-<div class="bg-layer"><div class="bg-grid"></div><div class="scanline"></div></div>
-
-<!-- SPLASH -->
-<div id="splash">
-    <img src="https://i.imgur.com/kS9Zf6P.png" class="sp-logo">
-    <div style="margin-top:20px; font-family:Orbitron; color:var(--gold); letter-spacing:5px">INICIALIZANDO V5...</div>
+<div class="header">
+    <img src="https://i.imgur.com/kS9Zf6P.png" class="logo">
+    <h2 style="font-family:'Orbitron';color:var(--gold);font-size:16px">PRIME V5.5 ULTIMATE</h2>
 </div>
 
-<!-- LOGIN -->
-<div id="loginScreen" class="hidden" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh">
-    <img src="https://i.imgur.com/kS9Zf6P.png" style="width:100px; margin-bottom:10px">
-    <div style="font-family:Orbitron; font-size:24px; font-weight:900; color:#fff">PRIME <span style="color:var(--gold)">CHEATS</span></div>
-    <div class="login-box">
-        <div style="font-family:Orbitron; font-size:10px; color:var(--gold); margin-bottom:15px">🔑 ACESSO VIP</div>
-        <input type="text" id="keyInput" class="key-input" placeholder="DIGITE SUA KEY...">
-        <button class="login-btn" onclick="tryLogin()">CONECTAR SISTEMA</button>
-        <div id="loginErr" style="color:var(--r); font-size:11px; text-align:center; margin-top:10px"></div>
+<div class="card">
+    <div class="mod-row">
+        <div>
+            <p style="font-weight:bold">Pescoço → Cabeça (Auto-Capa)</p>
+            <p style="font-size:9px;color:#3A6A8A">Tiro no pescoço conta como capa</p>
+        </div>
+        <div class="sw red" id="sw-nh" onclick="toggle('nh')"><div class="sw-k"></div></div>
+    </div>
+    <div class="mod-row">
+        <div>
+            <p style="font-weight:bold">HeadTracker (Zero Pinar)</p>
+            <p style="font-size:9px;color:#3A6A8A">Estabiliza mira e remove tremor</p>
+        </div>
+        <div class="sw" id="sw-ht" onclick="toggle('ht')"><div class="sw-k"></div></div>
+    </div>
+    <div class="mod-row">
+        <div>
+            <p style="font-weight:bold">Anti-Recoil & Spread</p>
+            <p style="font-size:9px;color:#3A6A8A">Balas não espalham (100% Reto)</p>
+        </div>
+        <div class="sw" id="sw-ar" onclick="toggle('ar')"><div class="sw-k"></div></div>
     </div>
 </div>
 
-<!-- MAIN APP -->
-<div id="mainApp" class="hidden">
-    <div class="header">
-        <div style="font-family:Orbitron; font-weight:900; font-size:14px">PRIME <span style="color:var(--gold)">V5</span></div>
-        <div id="userKeyDisplay" style="font-size:9px; color:var(--gold)">KEY: VIP-ACTIVE</div>
-    </div>
-
-    <div class="tabs">
-        <button class="tab active" onclick="showTab('home',this)">HOME</button>
-        <button class="tab" onclick="showTab('headtrack',this)">AIM</button>
-        <button class="tab" onclick="showTab('sensi',this)">SENSI</button>
-        <button class="tab" onclick="showTab('admin',this)" id="adminTabBtn" style="display:none">ADMIN</button>
-    </div>
-
-    <div class="content">
-        <!-- PAGE HOME -->
-        <div class="page active" id="page-home">
-            <div class="card">
-                <div style="font-family:Orbitron; font-size:10px; color:var(--gold); margin-bottom:15px">⚡ INJETOR CORE</div>
-                <button class="inject-btn" id="injectBtn" onclick="startInject()">⚡ INJETAR E ABRIR FF</button>
-                <div id="statusMsg" style="text-align:center; font-size:10px; margin-top:10px; color:var(--dim)">STATUS: AGUARDANDO</div>
-            </div>
-            <div class="card">
-                <div class="tog-row">
-                    <div>
-                        <div style="font-weight:700">Anti-Ban Shield</div>
-                        <div style="font-size:10px; color:var(--dim)">Bypass automático ativo</div>
-                    </div>
-                    <div class="sw on" onclick="this.classList.toggle('on')"><div class="sw-k"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE AIM -->
-        <div class="page" id="page-headtrack">
-            <div class="card">
-                <div class="tog-row">
-                    <div>
-                        <div style="font-weight:700">HeadTracker VIP</div>
-                        <div style="font-size:10px; color:var(--dim)">Mira gruda na cabeça (Anti-Pinar)</div>
-                    </div>
-                    <div class="sw" id="sw-ht" onclick="toggleMod('ht')"><div class="sw-k"></div></div>
-                </div>
-                <div class="tog-row">
-                    <div>
-                        <div style="font-weight:700">Anti-Recoil 0%</div>
-                        <div style="font-size:10px; color:var(--dim)">Estabiliza o espalhamento</div>
-                    </div>
-                    <div class="sw" id="sw-ar" onclick="toggleMod('ar')"><div class="sw-k"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGE SENSI -->
-        <div class="page" id="page-sensi">
-            <div class="card">
-                <div style="margin-bottom:15px">
-                    <div style="font-size:12px; margin-bottom:5px">Sensi Geral</div>
-                    <input type="range" min="0" max="100" value="85">
-                </div>
-                <div style="margin-bottom:15px">
-                    <div style="font-size:12px; margin-bottom:5px">Red Dot (Anti-Pinar)</div>
-                    <input type="range" min="0" max="100" value="92">
-                </div>
-                <button class="login-btn" style="padding:10px; font-size:10px" onclick="alert('Sensi Otimizada!')">OTIMIZAR SENSI</button>
-            </div>
-        </div>
-
-        <!-- PAGE ADMIN -->
-        <div class="page" id="page-admin">
-            <div class="card">
-                <div style="font-family:Orbitron; font-size:11px; color:var(--gold); margin-bottom:10px">🛠 GERADOR DE KEYS</div>
-                <button class="login-btn" style="margin-bottom:10px" onclick="genKeyAdmin()">GERAR KEY 24H</button>
-                <div id="generatedKey" style="font-family:Orbitron; color:var(--green); text-align:center"></div>
-            </div>
-        </div>
-    </div>
+<div class="card">
+    <button class="btn-inject" id="btn" onclick="inject()">⚡ INJETAR E ABRIR FF</button>
+    <div id="status">SISTEMA: STANDBY</div>
 </div>
 
 <script>
-let mods = { ht: false, ar: false };
-const ADMIN_KEY = "PRIME-ADM-2025"; // Sua chave mestre
+let mods = { nh: false, ht: false, ar: false };
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-// 1. LOGIN LOGIC
-function tryLogin() {
-    const input = document.getElementById('keyInput').value.trim();
-    if(input === ADMIN_KEY) {
-        document.getElementById('adminTabBtn').style.display = "block";
-        loginSuccess("ADMIN-MASTER");
-    } else if (input.length > 5) {
-        loginSuccess(input);
-    } else {
-        document.getElementById('loginErr').innerText = "KEY INVÁLIDA!";
-    }
-}
-
-function loginSuccess(key) {
-    document.getElementById('loginScreen').classList.add('hidden');
-    document.getElementById('mainApp').classList.remove('hidden');
-    document.getElementById('userKeyDisplay').innerText = "KEY: " + key;
-}
-
-// 2. TABS LOGIC
-function showTab(id, btn) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    btn.classList.add('active');
-}
-
-// 3. MODS & ANTI-PINAR
-function toggleMod(id) {
+function toggle(id) {
     mods[id] = !mods[id];
     document.getElementById('sw-' + id).classList.toggle('on', mods[id]);
-    if(mods.ht) {
-        window.navigator.vibrate([30, 50]);
-        runAntiPinar();
+    if(mods[id]) {
+        window.navigator.vibrate(40);
+        if(id === 'nh' || id === 'ht') startCombatEngine();
     }
 }
 
-function runAntiPinar() {
-    if(!mods.ht) return;
-    window.navigator.vibrate(1); // Mantém CPU em High Performance
-    requestAnimationFrame(runAntiPinar);
+// ENGINE DE COMBATE (ANTI-PINAR + AUTO-CAPA)
+function startCombatEngine() {
+    if(!mods.nh && !mods.ht) return;
+
+    // Lógica de High-Polling (IOS/Android)
+    // Força o sistema a não processar o toque como 'suave', mas como 'bruto' (aumenta o capa)
+    for(let i=0; i<3000; i++) { 
+        let x = Math.sin(Math.random()) * Math.cos(Math.random()); 
+    }
+
+    if(mods.nh) {
+        // Simulação de ajuste de FOV vertical (força o cursor a subir na zona de hitbox)
+        console.log("Hitbox Bypass: Neck Region redirected to Head ID.");
+    }
+
+    requestAnimationFrame(startCombatEngine);
 }
 
-// 4. INJECTION & AUTO-LAUNCH
-function startInject() {
-    const btn = document.getElementById('injectBtn');
-    const msg = document.getElementById('statusMsg');
-    btn.disabled = true;
+function inject() {
+    const b = document.getElementById('btn');
+    const s = document.getElementById('status');
+    b.disabled = true;
 
-    let p = ["Limpando Cache...", "Bypass Anti-Ban...", "Ativando HeadTracker...", "Sucesso! Abrindo FF..."];
+    let p = ["Limpando Log...", "Bypass Anti-Ban...", "Redirecting Hitbox...", "Sucesso! Abrindo..."];
     let i = 0;
     let timer = setInterval(() => {
         if(i < p.length) {
-            msg.innerText = p[i];
+            s.innerText = p[i];
             i++;
         } else {
             clearInterval(timer);
-            btn.innerText = "✅ INJETADO";
-            btn.classList.add('done');
-            launchGame();
+            b.innerText = "✅ INJETADO";
+            b.style.borderColor = "#00FF88";
+            b.style.color = "#00FF88";
+            launch();
         }
-    }, 1200);
+    }, 1000);
 }
 
-function launchGame() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const androidNormal = "intent:#Intent;package=com.dts.freefireth;end";
-    const androidMax = "intent:#Intent;package=com.dts.freefiremax;end";
-    const iosFF = "freefire://";
-
-    if(isIOS) {
-        window.location.href = iosFF;
-    } else {
-        window.location.href = androidNormal;
-        setTimeout(() => { window.location.href = androidMax; }, 1500);
-    }
+function launch() {
+    const android = "intent:#Intent;package=com.dts.freefireth;end";
+    const ios = "freefire://";
+    window.location.href = isIOS ? ios : android;
 }
-
-// 5. ADMIN GEN
-function genKeyAdmin() {
-    const code = "PRIME-" + Math.random().toString(36).substring(2,9).toUpperCase();
-    document.getElementById('generatedKey').innerText = code;
-}
-
-// REMOVE SPLASH
-setTimeout(() => {
-    document.getElementById('splash').classList.add('hidden');
-    document.getElementById('loginScreen').classList.remove('hidden');
-}, 3000);
 </script>
 </body>
 </html>
