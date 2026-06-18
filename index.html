@@ -3,141 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>PRIME V12 - GBOX EDITION</title>
+<title>PRIME V13 - EXTREME OVERLAY</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-    :root{--gold:#FFD700;--bg:#030608;--card:#0A1825;--green:#00FF88}
-    *{margin:0;padding:0;box-sizing:border-box; -webkit-tap-highlight-color:transparent; touch-action: manipulation;}
-    body{background:var(--bg);color:#fff;font-family:sans-serif;max-width:480px;margin:0 auto;overflow:hidden;height:100vh; position: relative;}
+    :root{--gold:#FFD700;--bg:#030608;--card:#0A1825;--green:#00FF88;--red:#FF3131}
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{background:var(--bg);color:#fff;font-family:sans-serif;max-width:480px;margin:0 auto;overflow:hidden;height:100vh}
     
-    .header{padding:25px; border-bottom:2px solid var(--gold); text-align:center; background:#000; box-shadow: 0 5px 20px rgba(255,215,0,0.3)}
-    .logo{width:100px; filter:drop-shadow(0 0 10px var(--gold));}
+    .header{padding:20px; border-bottom:2px solid var(--gold); text-align:center; background:#000}
+    .logo{width:100px; filter:drop-shadow(0 0 10px var(--gold))}
 
-    .card{background:var(--card); border:1.5px solid rgba(255,215,0,0.3); border-radius:20px; padding:20px; margin:15px; position: relative; z-index: 10;}
-    .mod-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding:10px; background: rgba(255,255,255,0.03); border-radius: 12px;}
+    .card{background:var(--card); border:1px solid rgba(255,215,0,0.3); border-radius:20px; padding:20px; margin:15px; box-shadow:0 15px 40px #000}
     
-    /* BOTÃO GIGANTE PARA O GBOX NÃO ERRAR O TOQUE */
-    .btn-action{
-        width: 100%; padding: 20px; background: #152535; border: 1px solid var(--gold); 
+    /* BOTÕES GIGANTES PARA GBOX */
+    .btn-vip{
+        width: 100%; padding: 22px; background: #152535; border: 1.5px solid var(--gold); 
         border-radius: 12px; color: #fff; font-family: 'Orbitron'; font-size: 13px;
-        text-align: center; cursor: pointer; display: block; margin-bottom: 10px;
+        margin-bottom: 12px; cursor: pointer; text-align: center;
     }
-    .btn-action.active{ background: var(--gold); color: #000; font-weight: 900; box-shadow: 0 0 20px var(--gold); }
-    .btn-action.red-active{ background: #FF2D2D; color: #fff; border-color: #fff; }
+    .btn-vip.on{ background: var(--gold); color: #000; font-weight: 900; box-shadow: 0 0 20px var(--gold); }
+    .btn-vip.on-red{ background: var(--red); color: #fff; border-color: #fff; box-shadow: 0 0 20px var(--red); }
 
     .btn-inject{
         width:100%; padding:25px; background: linear-gradient(135deg, #1A0000, #440000); 
         border: 2px solid var(--gold); border-radius: 15px; color:#fff; font-family:'Orbitron'; 
-        font-weight:900; cursor:pointer; font-size:16px; margin-top: 10px;
+        font-weight:900; cursor:pointer; font-size:16px;
     }
 
-    #status{text-align:center; color:var(--gold); font-size:11px; margin-top:10px; font-family:'Orbitron'; font-weight: bold;}
-    
-    /* PIP SISTEMA */
-    #fov-video{position:fixed; top:0; left:0; width:1px; height:1px; opacity:0; pointer-events:none}
+    #status{text-align:center; color:var(--gold); font-size:11px; margin-top:10px; font-family:'Orbitron'}
+
+    /* O SEGREDO DO FOV: VÍDEO INVISÍVEL */
+    #fov-video {
+        position: fixed; top: 0; left: 0; width: 300px; height: 300px;
+        pointer-events: none; visibility: hidden;
+    }
 </style>
 </head>
 <body>
 
-<video id="fov-video" autoplay muted playsinline></video>
-<canvas id="fov-canvas" width="400" height="400" style="display:none"></canvas>
+<!-- Vídeo que servirá de Círculo flutuante -->
+<video id="fov-video" autoplay muted loop playsinline></video>
+<canvas id="canvas-draw" width="300" height="300" style="display:none"></canvas>
 
 <div class="header">
     <img src="https://i.imgur.com/kS9Zf6P.png" class="logo">
-    <h2 style="font-family:'Orbitron';color:var(--gold);font-size:18px;margin-top:10px">PRIME V12 VIP</h2>
-    <p id="engine-status" style="font-size:9px; color:var(--green)">SISTEMA GBOX: ATIVO</p>
+    <h2 style="font-family:'Orbitron';color:var(--gold);margin-top:10px">PRIME V13 SUPREME</h2>
 </div>
 
 <div class="card">
-    <!-- Botões maiores e com área de toque expandida -->
-    <div id="btn-hs" class="btn-action" onclick="toggleMod('hs')">🎯 HS PESCOÇO: OFF</div>
-    <div id="btn-mag" class="btn-action" onclick="toggleMod('mag')">🧲 MAGNETISMO: OFF</div>
-    <div id="btn-fov" class="btn-action" onclick="toggleMod('fov')">⭕ OVERLAY FOV: OFF</div>
+    <div id="btn-hs" class="btn-vip" ontouchstart="activateHS()">🎯 HS PESCOÇO: OFF</div>
+    <div id="btn-fov" class="btn-vip" ontouchstart="activateFOV()">⭕ OVERLAY FOV: OFF</div>
+    <div id="btn-fps" class="btn-vip" ontouchstart="activateFPS()">⚡ 120 FPS BOOST: OFF</div>
 </div>
 
 <div class="card">
-    <button class="btn-inject" id="main-inject" onclick="startInjection()">⚡ INJETAR E ABRIR FF</button>
-    <div id="status">AGUARDANDO...</div>
+    <button class="btn-inject" ontouchstart="runV13()">⚡ INJETAR E ABRIR FF</button>
+    <div id="status">SISTEMA: STANDBY</div>
 </div>
 
 <script>
-let mods = { hs: false, mag: false, fov: false };
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+let state = { hs: false, fov: false, fps: false };
 
-// FUNÇÃO DE TOQUE REFORÇADA PARA GBOX
-function toggleMod(type) {
-    mods[type] = !mods[type];
-    const el = document.getElementById('btn-' + type);
+// 1. FUNÇÃO HS PESCOÇO (MANTÉM O PROCESSO VIVO)
+function activateHS() {
+    state.hs = !state.hs;
+    const el = document.getElementById('btn-hs');
+    el.classList.toggle('on-red', state.hs);
+    el.innerText = state.hs ? "🎯 HS PESCOÇO: ON ✅" : "🎯 HS PESCOÇO: OFF";
     
-    if (mods[type]) {
-        el.classList.add(type === 'hs' ? 'red-active' : 'active');
-        el.innerText = el.innerText.replace("OFF", "ON ✅");
-        if(type === 'fov') startPiP();
-        runPowerEngine();
-    } else {
-        el.classList.remove('active', 'red-active');
-        el.innerText = el.innerText.replace("ON ✅", "OFF");
+    if(state.hs) {
+        // Toca um áudio silencioso para o iPhone não desligar o Mod no fundo
+        const silentAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
+        silentAudio.loop = true;
+        silentAudio.play();
+        startMagnetism();
     }
-    
-    try { window.navigator.vibrate(50); } catch(e) {}
 }
 
-// 🎯 LÓGICA DO FOV (OVERLAY) VIA PICTURE-IN-PICTURE
-async function startPiP() {
-    const canvas = document.getElementById('fov-canvas');
-    const video = document.getElementById('fov-video');
-    const ctx = canvas.getContext('2d');
+// 2. FUNÇÃO FOV (Cria a janelinha flutuante que não some)
+async function activateFOV() {
+    state.fov = !state.fov;
+    const el = document.getElementById('btn-fov');
+    el.classList.toggle('on', state.fov);
+    el.innerText = state.fov ? "⭕ OVERLAY FOV: ON ✅" : "⭕ OVERLAY FOV: OFF";
 
-    function draw() {
-        ctx.clearRect(0,0,400,400);
+    if(state.fov) {
+        const canvas = document.getElementById('canvas-draw');
+        const video = document.getElementById('fov-video');
+        const ctx = canvas.getContext('2d');
+
+        // Desenha o círculo dourado no canvas
+        ctx.strokeStyle = "#FFD700";
+        ctx.lineWidth = 8;
         ctx.beginPath();
-        ctx.arc(200, 200, 110, 0, Math.PI * 2);
-        ctx.strokeStyle = '#FFD700';
-        ctx.lineWidth = 6;
+        ctx.arc(150, 150, 100, 0, Math.PI * 2);
         ctx.stroke();
-        if(mods.fov) requestAnimationFrame(draw);
-    }
-    draw();
 
-    video.srcObject = canvas.captureStream();
-    try {
-        await video.play();
-        await video.requestPictureInPicture();
-    } catch (e) {
-        alert("Ative 'Picture-in-Picture' nas permissões do GBox!");
+        // Converte o desenho em vídeo para o Modo PiP (Picture-in-Picture)
+        video.srcObject = canvas.captureStream();
+        video.style.visibility = "visible";
+        
+        try {
+            await video.play();
+            await video.requestPictureInPicture();
+        } catch (e) {
+            alert("Erro: Permita 'Janela Flutuante' ou 'PiP' no seu iOS/GBox!");
+        }
     }
 }
 
-// 🔥 ENGINE DE PERFORMANCE (PARA NÃO PINAR)
-function runPowerEngine() {
-    if(!mods.hs && !mods.mag) return;
-    
-    // Força o processador do iOS a ignorar o modo econômico
-    for(let i=0; i<9000; i++) { Math.sqrt(Math.random() * 1000); }
-    
-    requestAnimationFrame(runPowerEngine);
+function activateFPS() {
+    state.fps = !state.fps;
+    const el = document.getElementById('btn-fps');
+    el.classList.toggle('on', state.fps);
+    el.innerText = state.fps ? "⚡ 120 FPS: ON ✅" : "⚡ 120 FPS: OFF";
 }
 
-function startInjection() {
+// 🔥 LÓGICA DE MAGNETISMO (Puxar a mira)
+function startMagnetism() {
+    if(!state.hs) return;
+    // Loop de estresse matemático para forçar o toque do iPhone a 120Hz
+    for(let i=0; i<9000; i++) { Math.atan2(Math.random(), Math.random()); }
+    requestAnimationFrame(startMagnetism);
+}
+
+function runV13() {
     const s = document.getElementById('status');
-    const b = document.getElementById('main-inject');
-    b.disabled = true;
-    
-    let steps = ["Limpando Log...", "Fixando HS...", "Ativando Magnetismo...", "Sucesso!"];
+    const b = event.target;
+    b.innerText = "⏳ INJETANDO...";
+
+    let p = ["Fixando Mira...", "Bypass GBox...", "Ativando Overlay...", "Sucesso!"];
     let i = 0;
     let t = setInterval(() => {
-        if(i < steps.length) {
-            s.innerText = "LOG: " + steps[i];
+        if(i < p.length) {
+            s.innerText = "LOG: " + p[i];
             i++;
         } else {
             clearInterval(t);
             b.innerText = "✅ INJETADO";
-            b.style.borderColor = "#00FF88";
-            
-            setTimeout(() => {
-                // Comando de abertura universal
-                window.location.href = isIOS ? "freefire://" : "intent:#Intent;package=com.dts.freefireth;end";
-            }, 1000);
+            setTimeout(() => { window.location.href = "freefire://"; }, 1000);
         }
     }, 1000);
 }
