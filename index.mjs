@@ -17,6 +17,7 @@ import {
 } from "discord.js";
 import { access } from "node:fs/promises";
 import path2 from "node:path";
+import http from "node:http";
 
 // src/lib/logger.ts
 import pino from "pino";
@@ -545,7 +546,40 @@ async function startTicketBot() {
   await client.login(botToken);
 }
 
-startTicketBot().catch((error) => {
+// HTTP Server for Render port detection
+function startHttpServer() {
+  const port = process.env.PORT || 3000;
+  const server = http.createServer((req, res) => {
+    if (req.url === "/" && req.method === "GET") {
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("NEXUS BOT ONLINE");
+    } else {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Not Found");
+    }
+  });
+
+  server.listen(port, () => {
+    logger.info({ port }, "HTTP server listening for Render");
+  });
+
+  server.on("error", (error) => {
+    logger.error({ err: error }, "HTTP server error");
+  });
+}
+
+// Start both Discord bot and HTTP server
+async function start() {
+  try {
+    startHttpServer();
+    await startTicketBot();
+  } catch (error) {
+    console.error("Failed to start:", error);
+    process.exitCode = 1;
+  }
+}
+
+start().catch((error) => {
   console.error("Discord ticket bot failed to start:", error);
   process.exitCode = 1;
 });
