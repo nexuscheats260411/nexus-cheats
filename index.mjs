@@ -546,40 +546,30 @@ async function startTicketBot() {
   await client.login(botToken);
 }
 
-// HTTP Server for Render port detection
-function startHttpServer() {
-  const port = process.env.PORT || 3000;
-  const server = http.createServer((req, res) => {
-    if (req.url === "/" && req.method === "GET") {
-      res.writeHead(200, { "Content-Type": "text/plain" });
-      res.end("NEXUS BOT ONLINE");
-    } else {
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Not Found");
-    }
-  });
-
-  server.listen(port, () => {
-    logger.info({ port }, "HTTP server listening for Render");
-  });
-
-  server.on("error", (error) => {
-    logger.error({ err: error }, "HTTP server error");
-  });
-}
-
-// Start both Discord bot and HTTP server
-async function start() {
-  try {
-    startHttpServer();
-    await startTicketBot();
-  } catch (error) {
-    console.error("Failed to start:", error);
-    process.exitCode = 1;
+// HTTP Server for Render port detection - MUST start immediately
+const port = process.env.PORT || 10000;
+const server = http.createServer((req, res) => {
+  if (req.url === "/" && req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("NEXUS BOT ONLINE");
+  } else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Not Found");
   }
-}
+});
 
-start().catch((error) => {
+// Start HTTP server immediately on 0.0.0.0
+server.listen(port, "0.0.0.0", () => {
+  logger.info({ port, host: "0.0.0.0" }, "HTTP server listening for Render");
+});
+
+server.on("error", (error) => {
+  logger.error({ err: error }, "HTTP server error");
+  process.exit(1);
+});
+
+// Start Discord bot in parallel
+startTicketBot().catch((error) => {
   console.error("Discord ticket bot failed to start:", error);
   process.exitCode = 1;
 });
