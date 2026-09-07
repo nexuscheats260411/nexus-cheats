@@ -1,0 +1,14 @@
+{
+  "name": "discord-ticket-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "pino": "^9.14.0",
+    "pino-pretty": "^13.1.3"
+  }
+}
